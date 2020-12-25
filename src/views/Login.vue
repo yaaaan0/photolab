@@ -1,9 +1,9 @@
 <template lang="pug">
-#home
+#login
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Login'
 }
 </script>
