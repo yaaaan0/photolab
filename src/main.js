@@ -4,15 +4,16 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
-import { jarallax, jarallaxVideo } from 'jarallax'
+import './style.css'
+import VideoBackground from 'vue-responsive-video-background-player'
 
 Vue.config.productionTip = false
+
+Vue.component('video-background', VideoBackground)
 
 new Vue({
   router,
   store,
   vuetify,
-  jarallax,
-  jarallaxVideo,
   render: h => h(App)
 }).$mount('#app')
