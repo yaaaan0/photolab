@@ -86,7 +86,7 @@ body {
 
 /* Menu------------------------------------------------- */
 #menu {
-  position: fixed;
+  /* position: fixed; */
   width: 100vw;
   height: 230px;
   background-color: antiquewhite;
@@ -160,7 +160,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 50px;
-  position: fixed;
+  position: absolute;
   right: 5px;
   top: 160px;
 }
@@ -214,6 +214,19 @@ body {
   color: rgb(83, 122, 73);
 }
 
+/* topbtn------------------------------------------------- */
+#topBtn .v-btn {
+  height: 50px;
+  width: 50px;
+  background-color: rgba(252, 253, 251, 0.8);
+  color: #000000;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+
+  z-index: 2;
+}
+
 /* 假字 */
 #word {
   height: 100%;
@@ -235,7 +248,7 @@ body {
     display: flex;
     flex-direction: row;
     width: 100px;
-    position: fixed;
+    position: absolute;
     right: 10px;
     top: 160px;
   }
