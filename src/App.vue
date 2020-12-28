@@ -1,5 +1,5 @@
 <template lang="pug">
-#app
+#app(class="overflow-y-auto")
   router-view
 </template>
 

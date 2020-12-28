@@ -10,7 +10,7 @@ const routes = [
     path: '/',
     name: 'LeadingPage',
     component: LeadingPage,
-    mate: {
+    meta: {
       title: 'GP photolab',
       login: false
     }
@@ -19,8 +19,8 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
-    mate: {
-      title: 'GP photolab',
+    meta: {
+      title: 'GP photolab | GP首頁',
       login: false
     }
   },
@@ -28,7 +28,7 @@ const routes = [
     path: '/about',
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    mate: {
+    meta: {
       title: 'GP photolab | 品牌介紹',
       login: false
     }
@@ -37,7 +37,7 @@ const routes = [
     path: '/serive',
     name: 'Serive',
     component: () => import(/* webpackChunkName: "serive" */ '../views/Serive.vue'),
-    mate: {
+    meta: {
       title: 'GP photolab | 服務內容',
       login: false
     }
@@ -46,7 +46,7 @@ const routes = [
     path: '/photolab',
     name: 'Photolab',
     component: () => import(/* webpackChunkName: "photolab" */ '../views/Photolab.vue'),
-    mate: {
+    meta: {
       title: 'GP photolab | 照相館',
       login: false
     }
@@ -55,7 +55,7 @@ const routes = [
     path: '/q&a',
     name: 'Q&A',
     component: () => import(/* webpackChunkName: "q&a" */ '../views/Q&A.vue'),
-    mate: {
+    meta: {
       title: 'GP photolab | 常見問題',
       login: false
     }
@@ -64,7 +64,7 @@ const routes = [
     path: '/reserve',
     name: 'Reserve',
     component: () => import(/* webpackChunkName: "reserve" */ '../views/Reserve.vue'),
-    mate: {
+    meta: {
       title: 'GP photolab | 預約表單',
       login: true
     }
@@ -73,7 +73,7 @@ const routes = [
     path: '/login',
     name: 'Longin',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
-    mate: {
+    meta: {
       title: 'GP photolab | 登入註冊',
       login: false
     }
@@ -82,6 +82,12 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.afterEach((to, from) => {
+  let title = ''
+  title = to.meta.title
+  document.title = title
 })
 
 export default router
