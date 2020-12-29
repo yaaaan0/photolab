@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LeadingPage from '../views/LeadingPage.vue'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -12,16 +11,18 @@ const routes = [
     component: LeadingPage,
     meta: {
       title: 'GP photolab',
-      login: false
+      login: false,
+      transition: 'fade-in-down'
     }
   },
   {
     path: '/home',
     name: 'Home',
-    component: Home,
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
     meta: {
       title: 'GP photolab | GP首頁',
-      login: false
+      login: false,
+      transition: 'fade-in-down'
     }
   },
   {
