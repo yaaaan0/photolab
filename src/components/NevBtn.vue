@@ -1,7 +1,7 @@
 <template lang="pug">
 #nevBtn
   v-bottom-navigation(shift grow hide-on-scroll scroll-target='#hide-on-scroll')
-    v-btn(color='deep-purple')
+    v-btn(color='deep-purple' to="login")
       span Account
       v-icon mdi-account
     v-btn(color='deep-purple')

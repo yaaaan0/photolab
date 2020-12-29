@@ -28,7 +28,7 @@ body {
 
 #content {
   width: 100vw;
-  height: 100%;
+  height: 580px;
 }
 
 #botton {
@@ -40,6 +40,10 @@ body {
   margin-top: 70px;
 }
 
+.transition-swing {
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1) !important;
+}
+
 /* 前導頁------------------------------------------------- */
 
 #leading {
@@ -48,6 +52,7 @@ body {
   overflow: hidden;
 
   position: relative;
+  z-index: 999;
 }
 
 #leading .logo {
@@ -211,7 +216,7 @@ body {
   z-index: 2;
 }
 #nevBtn .v-btn {
-  color: rgb(83, 122, 73);
+  color: rgb(0, 0, 0);
 }
 
 /* topbtn------------------------------------------------- */
@@ -221,10 +226,15 @@ body {
   background-color: rgba(252, 253, 251, 0.8);
   color: #000000;
   position: fixed;
-  bottom: 10px;
+  bottom: 65px;
   right: 10px;
 
   z-index: 2;
+}
+/* login------------------------------------------------- */
+#login {
+  display: flex;
+  justify-content: center;
 }
 
 /* 假字 */
@@ -264,5 +274,9 @@ body {
   }
   #nevBtn {
     display: none;
+  }
+  #topBtn .v-btn {
+    bottom: 30px;
+    right: 10px;
   }
 }
