@@ -6,10 +6,12 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import './style.css'
 import VideoBackground from 'vue-responsive-video-background-player'
+import VuePageTransition from 'vue-page-transition'
 
 Vue.config.productionTip = false
 
 Vue.component('video-background', VideoBackground)
+Vue.use(VuePageTransition)
 
 new Vue({
   router,
