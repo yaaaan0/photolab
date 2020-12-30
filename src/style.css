@@ -224,7 +224,7 @@ body {
   z-index: 2;
 }
 #nevBtn .v-btn {
-  color: rgb(0, 0, 0);
+  color: inherit !important;
 }
 
 /* topbtn------------------------------------------------- */
@@ -278,6 +278,9 @@ body {
 }
 .v-card--link:before {
   display: none;
+}
+#login .v-btn--disabled {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* 假字 */

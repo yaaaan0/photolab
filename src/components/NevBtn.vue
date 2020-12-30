@@ -1,19 +1,13 @@
 <template lang="pug">
 #nevBtn
-  v-bottom-navigation(shift grow hide-on-scroll scroll-target='#hide-on-scroll')
-    v-btn(color='deep-purple' to="login")
-      span Account
+  v-bottom-navigation(grow)
+    v-btn(to="user")
+      //- span Account
       v-icon mdi-account
-    v-btn(color='deep-purple')
-      span Reserve
+    v-btn(to="reserve")
+      //- span Reserve
       v-icon mdi-chat-processing
-    v-btn(color='deep-purple')
-      span Favorites
+    v-btn(to="userimages")
+      //- span Favorites
       v-icon mdi-panorama
 </template>
-
-<script>
-export default {
-  data: () => ({ value: 'recent' })
-}
-</script>

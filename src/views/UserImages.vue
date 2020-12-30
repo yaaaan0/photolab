@@ -1,9 +1,9 @@
 <template lang="pug">
-  #reserve
+  #userimages
 </template>
 
 <script>
 export default {
-  name: 'Reserve'
+  name: 'UserImages'
 }
 </script>

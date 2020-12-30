@@ -1,9 +1,9 @@
 <template lang="pug">
-  #reserve
+  #user
 </template>
 
 <script>
 export default {
-  name: 'Reserve'
+  name: 'user'
 }
 </script>
