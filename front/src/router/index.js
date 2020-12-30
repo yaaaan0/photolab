@@ -81,6 +81,15 @@ const routes = [
     }
   },
   {
+    path: '/favourite',
+    name: 'Favourite',
+    component: () => import(/* webpackChunkName: "favourite" */ '../views/Favourite.vue'),
+    meta: {
+      title: 'GP photolab | 收藏夾',
+      login: true
+    }
+  },
+  {
     path: '/login',
     name: 'Longin',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),

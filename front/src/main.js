@@ -10,6 +10,7 @@ import VuePageTransition from 'vue-page-transition'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
 
 axios.defaults.withCredentials = true
 Vue.config.productionTip = false
