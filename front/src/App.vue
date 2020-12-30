@@ -27,6 +27,9 @@ import TopBtn from './components/TopBtn.vue'
 export default {
   name: 'App',
   computed: {
+    user () {
+      return this.$store.state.user
+    },
     isShow () {
       if (this.$route.path === '/') {
         return false
@@ -79,6 +82,7 @@ export default {
           }
         })
     },
+    // 當vue元件準備好時 要做的動作
     mounted () {
       this.heartbeat()
       setInterval(() => {
