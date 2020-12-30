@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 import LeadingPage from '../views/LeadingPage.vue'
 
 Vue.use(VueRouter)
@@ -71,6 +72,15 @@ const routes = [
     }
   },
   {
+    path: '/user',
+    name: 'User',
+    component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
+    meta: {
+      title: 'GP photolab | 會員專區',
+      login: true
+    }
+  },
+  {
     path: '/login',
     name: 'Longin',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
@@ -83,6 +93,14 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // 若即將訪問的頁面需登入且 vuex 狀態並沒有登入
+  if (to.meta.login && !store.state.user.login) {
+    alert('plz login')
+    next('/login')
+  } else next()
 })
 
 router.afterEach((to, from) => {
