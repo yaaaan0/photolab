@@ -6,15 +6,27 @@ import connectMongo from 'connect-mongo'
 import cors from 'cors'
 import session from 'express-session'
 
+// 引用重複驗證錯誤訊息套件
+import beautifyUnique from 'mongoose-beautiful-unique-validation'
+
 import routerUser from './routes/users.js'
 // import routerAlbum from './routes/albums.js'
 
 dotenv.config()
 
+mongoose.plugin(beautifyUnique)
+
 mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+
+// 顯示連接成功訊息
+const connection = mongoose.connection
+connection.once('open', () => {
+  console.log('已連接資料庫')
+})
 
 const app = express()
 
+// 讓 express 可以讀取進來的 body，格式為 json
 app.use(bodyParser.json())
 
 // 跨域設定
@@ -77,5 +89,5 @@ app.use((_, req, res, next) => {
 })
 
 app.listen(process.env.PORT, () => {
-  console.log('server started')
+  console.log(`http://localhost:${process.env.PORT}`)
 })
