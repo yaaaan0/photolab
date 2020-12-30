@@ -7,11 +7,17 @@ import vuetify from './plugins/vuetify'
 import './style.css'
 import VideoBackground from 'vue-responsive-video-background-player'
 import VuePageTransition from 'vue-page-transition'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import VueSweetalert2 from 'vue-sweetalert2'
 
+axios.defaults.withCredentials = true
 Vue.config.productionTip = false
 
 Vue.component('video-background', VideoBackground)
 Vue.use(VuePageTransition)
+Vue.use(VueAxios, axios)
+Vue.use(VueSweetalert2)
 
 new Vue({
   router,
