@@ -251,6 +251,13 @@ body {
   justify-content: center;
   margin: 20px;
 }
+#login h5 {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 30px;
+  margin-left: 15px;
+  color: rgba(0, 0, 0, 0.7);
+}
 #login #div {
   display: flex;
   justify-content: space-around;

@@ -11,6 +11,7 @@
                   v-container
                       v-col(cols="12")
                         v-text-field(
+                        append-icon="mdi-account"
                         filled
                         rounded
                         label="Account")
@@ -31,7 +32,9 @@
                 v-form(v-if="active")
                   v-container
                       v-col(cols="12")
+                        h5 CREATE ACCOUNT | 創建帳號
                         v-text-field(
+                        append-icon="mdi-account"
                         filled
                         rounded
                         label="Account")
@@ -42,9 +45,28 @@
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show1 ? 'text' : 'password'"
                         @click:append="show1 = !show1")
+                        h5 PERSONAL DATA | 個人資料
+                        v-text-field(
+                        append-icon="mdi-account-details"
+                        filled
+                        rounded
+                        label="Name"
+                       )
+                        v-text-field(
+                        append-icon="mdi-email"
+                        filled
+                        rounded
+                        label="Email"
+                       )
+                        v-text-field(
+                        append-icon="mdi-cellphone"
+                        filled
+                        rounded
+                        label="Phone"
+                       )
                         #div
                           v-checkbox(v-model='checkbox' :label='`Remember me`')
-                          v-btn( rounded color='primary' dark) 登入
+                          v-btn( rounded color='primary' dark) 註冊
 
 </template>
 
