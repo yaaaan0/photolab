@@ -81,14 +81,14 @@ export default {
             this.$router.push('/')
           }
         })
-    },
-    // 當vue元件準備好時 要做的動作
-    mounted () {
-      this.heartbeat()
-      setInterval(() => {
-        this.heartbeat()
-      }, 5000)
     }
+  },
+  // 當vue元件準備好時 要做的動作
+  mounted () {
+    this.heartbeat()
+    setInterval(() => {
+      this.heartbeat()
+    }, 5000)
   }
 }
 </script>

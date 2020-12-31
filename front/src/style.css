@@ -5,6 +5,18 @@ body {
   background-color: antiquewhite;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 #app {
   height: 100vh;
   width: 100vw;
@@ -205,6 +217,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: rgb(75, 69, 60);
 
   padding: 10px 10px 10px 0;
 }
@@ -269,7 +282,7 @@ body {
   flex-direction: row;
 }
 #login .v-card {
-  background-color: rgba(133, 62, 62, 0);
+  background-color: rgba(255, 255, 255, 0);
   border: 0.5px solid #000000;
 }
 #login .v-card .v-ripple__container {
@@ -281,6 +294,19 @@ body {
 }
 #login .v-btn--disabled {
   background-color: rgba(0, 0, 0, 0.1);
+}
+/* #login .theme--light.v-label {
+  color: rgb(92 118 52 / 0.6);
+} */
+.v-messages__message {
+  line-height: 12px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  color: rgb(92 118 52 / 0.6);
 }
 
 /* 假字 */

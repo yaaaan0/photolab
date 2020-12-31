@@ -11,9 +11,13 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
+import { ValidationProvider } from 'vee-validate'
 
 axios.defaults.withCredentials = true
 Vue.config.productionTip = false
+
+// 認證
+Vue.component('ValidationProvider', ValidationProvider)
 
 Vue.component('video-background', VideoBackground)
 Vue.use(VuePageTransition)

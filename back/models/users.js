@@ -81,9 +81,15 @@ const userSchema = new Schema(
         message: '信箱格式錯誤'
       }
     },
-    phone: {
-      type: Number,
-      required: '請輸入電話號碼'
+    phoneNumber: {
+      type: String,
+      required: '請輸入電話號碼',
+      validate: {
+        validator (value) {
+          return validator.isMobilePhone(value)
+        },
+        message: '電話號碼格式錯誤'
+      }
     },
     images: {
       type: [userImageSchema]

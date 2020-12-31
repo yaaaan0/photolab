@@ -109,7 +109,9 @@ router.beforeEach((to, from, next) => {
   if (to.meta.login && !store.state.user.login) {
     alert('plz login')
     next('/login')
-  } else next()
+  } else {
+    next()
+  }
 })
 
 router.afterEach((to, from) => {
