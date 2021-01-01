@@ -106,7 +106,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   // 若即將訪問的頁面需登入且 vuex 狀態並沒有登入
-  if (to.meta.login && !store.state.user.login) {
+  if (to.meta.login && !store.state.user.id) {
     alert('plz login')
     next('/login')
   } else {
