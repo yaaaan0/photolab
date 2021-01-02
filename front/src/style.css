@@ -14,6 +14,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
+  border: 0px;
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -54,6 +55,35 @@ select:-webkit-autofill:focus {
 
 .transition-swing {
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1) !important;
+}
+
+/* sweetalert------------------------------------------------- */
+.swal2-popup {
+  background-color: rgba(50, 50, 50, 0.9) !important;
+  border-radius: 0px !important;
+  width: 250px !important;
+}
+
+.swal2-title {
+  font-size: 1rem !important;
+  color: antiquewhite !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: antiquewhite !important;
+  border: 0px !important;
+  color: #595959 !important;
+  font-size: 1rem !important;
+  border-radius: 0px !important;
+}
+
+#swal2-content {
+  color: antiquewhite !important;
+}
+.swal2-success-circular-line-left,
+.swal2-success-circular-line-right,
+.swal2-success-fix {
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 
 /* 前導頁------------------------------------------------- */
@@ -199,6 +229,9 @@ select:-webkit-autofill:focus {
 #resBtn .btn-1 {
   display: none;
 }
+#resBtn .v-btn:before {
+  display: none;
+}
 
 /* footer------------------------------------------------- */
 #footer {
@@ -340,6 +373,9 @@ select:-webkit-autofill:focus {
   }
   #resBtn .btn-1 {
     display: flex;
+  }
+  #resBtn .v-btn:before {
+    display: none;
   }
   #botton {
     margin-top: 20px;
