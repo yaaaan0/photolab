@@ -12,23 +12,21 @@
                     v-form(v-if="active" @submit.prevent="onLoginSubmit")
                       v-container
                           v-col(cols="12")
-                            validation-provider(v-slot="{ errors }" name="Account" rules="required|max:20")
+                            validation-provider(v-slot="{ errors }" name="Account" rules="required|max:20|min:4")
                               v-text-field(
                               :state="accountState"
                               v-model="account"
                               :error-messages="errors"
                               required
-                              hint="At least 4 characters"
                               append-icon="mdi-account"
                               filled
                               rounded
                               label="Account")
-                            validation-provider(v-slot="{ errors }" name="Password" rules="required|max:20")
+                            validation-provider(v-slot="{ errors }" name="Password" rules="required|max:20|min:4")
                               v-text-field(
                               :state="passwordState"
                               v-model="password"
                               :error-messages="errors"
-                              hint="At least 4 characters"
                               filled
                               rounded
                               label="Password"
@@ -47,24 +45,22 @@
                       v-container
                           v-col(cols="12")
                             h5 CREATE ACCOUNT | 創建帳號
-                            validation-provider(v-slot="{ errors }" name="Account" rules="required|max:20")
+                            validation-provider(v-slot="{ errors }" name="Account" rules="required|max:20|min:4")
                               v-text-field(
                               :state="accountState"
                               v-model="account"
                               :error-messages="errors"
                               required
-                              hint="At least 4 characters"
                               append-icon="mdi-account"
                               filled
                               rounded
                               label="Account")
-                            validation-provider(v-slot="{ errors }" name="Password" rules="required|max:20")
+                            validation-provider(v-slot="{ errors }" name="Password" rules="required|max:20|min:4")
                               v-text-field(
                               :state="passwordState"
                               v-model="password"
                               :error-messages="errors"
                               required
-                              hint="At least 4 characters"
                               filled
                               rounded
                               label="Password"
@@ -113,7 +109,7 @@
 </template>
 
 <script>
-import { required, digits, email, max, regex } from 'vee-validate/dist/rules'
+import { required, digits, email, max, regex, min } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 
 setInteractionMode('eager')
@@ -131,6 +127,11 @@ extend('required', {
 extend('max', {
   ...max,
   message: '{_field_} may not be greater than {length} characters'
+})
+
+extend('min', {
+  ...min,
+  message: '{_field_} at least {length} characters'
 })
 
 extend('regex', {
