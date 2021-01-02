@@ -5,13 +5,21 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import './style.css'
+import './scss/style.scss'
 import VideoBackground from 'vue-responsive-video-background-player'
 import VuePageTransition from 'vue-page-transition'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueSweetalert2 from 'vue-sweetalert2'
-import 'sweetalert2/dist/sweetalert2.min.css'
+// import 'sweetalert2/dist/sweetalert2.min.css'
 import { ValidationProvider } from 'vee-validate'
+
+// const options = {
+//   confirmButtonColor: '#00000',
+//   cancelButtonColor: '#ff7674'
+// }
+
+Vue.use(VueSweetalert2)
 
 axios.defaults.withCredentials = true
 Vue.config.productionTip = false
@@ -22,7 +30,7 @@ Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('video-background', VideoBackground)
 Vue.use(VuePageTransition)
 Vue.use(VueAxios, axios)
-Vue.use(VueSweetalert2)
+// Vue.use(VueSweetalert2)
 
 new Vue({
   router,

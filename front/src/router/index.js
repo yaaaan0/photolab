@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
 import LeadingPage from '../views/LeadingPage.vue'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 Vue.use(VueRouter)
 
@@ -107,7 +108,10 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   // 若即將訪問的頁面需登入且 vuex 狀態並沒有登入
   if (to.meta.login && !store.state.user.id) {
-    alert('plz login')
+    Swal.fire({
+      icon: 'error',
+      title: '未登入'
+    })
     next('/login')
   } else {
     next()
