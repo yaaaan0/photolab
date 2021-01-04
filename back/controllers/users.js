@@ -91,3 +91,27 @@ export const heartbeat = async (req, res) => {
   }
   res.status(200).send(isLogin)
 }
+
+export const checkUser = async (req, res) => {
+  try {
+    const result = await users.findById(req.params.id)
+    res.status(200)
+    res.status({
+      success: true,
+      message: '',
+      id: result.id,
+      accound: result.accound,
+      name: result.name,
+      email: result.email,
+      phoneNumber: result.phoneNumber
+    })
+  } catch (error) {
+    if (error.name === 'CastError') {
+      res.status(404)
+      res.send({ success: false, message: '找不到資料' })
+    } else {
+      res.status(500)
+      res.send({ success: false, message: '伺服器發生錯誤' })
+    }
+  }
+}
