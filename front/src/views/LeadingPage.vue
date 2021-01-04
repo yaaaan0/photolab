@@ -8,11 +8,6 @@ import Leading from '../components/Leading.vue'
 
 export default {
   name: 'LeadingPage',
-  data () {
-    return {
-      isShow: false
-    }
-  },
   components: {
     Leading
   }
