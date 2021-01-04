@@ -18,10 +18,10 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-#app {
+/* #app {
   height: 100vh;
   width: 100vw;
-}
+} */
 
 #home,
 #about,
@@ -74,7 +74,7 @@ select:-webkit-autofill:focus {
   border: 0px !important;
   color: #595959 !important;
   font-size: 1rem !important;
-  border-radius: 0px !important;
+  /* border-radius: 0px !important; */
 }
 
 #swal2-content {
@@ -286,6 +286,19 @@ select:-webkit-autofill:focus {
   z-index: 2;
 }
 /* login------------------------------------------------- */
+#login #app {
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  padding: 0 25px;
+}
+#login .transition-swing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
 #login,
 #lobin .v-form {
   display: flex !important;
@@ -342,6 +355,59 @@ select:-webkit-autofill:focus {
   color: rgb(92 118 52 / 0.6);
 }
 
+/* usermenu------------------------------------------------- */
+#userMenu {
+  display: flex;
+  justify-content: center;
+}
+
+/* #userMenu .v-icon {
+  color: #677d35;
+} */
+#userMenu .v-btn.v-btn:first-child {
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+#userMenu .v-btn.v-btn:last-child {
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+#userMenu .theme--light.v-btn-toggle:not(.v-btn-toggle--group) {
+  background: rgba(255, 255, 255, 0.2);
+}
+#userMenu .theme--light.v-btn.v-btn--has-bg {
+  background-color: transparent;
+}
+
+/* userdata */
+#userData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 50px;
+}
+#userData .v-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 100vw;
+  padding: 50px;
+  margin-top: 50px;
+}
+/* #userData .v-card__actions {
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+} */
+#userData .v-avatar {
+  margin: 20px;
+}
+#userData .v-card__text {
+  color: rgba(103, 125, 53, 0.9) !important;
+}
+
 /* 假字 */
 #word {
   height: 100%;
@@ -386,5 +452,12 @@ select:-webkit-autofill:focus {
   #topBtn .v-btn {
     bottom: 30px;
     right: 10px;
+  }
+  #userData .v-card {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 65%;
+    padding: 100px;
   }
 }
