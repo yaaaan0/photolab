@@ -9,5 +9,5 @@
       v-icon mdi-chat-processing
     v-btn(to="userimages")
       //- span Favorites
-      v-icon mdi-panorama
+      v-icon mdi-folder-image
 </template>
