@@ -18,10 +18,10 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* #app {
-  height: 100vh;
-  width: 100vw;
-} */
+#app {
+  background-color: antiquewhite;
+  height: 100%;
+}
 
 #home,
 #about,
@@ -379,33 +379,71 @@ select:-webkit-autofill:focus {
   background-color: transparent;
 }
 
-/* userdata */
+/* userdata------------------------------------------------- */
 #userData {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 50px;
+  margin: 0 50px 50px 50px;
 }
 #userData .v-card {
   display: flex;
   align-items: center;
-  flex-direction: column;
   background-color: rgba(255, 255, 255, 0.4);
   width: 100vw;
   padding: 50px;
   margin-top: 50px;
 }
-/* #userData .v-card__actions {
-  display: flex;
-  align-items: flex-end;
-  padding: 8px;
-} */
 #userData .v-avatar {
   margin: 20px;
 }
 #userData .v-card__text {
   color: rgba(103, 125, 53, 0.9) !important;
+}
+#userData span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+#userData .v-card__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+#userData .v-card__actions .edit,
+#userData .v-card__actions .save {
+  color: #677d35;
+}
+#userData .v-card__actions .cancel {
+  color: #d46144;
+}
+/* reserve form------------------------------------------------- */
+#form form {
+  width: 80%;
+  height: 100%;
+}
+#form .v-application--wrap {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+#form .theme--light.v-stepper {
+  background: rgba(255, 255, 255, 0.4);
+}
+#form .v-card {
+  background-color: rgb(255, 255, 255, 0.7);
+  margin: 5px;
+  padding: 30px;
+}
+#form .v-btn {
+  margin: 10px;
+}
+#form .v-radio {
+  margin: 10px;
 }
 
 /* 假字 */
@@ -456,8 +494,17 @@ select:-webkit-autofill:focus {
   #userData .v-card {
     display: flex;
     align-items: center;
+    width: 60%;
+    padding: 30px;
+  }
+  #userData span {
     flex-direction: row;
-    width: 65%;
-    padding: 100px;
+    width: 100%;
+  }
+  #userData .v-card__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }
