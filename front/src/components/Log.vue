@@ -87,10 +87,7 @@
                                 filled
                                 rounded
                                 )
-                              validation-provider(
-                                v-slot="{ errors }"
-                                name="PhoneNumber"
-                                rules="required|digits:10")
+                              validation-provider(v-slot="{ errors }" name="PhoneNumber" rules="required|digits:10")
                                 v-text-field(
                                 v-model="phoneNumber"
                                 :error-messages="errors"
