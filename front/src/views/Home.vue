@@ -11,7 +11,6 @@ import Word from '../components/Word.vue'
 import Footer from '../components/Footer.vue'
 import NevBtn from '../components/NevBtn.vue'
 import TopBtn from '../components/TopBtn.vue'
-import ScrollEvent from '../components/ScrollEvent.vue'
 export default {
   name: 'Home',
   components: {
@@ -20,8 +19,7 @@ export default {
     Word,
     Footer,
     NevBtn,
-    TopBtn,
-    ScrollEvent
+    TopBtn
   }
 }
 </script>
