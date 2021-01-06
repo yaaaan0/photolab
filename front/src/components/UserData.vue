@@ -1,54 +1,54 @@
 <template lang="pug">
   #userData
-    v-card
-      validation-observer( ref="observer" v-slot="{ invalid }")
-          v-avatar(size="100")
-            v-icon(size='100') mdi-account-circle
-          v-card-text
-            validation-provider(v-slot="{ errors }" name="Nmae" rules="required|max:10")
-              v-text-field(
-                v-model='account'
-                filled
-                rounded
-                readonly
-                prefix=' 會員帳號｜')
-            validation-provider(v-slot="{ errors }" name="Nmae" rules="required|max:10")
-              v-text-field(
-                  :style="{bgColor}"
-                  v-model="name"
+      v-card
+        validation-observer( ref="observer" v-slot="{ invalid }")
+            v-avatar(size="100")
+              v-icon(size='100') mdi-account-circle
+            v-card-text
+              validation-provider(v-slot="{ errors }" name="Nmae" rules="required|max:10")
+                v-text-field(
+                  v-model='account'
+                  filled
+                  rounded
+                  readonly
+                  prefix=' 會員帳號｜')
+              validation-provider(v-slot="{ errors }" name="Nmae" rules="required|max:10")
+                v-text-field(
+                    :class="{ editColor: editColor }"
+                    v-model="name"
+                    :error-messages="errors"
+                    filled
+                    rounded
+                    :readonly='readonly'
+                    prefix=' 會員姓名｜')
+              validation-provider(v-slot="{ errors }" name="Email" rules="required|email")
+                v-text-field(
+                  :class="{ editColor: editColor }"
+                  v-model="email"
                   :error-messages="errors"
                   filled
                   rounded
                   :readonly='readonly'
-                  prefix=' 會員姓名｜')
-            validation-provider(v-slot="{ errors }" name="Email" rules="required|email")
-              v-text-field(
-                :style="{bgColor}"
-                v-model="email"
-                :error-messages="errors"
-                filled
-                rounded
-                :readonly='readonly'
-                prefix=' 會員信箱｜')
-            validation-provider(v-slot="{ errors }" name="PhoneNumber" rules="required|digits:10")
-              v-text-field(
-                :style="{bgColor}"
-                v-model="phoneNumber"
-                :error-messages="errors"
-                filled
-                rounded
-                :readonly='readonly'
-                prefix=' 手機號碼｜')
-          v-card-actions
-            v-btn.edit(v-if="onEdit" @click="edit" text rounded)
-              v-icon mdi-pencil
-              p 編輯
-            v-btn.save(v-if="!onEdit" :disabled="invalid" @click="save" text rounded)
-              v-icon mdi-checkbox-marked-circle-outline
-              p 確認
-            v-btn.cancel(v-if="!onEdit" @click="cancel" text rounded)
-              v-icon mdi-close-circle-outline
-              p 取消
+                  prefix=' 會員信箱｜')
+              validation-provider(v-slot="{ errors }" name="PhoneNumber" rules="required|digits:10")
+                v-text-field(
+                  :class="{ editColor: editColor }"
+                  v-model="phoneNumber"
+                  :error-messages="errors"
+                  filled
+                  rounded
+                  :readonly='readonly'
+                  prefix=' 手機號碼｜')
+            v-card-actions
+              v-btn.edit(v-if="onEdit" @click="edit" text rounded)
+                v-icon mdi-pencil
+                p 編輯
+              v-btn.save(v-if="!onEdit" :disabled="invalid" @click="save" text rounded)
+                v-icon mdi-checkbox-marked-circle-outline
+                p 確認
+              v-btn.cancel(v-if="!onEdit" @click="cancel" text rounded)
+                v-icon mdi-close-circle-outline
+                p 取消
 </template>
 
 <script>
@@ -95,20 +95,14 @@ export default {
       email: this.$store.state.user.email,
       phoneNumber: this.$store.state.user.phoneNumber,
       onEdit: true,
-      readonly: true
+      readonly: true,
+      editColor: false
     }
   },
   computed: {
     user () {
       return this.$store.state.user
     }
-    // bgColor () {
-    //   if (this.onEdit === false) {
-    //     return backgroundColor = '#000000'
-    //   } else {
-    //     return ''
-    //   }
-    // }
   },
   components: {
     ValidationProvider,
@@ -119,10 +113,12 @@ export default {
       this.onEdit = false
       this.readonly = false
       this.text = true
+      this.editColor = true
     },
     cancel () {
       this.onEdit = true
       this.readonly = true
+      this.editColor = false
 
       this.name = this.$store.state.user.name
       this.email = this.$store.state.user.email
@@ -131,6 +127,7 @@ export default {
     save () {
       this.onEdit = true
       this.readonly = true
+      this.editColor = false
       this.axios.patch(process.env.VUE_APP_API + '/users/' + this.$store.state.user.id, this.$data)
         .then(res => {
           if (res.data.success) {
