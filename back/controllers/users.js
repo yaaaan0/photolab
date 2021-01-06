@@ -37,8 +37,6 @@ export const create = async (req, res) => {
       const key = Object.keys(error.errors)[0]
       const message = error.errors[key].message
       res.status(400).send({ success: false, message })
-    } else if (error.name === 'MongoError' && error.code === 11000) {
-      res.status(400).send({ success: false, message: '帳號已使用' })
     } else {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
     }
@@ -115,7 +113,54 @@ export const edit = async (req, res) => {
     } else if (req.body.phoneNumber.length < 10 || req.body.phoneNumber.length > 10) {
       res.status(400).send({ success: false, message: '電話號碼格式錯誤' })
     } else {
-      result = await users.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      result = await users.findByIdAndUpdate(req.params.id, req.body, { runValidators: true, context: 'query', new: true })
+      res.status(200).send({ success: true, message: '', result })
+    }
+  } catch (error) {
+    if (error.name === 'ValidationError') {
+      const key = Object.keys(error.errors)[0]
+      const message = error.errors[key].message
+      res.status(400).send({ success: false, message })
+    } else if (error.name === 'CastError') {
+      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+    } else {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    }
+  }
+}
+
+export const addOrder = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
+    res.status(400).send({ success: false, message: '資料格式不符' })
+  }
+
+  try {
+    if (req.body.agreeStatement !== true) {
+      res.status(400).send({ success: false, message: '是否同意拍攝說明' })
+    } else if (req.body.date.length === 0) {
+      res.status(400).send({ success: false, message: '請輸入日期' })
+    } else if (req.body.project.length === 0) {
+      res.status(400).send({ success: false, message: '請選擇拍攝項目' })
+    } else if (req.body.photographer.length === 0) {
+      res.status(400).send({ success: false, message: '請選擇攝影師' })
+    } else {
+      const result = users.findByIdAndUpdate(req.params.id,
+        {
+          $push: {
+            orders: {
+              orderDate: new Date(),
+              agreeStatement: req.body.agreeStatement,
+              date: req.body.date,
+              project: req.body.project,
+              photographer: req.body.photographer,
+              paid: false
+            }
+          }
+        }, { new: true })
       res.status(200).send({ success: true, message: '', result })
     }
   } catch (error) {
