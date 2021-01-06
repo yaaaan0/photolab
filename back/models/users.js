@@ -1,5 +1,15 @@
+// 引用資料庫套件
 import mongoose from 'mongoose'
+
+// 驗證
 import validator from 'validator'
+
+// 引用重複驗證錯誤訊息套件
+// import beautifyUnique from 'mongoose-beautiful-unique-validation'
+
+// mongoose.plugin(beautifyUnique)
+
+import uniqueValidator from 'mongoose-unique-validator'
 
 const Schema = mongoose.Schema
 
@@ -27,14 +37,23 @@ const messages = new Schema(
 
 const orderSchema = new Schema(
   {
-    date: {
+    orderDate: {
       type: Date
     },
+    agreeStatement: {
+      type: Boolean
+    },
+    date: {
+      type: Date,
+      required: [true, '請輸入日期']
+    },
     project: {
-      type: String
+      type: String,
+      required: [true, '請選擇拍攝項目']
     },
     photographer: {
-      type: []
+      type: [],
+      required: [true, '請選擇攝影師']
     },
     paid: {
       type: Boolean
@@ -55,22 +74,23 @@ const userSchema = new Schema(
       minlength: [4, '帳號必須四個字以上'],
       maxlength: [20, '帳號必須二十個字以下'],
       unique: true,
-      required: '請輸入帳號'
+      required: [true, '請輸入帳號']
     },
     password: {
       type: String,
-      unique: true,
-      required: '請輸入密碼'
+      unique: false,
+      required: [true, '請輸入密碼']
     },
     name: {
       type: String,
+      unique: false,
       required: [true, '請輸入姓名']
     },
     email: {
       type: String,
       required: [true, '請輸入信箱'],
       // 不可重複，預設只能放 true 或 false，除非使用套件
-      unique: '信箱重複',
+      unique: true,
       // 自訂驗證規則
       validate: {
         // 驗證 function
@@ -83,7 +103,8 @@ const userSchema = new Schema(
     },
     phoneNumber: {
       type: String,
-      required: '請輸入電話號碼',
+      required: [true, '請輸入電話號碼'],
+      unique: true,
       validate: {
         validator (value) {
           return validator.isMobilePhone(value)
@@ -94,7 +115,7 @@ const userSchema = new Schema(
     images: {
       type: [userImageSchema]
     },
-    order: {
+    orders: {
       type: [orderSchema]
     }
   },
@@ -103,6 +124,7 @@ const userSchema = new Schema(
     versionKey: false
   }
 )
+userSchema.plugin(uniqueValidator, { type: 'mongoose-unique-validator', message: ' {PATH} 欄位重複' })
 
 // 建立 model
 // mongoose.model(collection名稱, Schema)

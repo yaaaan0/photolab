@@ -6,15 +6,10 @@ import connectMongo from 'connect-mongo'
 import cors from 'cors'
 import session from 'express-session'
 
-// 引用重複驗證錯誤訊息套件
-import beautifyUnique from 'mongoose-beautiful-unique-validation'
-
 import routerUser from './routes/users.js'
 // import routerAlbum from './routes/albums.js'
 
 dotenv.config()
-
-mongoose.plugin(beautifyUnique)
 
 mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
