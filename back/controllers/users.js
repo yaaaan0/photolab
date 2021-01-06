@@ -1,4 +1,8 @@
+// 加密
 import md5 from 'md5'
+
+// 讓陣列顯示
+// import util from 'util'
 
 import users from '../models/users.js'
 
@@ -148,7 +152,7 @@ export const addOrder = async (req, res) => {
     } else if (req.body.photographer.length === 0) {
       res.status(400).send({ success: false, message: '請選擇攝影師' })
     } else {
-      const result = users.findByIdAndUpdate(req.params.id,
+      users.findByIdAndUpdate(req.params.id,
         {
           $push: {
             orders: {
@@ -160,8 +164,10 @@ export const addOrder = async (req, res) => {
               paid: false
             }
           }
-        }, { new: true })
-      res.status(200).send({ success: true, message: '', result })
+        }, { new: true }).then(result => {
+        // console.log(util.inspect(result, { showHidden: true, depth: null }))
+        res.status(200).send({ success: true, message: '', result })
+      })
     }
   } catch (error) {
     if (error.name === 'ValidationError') {
@@ -171,7 +177,7 @@ export const addOrder = async (req, res) => {
     } else if (error.name === 'CastError') {
       res.status(400).send({ success: false, message: 'ID 格式錯誤' })
     } else {
-      res.status(500).send({ success: false, message: '伺服器錯誤' })
+      res.status(500).send({ success: false, message: error.message })
     }
   }
 }
