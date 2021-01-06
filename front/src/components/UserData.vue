@@ -1,5 +1,6 @@
 <template lang="pug">
   #userData
+    v-app
       v-card
         validation-observer( ref="observer" v-slot="{ invalid }")
             v-avatar(size="100")
@@ -7,6 +8,7 @@
             v-card-text
               validation-provider(v-slot="{ errors }" name="Nmae" rules="required|max:10")
                 v-text-field(
+                  color="#000000"
                   v-model='account'
                   filled
                   rounded
@@ -14,6 +16,7 @@
                   prefix=' 會員帳號｜')
               validation-provider(v-slot="{ errors }" name="Nmae" rules="required|max:10")
                 v-text-field(
+                    color="#000000"
                     :class="{ editColor: editColor }"
                     v-model="name"
                     :error-messages="errors"
@@ -23,6 +26,7 @@
                     prefix=' 會員姓名｜')
               validation-provider(v-slot="{ errors }" name="Email" rules="required|email")
                 v-text-field(
+                  color="#000000"
                   :class="{ editColor: editColor }"
                   v-model="email"
                   :error-messages="errors"
@@ -32,6 +36,7 @@
                   prefix=' 會員信箱｜')
               validation-provider(v-slot="{ errors }" name="PhoneNumber" rules="required|digits:10")
                 v-text-field(
+                  color="#000000"
                   :class="{ editColor: editColor }"
                   v-model="phoneNumber"
                   :error-messages="errors"
@@ -42,13 +47,10 @@
             v-card-actions
               v-btn.edit(v-if="onEdit" @click="edit" text rounded)
                 v-icon mdi-pencil
-                p 編輯
               v-btn.save(v-if="!onEdit" :disabled="invalid" @click="save" text rounded)
                 v-icon mdi-checkbox-marked-circle-outline
-                p 確認
               v-btn.cancel(v-if="!onEdit" @click="cancel" text rounded)
                 v-icon mdi-close-circle-outline
-                p 取消
 </template>
 
 <script>
