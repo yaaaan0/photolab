@@ -1,109 +1,116 @@
 <template lang="pug">
   #login
-      v-item-group(mandatory)
+    v-app
+      v-expansion-panels(mandatory tile)
         v-container
           validation-observer(ref="observer" v-slot="{ invalid }")
-            v-row
               v-col(cols='12')
-                v-item(v-slot='{ active, toggle }')
-                  v-card.d-flex.align-center( @click='toggle' )
-                    h4 LOG IN ｜ 登入
-                    validation-observer
-                      v-form(v-if="active" @submit.prevent="onLoginSubmit")
-                        v-container
-                            v-col(cols="12")
-                              validation-provider(v-slot="{ errors }" name="Account" rules="required|max:20|min:4")
-                                v-text-field(
-                                :state="accountState"
-                                v-model="account"
-                                :error-messages="errors"
-                                required
-                                append-icon="mdi-account"
-                                filled
-                                rounded
-                                label="Account")
-                              validation-provider(v-slot="{ errors }" name="Password" rules="required|max:20|min:4")
-                                v-text-field(
-                                :state="passwordState"
-                                v-model="password"
-                                :error-messages="errors"
-                                filled
-                                rounded
-                                label="Password"
-                                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                                :type="show1 ? 'text' : 'password'"
-                                @click:append="show1 = !show1")
-                                #div
-                                  v-checkbox(v-model='checkbox' :label='`Remember me`')
-                                  v-btn(type="submit" rounded color='primary' dark ) 登入
+                v-expansion-panel
+                    v-expansion-panel-header LOG IN ｜ 登入
+                    v-expansion-panel-content
+                      validation-observer
+                        v-form( @submit.prevent="onLoginSubmit")
+                          v-container
+                              v-col(cols="12")
+                                validation-provider(v-slot="{ errors }" name="Account" rules="required|max:20|min:4")
+                                  v-text-field(
+                                    color="#677d35"
+                                  :state="accountState"
+                                  v-model="account"
+                                  :error-messages="errors"
+                                  required
+                                  append-icon="mdi-account"
+                                  filled
+                                  rounded
+                                  label="Account")
+                                validation-provider(v-slot="{ errors }" name="Password" rules="required|max:20|min:4")
+                                  v-text-field(
+                                  color="#677d35"
+                                  :state="passwordState"
+                                  v-model="password"
+                                  :error-messages="errors"
+                                  filled
+                                  rounded
+                                  label="Password"
+                                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                                  :type="show1 ? 'text' : 'password'"
+                                  @click:append="show1 = !show1")
+                                  #div
+                                    v-checkbox( color="#000000" :label='`Remember me`')
+                                    v-btn(type="submit" rounded dark ) 登入
               v-col(cols='12')
-                v-item(v-slot='{ active, toggle }')
-                  v-card.d-flex.align-center( @click='toggle' )
-                    h4 SIGN UP ｜ 註冊
-                    validation-observer
-                      v-form(v-if="active" @submit.prevent="onSingupSubmit")
-                        v-container
-                            v-col(cols="12")
-                              h5 CREATE ACCOUNT ｜ 創建帳號
-                              validation-provider(v-slot="{ errors }" name="Account" rules="required|max:20|min:4")
-                                v-text-field(
-                                :state="accountState"
-                                v-model="account"
-                                :error-messages="errors"
-                                required
-                                append-icon="mdi-account"
-                                filled
-                                rounded
-                                label="Account")
-                              validation-provider(v-slot="{ errors }" name="Password" rules="required|max:20|min:4")
-                                v-text-field(
-                                :state="passwordState"
-                                v-model="password"
-                                :error-messages="errors"
-                                required
-                                filled
-                                rounded
-                                label="Password"
-                                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                                :type="show1 ? 'text' : 'password'"
-                                @click:append="show1 = !show1")
-                                h5 PERSONAL DATA ｜ 個人資料
-                              validation-provider(v-slot="{ errors }" name="Nmae" rules="required|max:10")
-                                v-text-field(
-                                v-model="name"
-                                :error-messages="errors"
-                                label="Name"
-                                append-icon="mdi-account-details"
-                                filled
-                                rounded
-                                )
-                              validation-provider(v-slot="{ errors }" name="Email" rules="required|email")
-                                v-text-field(
-                                v-model="email"
-                                :error-messages="errors"
-                                label="E-mail"
-                                required
-                                append-icon="mdi-email"
-                                filled
-                                rounded
-                                )
-                              validation-provider(v-slot="{ errors }" name="PhoneNumber" rules="required|digits:10")
-                                v-text-field(
-                                v-model="phoneNumber"
-                                :error-messages="errors"
-                                label="Phone Number"
-                                :counter="10"
-                                required
-                                append-icon="mdi-cellphone"
-                                filled
-                                rounded)
-                                //- v-app
-                                //-   v-switch(color="red" v-model='switch1' inset :label="`Switch 1: ${switch1.toString()}`")
-                                #div
-                                  validation-provider(name="checkbox" v-slot="{ errors }" rules="required")
-                                    v-checkbox(v-model='checkbox' type="checkbox" value="1" required label='Check your data')
-                                  v-btn(@click="clean" type="submit" :disabled="invalid" rounded dark) 註冊
-                                    //- v-btn(disabled rounded) 註冊
+                v-expansion-panel
+                    v-expansion-panel-header SIGN UP ｜ 註冊
+                    v-expansion-panel-content
+                      validation-observer
+                        v-form(@submit.prevent="onSingupSubmit")
+                          v-container
+                              v-col(cols="12")
+                                h5 CREATE ACCOUNT ｜ 創建帳號
+                                validation-provider(v-slot="{ errors }" name="Account" rules="required|max:20|min:4")
+                                  v-text-field(
+                                  color="#677d35"
+                                  :state="accountState"
+                                  v-model="account"
+                                  :error-messages="errors"
+                                  required
+                                  append-icon="mdi-account"
+                                  filled
+                                  rounded
+                                  label="Account")
+                                validation-provider(v-slot="{ errors }" name="Password" rules="required|max:20|min:4")
+                                  v-text-field(
+                                  color="#677d35"
+                                  :state="passwordState"
+                                  v-model="password"
+                                  :error-messages="errors"
+                                  required
+                                  filled
+                                  rounded
+                                  label="Password"
+                                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                                  :type="show1 ? 'text' : 'password'"
+                                  @click:append="show1 = !show1")
+                                  h5 PERSONAL DATA ｜ 個人資料
+                                validation-provider(v-slot="{ errors }" name="Nmae" rules="required|max:10")
+                                  v-text-field(
+                                  color="#677d35"
+                                  v-model="name"
+                                  :error-messages="errors"
+                                  label="Name"
+                                  append-icon="mdi-account-details"
+                                  filled
+                                  rounded
+                                  )
+                                validation-provider(v-slot="{ errors }" name="Email" rules="required|email")
+                                  v-text-field(
+                                  color="#677d35"
+                                  v-model="email"
+                                  :error-messages="errors"
+                                  label="E-mail"
+                                  required
+                                  append-icon="mdi-email"
+                                  filled
+                                  rounded
+                                  )
+                                validation-provider(v-slot="{ errors }" name="PhoneNumber" rules="required|digits:10")
+                                  v-text-field(
+                                  color="#677d35"
+                                  v-model="phoneNumber"
+                                  :error-messages="errors"
+                                  label="Phone Number"
+                                  :counter="10"
+                                  required
+                                  append-icon="mdi-cellphone"
+                                  filled
+                                  rounded)
+                                  //- v-app
+                                  //-   v-switch(color="red" v-model='switch1' inset :label="`Switch 1: ${switch1.toString()}`")
+                                  #div
+                                    validation-provider(name="checkbox" v-slot="{ errors }" rules="required")
+                                      v-checkbox(color="#000000" v-model='checkbox' type="checkbox" value="1" required label='Check your data')
+                                    v-btn(type="submit" :disabled="invalid" rounded color="#000000" dark) 註冊
+                                      //- v-btn(disabled rounded) 註冊
 
 </template>
 
@@ -152,7 +159,8 @@ export default {
       name: '',
       email: '',
       phoneNumber: '',
-      show1: false
+      show1: false,
+      featuresOpen: true
     }
   },
   components: {
@@ -245,6 +253,9 @@ export default {
             })
           })
       }
+    },
+    toggleFeatures () {
+      this.featuresOpen = !this.featuresOpen
     }
   }
 }
