@@ -67,7 +67,8 @@
                 v-chip(filter outlined) 攝影師4
               h3 選擇您的拍攝日期
               v-col(cols='12' sm='6' md='4')
-                v-dialog(ref='dialog' v-model='modal' :return-value.sync='date' persistent width='290px')
+                v-dialog(ref='dialog' v-model='modal' :return-value.sync='date' persistent width='290px'  @click="toggleFeatures"
+      aria-controls="features")
                   template(v-slot:activator='{ on, attrs }')
                     v-text-field(v-model='date' prepend-icon='mdi-calendar' readonly v-bind='attrs' v-on='on' color="#677d35")
                   v-date-picker(v-model='date' scrollable color="#677d35")
@@ -79,7 +80,7 @@
           v-stepper-step(:complete='e6 > 3' step='3'  editable color="#677d35") 基本資訊
           v-stepper-content(step='3')
             v-card.mb-12
-            v-btn(rounded color='#677d35'  @click='e6 = 1') 上一步
+            v-btn(rounded color='#677d35'  @click='e6 = 2') 上一步
             v-btn(rounded color='#677d35'  @click='e6 = 1') 送出
 </template>
 
