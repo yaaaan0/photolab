@@ -5,7 +5,7 @@
       div.menu-logo
         img.img-2(src='../assets/logo-2.png')
       div.menu-btn
-        v-btn( x-large text @click="overlay = !overlay" ) | MENU |
+        v-btn( x-large text @click="overlay = !overlay" ) ｜ MENU ｜
     v-overlay(:z-index='zIndex' :value='overlay' :opacity="opacity")
       v-btn.white--text.btn-close(outlined fab @click='overlay = false') X
       v-btn.white--text(x-large text fixed rounded @click='overlay = false' to="home") HOME ｜ ＧＰ首頁

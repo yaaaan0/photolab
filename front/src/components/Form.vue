@@ -6,7 +6,7 @@
           v-stepper-step(:complete='e6 > 1' step='1'  editable color="#677d35")  預約說明
             small
           v-stepper-content(step='1')
-            v-card.mb-12(outlined)
+            v-card.step1.mb-12(outlined)
               p 此單為報名預約用, 不收取訂金, 因此也不代表檔期預約成功喔！收到表單後, 我們會回覆您所需方案內容
                 br
                 br
@@ -23,7 +23,7 @@
                 | 🔸 若有海外婚紗或較遠地區拍攝需求, 請提前告知
                 br
                 | 🔸 車資: 拍攝地點以臺南優先, 新人車馬自理, 台南以外需車馬出差費
-            v-card.mb-12(outlined)
+            v-card.step1.mb-12(outlined)
               P 📣2020年度限定- 醫護人員拍攝三套婚紗特別優惠- 85折
                 br
                 | 感謝醫護人員於前線防疫的辛勞
@@ -37,7 +37,7 @@
                 | 預約方式：填寫預約單時備註「醫護人員」
                 br
                 | 出示證件：請於小P回信預約單後, 於信件出示證件（醫院識別證、工作證等）
-            v-card.mb-12(outlined)
+            v-card.step1.mb-12(outlined)
               P 📣 GP攝影師至2021年上半年的檔期皆已額滿 (請選擇團隊其他攝影師拍攝）
                 br
                 | GP攝影師檔期只開放到2021年上半年, 如希望由她拍攝, 最快須排隊等候她2021年下半年的檔期（預計今年底才會開放）, 因排隊人數眾多, 檔期也限額少量, 如有婚期急迫性的新人, 請參考團隊其他攝影師們
@@ -47,9 +47,9 @@
             v-btn(rounded color='#677d35'  @click='e6 = 2') 下一步
           v-stepper-step(rounded :complete='e6 > 2' step='2'  editable color="#677d35") 選擇方案
           v-stepper-content(step='2')
-            v-card.mb-12
+            v-card.step2.mb-12
               h3 選擇您的拍攝項目
-              v-radio-group(v-model='radioGroup')
+              v-radio-group(v-model='check' mandatory)
                 v-radio(color="#677d35" label="七夕限定織女包套方案/ 拍攝日期限2020年8月～2021年2月, 參與攝影師：榮格、壹壹、刷  牙  (刷牙只開放明年1,2月)")
                 v-radio(color="#677d35" label="三套婚紗拍攝/ 2020年底前每個月前十組預約可享9折優惠(優惠不含婚紗側錄)")
                 v-radio(color="#677d35" label="一套婚紗/ 開放多一套便服拍攝")
@@ -59,6 +59,21 @@
                 v-radio(color="#677d35" label="親子寫真 /不拍禮服、便服為主; 攝影師GP停接此方案; 新人回娘家打9折")
                 v-radio(color="#677d35" label=" 情侶寫真 /不拍禮服、便服為主; 攝影師GP停接此方案")
                 v-radio(color="#677d35" label="人像寫真 /不拍禮服、便服為主; 攝影師GP停接此方案")
+              h3 選擇您的拍攝師
+              v-chip-group(v-model='amenities' column multipl emandatory)
+                v-chip(filter outlined) 攝影師1
+                v-chip(filter outlined) 攝影師2
+                v-chip(filter outlined) 攝影師3
+                v-chip(filter outlined) 攝影師4
+              h3 選擇您的拍攝日期
+              v-col(cols='12' sm='6' md='4')
+                v-dialog(ref='dialog' v-model='modal' :return-value.sync='date' persistent width='290px')
+                  template(v-slot:activator='{ on, attrs }')
+                    v-text-field(v-model='date' prepend-icon='mdi-calendar' readonly v-bind='attrs' v-on='on' color="#677d35")
+                  v-date-picker(v-model='date' scrollable color="#677d35")
+                    v-spacer
+                    v-btn(text color='#677d35' rounded @click='modal = false') Cancel
+                    v-btn(text color='#677d35' rounded @click='$refs.dialog.save(date)') OK
             v-btn(rounded color='#677d35'  @click='e6 = 1') 上一步
             v-btn(rounded color='#677d35'  @click='e6 = 3') 下一步
           v-stepper-step(:complete='e6 > 3' step='3'  editable color="#677d35") 基本資訊
@@ -72,7 +87,11 @@
 export default {
   data () {
     return {
-      e6: 1
+      e6: 1,
+      date: new Date().toISOString().substr(0, 10),
+      menu: false,
+      modal: false,
+      menu2: false
     }
   }
 }

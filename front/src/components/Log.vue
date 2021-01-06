@@ -7,7 +7,7 @@
               v-col(cols='12')
                 v-item(v-slot='{ active, toggle }')
                   v-card.d-flex.align-center( @click='toggle' )
-                    h4 LOG IN | 登入
+                    h4 LOG IN ｜ 登入
                     validation-observer
                       v-form(v-if="active" @submit.prevent="onLoginSubmit")
                         v-container
@@ -39,12 +39,12 @@
               v-col(cols='12')
                 v-item(v-slot='{ active, toggle }')
                   v-card.d-flex.align-center( @click='toggle' )
-                    h4 SIGN UP | 註冊
+                    h4 SIGN UP ｜ 註冊
                     validation-observer
                       v-form(v-if="active" @submit.prevent="onSingupSubmit")
                         v-container
                             v-col(cols="12")
-                              h5 CREATE ACCOUNT | 創建帳號
+                              h5 CREATE ACCOUNT ｜ 創建帳號
                               validation-provider(v-slot="{ errors }" name="Account" rules="required|max:20|min:4")
                                 v-text-field(
                                 :state="accountState"
@@ -67,7 +67,7 @@
                                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                                 :type="show1 ? 'text' : 'password'"
                                 @click:append="show1 = !show1")
-                                h5 PERSONAL DATA | 個人資料
+                                h5 PERSONAL DATA ｜ 個人資料
                               validation-provider(v-slot="{ errors }" name="Nmae" rules="required|max:10")
                                 v-text-field(
                                 v-model="name"
