@@ -79,7 +79,33 @@ const routes = [
     meta: {
       title: 'GP photolab | 會員專區',
       login: true
-    }
+    },
+    children: [
+      {
+        path: '/data',
+        component: () => import(/* webpackChunkName: "userData" */ '../views/UserData.vue'),
+        meta: {
+          title: 'GP photolab | 會員專區 ',
+          login: true
+        }
+      },
+      {
+        path: '/order',
+        component: () => import(/* webpackChunkName: "userOrder" */ '../views/UserOrder.vue'),
+        meta: {
+          title: 'GP photolab | 會員專區 ',
+          login: true
+        }
+      },
+      {
+        path: '/favorite',
+        component: () => import(/* webpackChunkName: "userfavorite" */ '../views/UserFavorite.vue'),
+        meta: {
+          title: 'GP photolab | 會員專區 ',
+          login: true
+        }
+      }
+    ]
   },
   {
     path: '/favourite',
