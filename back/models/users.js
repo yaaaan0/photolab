@@ -52,7 +52,7 @@ const orderSchema = new Schema(
       required: [true, '請選擇拍攝項目']
     },
     photographer: {
-      type: [],
+      type: String,
       required: [true, '請選擇攝影師']
     },
     paid: {
