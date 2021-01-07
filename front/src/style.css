@@ -373,28 +373,28 @@ select:-webkit-autofill:focus {
 }
 
 /* userdata------------------------------------------------- */
-#userData {
+#uData {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 100%;
 }
-#userData #app {
+#uData #app {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 70vw;
   height: 100%;
 }
-#userData .v-application--wrap {
+#uData .v-application--wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 520px !important;
   width: 100vw;
 }
-#userData .v-card {
+#uData .v-card {
   display: flex;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.4);
@@ -402,35 +402,35 @@ select:-webkit-autofill:focus {
   padding: 50px;
   margin-top: 50px;
 }
-#userData .v-avatar {
+#uData .v-avatar {
   margin: 20px;
 }
-#userData .v-card__text {
+#uData .v-card__text {
   color: rgba(103, 125, 53, 0.9) !important;
 }
-#userData span {
+#uData span {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
 }
-#userData .v-card__actions {
+#uData .v-card__actions {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
 }
-#userData .v-application p {
+#uData .v-application p {
   margin: 0px;
 }
-#userData .v-card__actions .edit,
-#userData .v-card__actions .save {
+#uData .v-card__actions .edit,
+#uData .v-card__actions .save {
   /* color: #677d35; */
   margin: 20px 0;
   background-color: rgba(103, 125, 53, 0.8);
 }
-#userData .v-card__actions .cancel {
+#uData .v-card__actions .cancel {
   background-color: rgba(212, 97, 68, 0.8);
   margin: 0;
 }
@@ -450,21 +450,22 @@ select:-webkit-autofill:focus {
   transition: 1s;
 }
 /* reserve form------------------------------------------------- */
-#form form {
+#order form {
   width: 100%;
   height: 100%;
+  line-height: 35px;
 }
-#form .v-application--wrap {
+#order .v-application--wrap {
   display: flex;
   align-items: center;
   height: 100%;
 }
-#form .theme--light.v-stepper {
+#order .theme--light.v-stepper {
   background: rgba(255, 255, 255, 0.4);
 }
-#form .step1,
-#form .step2,
-#form .step3 {
+#order .step1,
+#order .step2,
+#order .step3 {
   background-color: rgb(255, 255, 255, 0.7);
   border-radius: 5px;
   margin: 5px;
@@ -472,29 +473,29 @@ select:-webkit-autofill:focus {
 
   cursor: pointer;
 }
-#form .theme--light.v-sheet--outlined {
+#order .theme--light.v-sheet--outlined {
   border: none;
 }
-#form .v-sheet.v-card:not(.v-sheet--outlined) {
+#order .v-sheet.v-card:not(.v-sheet--outlined) {
   box-shadow: none;
 }
-#form .v-btn {
+#order .v-btn {
   margin: 10px;
 }
-#form .v-radio {
+#order .v-radio {
   margin: 10px;
 }
-#form .v-item-group {
+#order .v-item-group {
   margin: 30px;
 }
-#form .v-input {
+#order .v-input {
   margin: 20px;
 }
-#form .v-chip:before {
+#order .v-chip:before {
   background-color: rgb(255, 255, 255);
 }
 
-#form .theme--light.v-text-field--filled > .v-input__control > .v-input__slot {
+#order .theme--light.v-text-field--filled > .v-input__control > .v-input__slot {
   background: rgba(0, 0, 0, 0.06);
   cursor: pointer;
 }
@@ -547,23 +548,23 @@ select:-webkit-autofill:focus {
   #login .container {
     width: 40vw;
   }
-  #userData .v-card {
+  #uData .v-card {
     display: flex;
     align-items: center;
     width: 850px;
     padding: 30px;
   }
-  #userData span {
+  #uData span {
     flex-direction: row;
     width: 100%;
   }
-  #userData .v-card__actions {
+  #uData .v-card__actions {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
-  #form form {
+  #order form {
     width: 65%;
     height: 100%;
   }
