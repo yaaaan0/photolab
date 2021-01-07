@@ -1,13 +1,13 @@
 <template lang="pug">
   #userMenu
-    v-btn-toggle(v-model='toggle_exclusive' rounded mandatory)
-      v-btn
+    v-btn-toggle( rounded mandatory)
+      v-btn(to="/user/data")
         v-icon mdi-account
         p 基本資料
-      v-btn
+      v-btn(to="/user/order")
         v-icon mdi-format-list-bulleted
         P 我的訂單
-      v-btn
+      v-btn(to="/user/favorite")
         v-icon mdi-folder-image
         p 收藏夾
       v-btn(@click='logout')
