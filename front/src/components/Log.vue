@@ -253,9 +253,6 @@ export default {
             })
           })
       }
-    },
-    toggleFeatures () {
-      this.featuresOpen = !this.featuresOpen
     }
   }
 }
