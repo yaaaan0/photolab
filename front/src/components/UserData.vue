@@ -42,15 +42,19 @@
                   :error-messages="errors"
                   filled
                   rounded
+                  :counter="10"
                   :readonly='readonly'
                   prefix=' 手機號碼｜')
             v-card-actions
-              v-btn.edit(v-if="onEdit" @click="edit" text rounded)
+              v-btn.edit(v-if="onEdit" @click="edit" rounded dark)
                 v-icon mdi-pencil
-              v-btn.save(v-if="!onEdit" :disabled="invalid" @click="save" text rounded)
-                v-icon mdi-checkbox-marked-circle-outline
-              v-btn.cancel(v-if="!onEdit" @click="cancel" text rounded)
+                p 編輯
+              v-btn.save(v-if="!onEdit" :disabled="invalid" @click="save" rounded dark)
+                v-icon mdi-check-circle-outline
+                p 儲存
+              v-btn.cancel(v-if="!onEdit" @click="cancel" rounded dark)
                 v-icon mdi-close-circle-outline
+                p 取消
 </template>
 
 <script>
