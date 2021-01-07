@@ -1,13 +1,13 @@
 <template lang="pug">
 #nevBtn
   v-bottom-navigation(grow)
-    v-btn(to="user")
+    v-btn(to="/user")
       //- span Account
       v-icon mdi-account
-    v-btn(to="reserve")
+    v-btn(to="/reserve")
       //- span Reserve
       v-icon mdi-chat-processing
-    v-btn(to="userimages")
+    v-btn(to="/user/favorite")
       //- span Favorites
       v-icon mdi-folder-image
 </template>
