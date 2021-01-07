@@ -1,5 +1,5 @@
 <template lang="pug">
-  #userData
+  #uData
     v-app
       v-card
         validation-observer( ref="observer" v-slot="{ invalid }")
