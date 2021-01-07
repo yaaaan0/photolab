@@ -1,17 +1,16 @@
 <template lang="pug">
   #user
     UserMenu
-    UserData
+    router-view
 </template>
 
 <script>
 import UserMenu from '../components/UserMenu.vue'
-import UserData from '../components/UserData.vue'
+
 export default {
   name: 'user',
   components: {
-    UserMenu,
-    UserData
+    UserMenu
   },
   methods: {
   }
