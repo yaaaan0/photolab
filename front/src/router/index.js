@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
 import LeadingPage from '../views/LeadingPage.vue'
+import NotFound from '../views/NotFound.vue'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 Vue.use(VueRouter)
@@ -82,40 +83,52 @@ const routes = [
     },
     children: [
       {
-        path: '/data',
+        path: '',
+        name: 'User',
         component: () => import(/* webpackChunkName: "userData" */ '../views/UserData.vue'),
         meta: {
-          title: 'GP photolab | 會員專區 ',
+          title: 'GP photolab | 會員專區',
           login: true
         }
       },
       {
-        path: '/order',
+        path: 'data',
+        name: 'UserData',
+        component: () => import(/* webpackChunkName: "userData" */ '../views/UserData.vue'),
+        meta: {
+          title: 'GP photolab | 會員專區',
+          login: true
+        }
+      },
+      {
+        path: 'order',
+        name: 'UserOrder',
         component: () => import(/* webpackChunkName: "userOrder" */ '../views/UserOrder.vue'),
         meta: {
-          title: 'GP photolab | 會員專區 ',
+          title: 'GP photolab | 會員專區',
           login: true
         }
       },
       {
-        path: '/favorite',
+        path: 'favorite',
+        name: 'UserFavorite',
         component: () => import(/* webpackChunkName: "userfavorite" */ '../views/UserFavorite.vue'),
         meta: {
-          title: 'GP photolab | 會員專區 ',
+          title: 'GP photolab | 會員專區',
           login: true
         }
       }
     ]
   },
-  {
-    path: '/favourite',
-    name: 'Favourite',
-    component: () => import(/* webpackChunkName: "favourite" */ '../views/Favourite.vue'),
-    meta: {
-      title: 'GP photolab | 收藏夾',
-      login: true
-    }
-  },
+  // {
+  //   path: '/favourite',
+  //   name: 'Favourite',
+  //   component: () => import(/* webpackChunkName: "favourite" */ '../views/Favourite.vue'),
+  //   meta: {
+  //     title: 'GP photolab | 收藏夾',
+  //     login: true
+  //   }
+  // },
   {
     path: '/login',
     name: 'Longin',
@@ -123,6 +136,14 @@ const routes = [
     meta: {
       title: 'GP photolab | 登入註冊',
       login: false
+    }
+  },
+  {
+    path: '/*',
+    name: 'NotFound',
+    component: NotFound,
+    meta: {
+      title: '找不到頁面'
     }
   }
 ]
@@ -148,6 +169,7 @@ router.afterEach((to, from) => {
   let title = ''
   title = to.meta.title
   document.title = title
+  window.scrollTo(0, 0)
 })
 
 export default router
