@@ -1,5 +1,5 @@
 <template lang="pug">
-  #form
+  #order
     v-app
       v-form(@submit.prevent="onSubmit")
         v-stepper(v-model='e6' vertical)
@@ -122,7 +122,7 @@
                       prefix=' 攝影師｜')
 
                   v-btn(rounded color='#677d35' @click='e6 = 2' href='#') 上一步
-                  v-btn(:disabled="invalid" rounded color='#677d35' type="submit" @click='e6 = 1') 送出
+                  v-btn(:disabled="invalid" rounded color='#677d35' type="submit") 送出
 </template>
 
 <script>
@@ -182,6 +182,7 @@ export default {
             this.$data.project = ''
             this.$data.date = null
             this.$data.photographer = null
+            this.$router.push({ path: '/user', name: 'User' })
           } else {
             this.$swal({
               icon: 'error',
