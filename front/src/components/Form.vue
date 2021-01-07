@@ -1,10 +1,9 @@
 <template lang="pug">
   #form
     v-app
-      v-form
+      v-form(@submit.prevent="onSubmit")
         v-stepper(v-model='e6' vertical)
-          v-stepper-step(:complete='e6 > 1' step='1'  editable color="#677d35")  預約說明
-            small
+          v-stepper-step(:complete='e6 > 1' step='1' color="#677d35" complete)  預約說明
           v-stepper-content(step='1')
             v-card.step1.mb-12(outlined)
               p 此單為報名預約用, 不收取訂金, 因此也不代表檔期預約成功喔！收到表單後, 我們會回覆您所需方案內容
@@ -41,58 +40,163 @@
               P 📣 GP攝影師至2021年上半年的檔期皆已額滿 (請選擇團隊其他攝影師拍攝）
                 br
                 | GP攝影師檔期只開放到2021年上半年, 如希望由她拍攝, 最快須排隊等候她2021年下半年的檔期（預計今年底才會開放）, 因排隊人數眾多, 檔期也限額少量, 如有婚期急迫性的新人, 請參考團隊其他攝影師們
-            v-radio-group(v-model='radioGroup')
-              v-radio(color="#677d35" label="詳細閱讀並且同意")
-            v-btn(rounded color='#677d35'  @click='e6 = 1') 上一步
-            v-btn(rounded color='#677d35'  @click='e6 = 2') 下一步
-          v-stepper-step(rounded :complete='e6 > 2' step='2'  editable color="#677d35") 選擇方案
+            v-checkbox(v-model='agreeStatement' color="#677d35" label="詳細閱讀且同意")
+            v-btn(rounded color='#677d35' @click='e6 = 1') 上一步
+            v-btn(rounded color='#677d35' :disabled="invalid" @click='e6 = 2' href='#' ) 下一步
+          v-stepper-step(rounded :complete='e6 > 2' step='2' color="#677d35") 選擇方案
           v-stepper-content(step='2')
             v-card.step2.mb-12
               h3 選擇您的拍攝項目
-              v-radio-group(v-model='check' mandatory)
-                v-radio(color="#677d35" label="七夕限定織女包套方案/ 拍攝日期限2020年8月～2021年2月, 參與攝影師：榮格、壹壹、刷  牙  (刷牙只開放明年1,2月)")
-                v-radio(color="#677d35" label="三套婚紗拍攝/ 2020年底前每個月前十組預約可享9折優惠(優惠不含婚紗側錄)")
-                v-radio(color="#677d35" label="一套婚紗/ 開放多一套便服拍攝")
-                v-radio(color="#677d35" label="單人婚紗/ 攝影師GP停接此方案")
-                v-radio(color="#677d35" label="姐妹婚紗/ 攝影師GP停接此方案")
-                v-radio(color="#677d35" label="孕媽咪寫真 /不拍禮服、便服為主; 攝影師GP停接此方案; 新人回娘家打9折")
-                v-radio(color="#677d35" label="親子寫真 /不拍禮服、便服為主; 攝影師GP停接此方案; 新人回娘家打9折")
-                v-radio(color="#677d35" label=" 情侶寫真 /不拍禮服、便服為主; 攝影師GP停接此方案")
-                v-radio(color="#677d35" label="人像寫真 /不拍禮服、便服為主; 攝影師GP停接此方案")
+              v-radio-group(v-model='project' mandatory)
+                v-radio(color="#677d35" value="七夕限定織女包套方案" label="七夕限定織女包套方案/ 拍攝日期限2020年8月～2021年2月, 參與攝影師：榮格、壹壹、刷牙  (刷牙只開放明年1,2月)")
+                v-radio(color="#677d35" value="三套婚紗拍攝" label="三套婚紗拍攝/ 2020年底前每個月前十組預約可享9折優惠(優惠不含婚紗側錄)")
+                v-radio(color="#677d35" value="一套婚紗" label="一套婚紗/ 開放多一套便服拍攝")
+                v-radio(color="#677d35" value="單人婚紗" label="單人婚紗/ 攝影師GP停接此方案")
+                v-radio(color="#677d35" value="姐妹婚紗" label="姐妹婚紗/ 攝影師GP停接此方案")
+                v-radio(color="#677d35" value="孕媽咪寫真" label="孕媽咪寫真 /不拍禮服、便服為主; 攝影師GP停接此方案; 新人回娘家打9折")
+                v-radio(color="#677d35" value="親子寫真" label="親子寫真 /不拍禮服、便服為主; 攝影師GP停接此方案; 新人回娘家打9折")
+                v-radio(color="#677d35" value="情侶寫真" label=" 情侶寫真 /不拍禮服、便服為主; 攝影師GP停接此方案")
+                v-radio(color="#677d35" value="人像寫真" label="人像寫真 /不拍禮服、便服為主; 攝影師GP停接此方案")
               h3 選擇您的拍攝師
-              v-chip-group(v-model='amenities' column multipl emandatory)
-                v-chip(filter outlined) 攝影師1
-                v-chip(filter outlined) 攝影師2
-                v-chip(filter outlined) 攝影師3
-                v-chip(filter outlined) 攝影師4
+              v-chip-group(v-model='photographer' column multipl emandatory color="#677d35")
+                v-chip(value="GP" filter outlined) GP
+                v-chip(value="榮格" filter outlined) 榮格
+                v-chip(value="壹壹" filter outlined) 壹壹
+                v-chip(value="刷牙" filter outlined) 刷牙
               h3 選擇您的拍攝日期
               v-col(cols='12' sm='6' md='4')
-                v-dialog(ref='dialog' v-model='modal' :return-value.sync='date' persistent width='290px'  @click="toggleFeatures"
-      aria-controls="features")
+                v-dialog(ref='dialog' v-model='modal' :return-value.sync='date' persistent width='290px')
                   template(v-slot:activator='{ on, attrs }')
-                    v-text-field(v-model='date' prepend-icon='mdi-calendar' readonly v-bind='attrs' v-on='on' color="#677d35")
-                  v-date-picker(v-model='date' scrollable color="#677d35")
+                    v-text-field(
+                      v-model='date'
+                      label="Select Date"
+                      prepend-icon='mdi-calendar'
+                      readonly v-bind='attrs'
+                      v-on='on'
+                      color="#677d35"
+                      clearable
+                      @click:clear="date = null"
+                      )
+                  v-date-picker(
+                    v-model='date'
+                    scrollable
+                    color="#677d35"
+                    :min="new Date().toISOString()")
                     v-spacer
                     v-btn(text color='#677d35' rounded @click='modal = false') Cancel
                     v-btn(text color='#677d35' rounded @click='$refs.dialog.save(date)') OK
-            v-btn(rounded color='#677d35'  @click='e6 = 1') 上一步
-            v-btn(rounded color='#677d35'  @click='e6 = 3') 下一步
-          v-stepper-step(:complete='e6 > 3' step='3'  editable color="#677d35") 基本資訊
+            v-btn(rounded color='#677d35'  @click='e6 = 1' href='#') 上一步
+            v-btn(v-if="(this.$data.agreeStatement === false || this.$data.date === null || this.$data.photographer === null)" rounded color='#677d35'  @click='check') 下一步
+            v-btn(v-else rounded color='#677d35'  @click='e6 = 3' href='#') 下一步
+          v-stepper-step(:complete='e6 > 3' step='3' color="#677d35") 預約確認
           v-stepper-content(step='3')
-            v-card.mb-12
-            v-btn(rounded color='#677d35'  @click='e6 = 2') 上一步
-            v-btn(rounded color='#677d35'  @click='e6 = 1') 送出
+            v-card.step3.mb-12
+              validation-observer( ref="observer" v-slot="{ invalid }")
+                v-card-text
+                  validation-provider(v-slot="{ errors }" rules="required")
+                    v-text-field(
+                        @click='e6 = 2'
+                        color="#000000"
+                        v-model="project"
+                        filled
+                        rounded
+                        readonly
+                        prefix=' 拍攝項目｜')
+                  validation-provider(v-slot="{ errors }" rules="required")
+                    v-text-field(
+                      @click='e6 = 2'
+                      color="#000000"
+                      v-model="date"
+                      filled
+                      rounded
+                      readonly
+                      prefix=' 拍攝日期｜')
+                  validation-provider(v-slot="{ errors }" rules="required")
+                    v-text-field(
+                      @click='e6 = 2'
+                      color="#000000"
+                      v-model="photographer"
+                      filled
+                      rounded
+                      readonly
+                      prefix=' 攝影師｜')
+
+                  v-btn(rounded color='#677d35' @click='e6 = 2' href='#') 上一步
+                  v-btn(:disabled="invalid" rounded color='#677d35' type="submit" @click='e6 = 1') 送出
 </template>
 
 <script>
+import { required } from 'vee-validate/dist/rules'
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+
+setInteractionMode('eager')
+
+extend('required', {
+  ...required,
+  message: '{_field_} can not be empty'
+})
+
 export default {
   data () {
     return {
       e6: 1,
-      date: new Date().toISOString().substr(0, 10),
-      menu: false,
       modal: false,
-      menu2: false
+      date: null,
+      agreeStatement: false,
+      project: '',
+      photographer: null
+    }
+  },
+  components: {
+    ValidationProvider,
+    ValidationObserver
+  },
+  methods: {
+    check () {
+      if (this.$data.agreeStatement === false) {
+        this.$swal({
+          title: '預約說明請打勾'
+        })
+      } else if (this.$data.photographer === null) {
+        this.$swal({
+          title: '請選擇攝影師'
+        })
+      } else if (this.$data.date === null) {
+        this.$swal({
+          title: '請選擇日期'
+        })
+      }
+    },
+    onSubmit () {
+      this.$refs.observer.validate()
+      this.axios.post(process.env.VUE_APP_API + '/users/order/' + this.$store.state.user.id, this.$data)
+        .then(res => {
+          if (res.data.success) {
+            this.$swal({
+              icon: 'success',
+              title: '表單送出',
+              showConfirmButton: false,
+              timer: 1000
+            })
+            this.$data.agreeStatement = null
+            this.$data.project = ''
+            this.$data.date = null
+            this.$data.photographer = null
+          } else {
+            this.$swal({
+              icon: 'error',
+              title: '發生錯誤',
+              text: res.data.message
+            })
+          }
+        })
+        .catch(err => {
+          this.$swal({
+            icon: 'error',
+            title: '發生錯誤',
+            text: err.response.data.message
+          })
+        })
     }
   }
 }
