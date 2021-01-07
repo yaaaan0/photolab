@@ -1,15 +1,15 @@
 <template lang="pug">
   #reserve
-    Form
+    Order
 </template>
 
 <script>
-import Form from '../components/Form'
+import Order from '../components/Order'
 
 export default {
   name: 'Reserve',
   components: {
-    Form
+    Order
   }
 }
 </script>
