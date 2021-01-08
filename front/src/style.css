@@ -399,8 +399,15 @@ select:-webkit-autofill:focus {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.4);
   width: 100vw;
-  padding: 50px;
+  padding: 25px;
   margin-top: 50px;
+}
+#uData .v-sheet.v-card:not(.v-sheet--outlined) {
+  box-shadow: none;
+}
+#uData .v-text-field fieldset,
+.v-text-field .v-input__control {
+  height: 80px;
 }
 #uData .v-avatar {
   margin: 20px;
@@ -441,8 +448,7 @@ select:-webkit-autofill:focus {
 .editColor.theme--light.v-text-field--filled
   > .v-input__control
   > .v-input__slot {
-  background: rgba(103, 125, 53, 0.7) !important;
-  color: rgb(255, 255, 255);
+  background: rgba(177, 192, 141, 0.7) !important;
   transition: 1s;
 }
 .theme--light.v-text-field--filled > .v-input__control > .v-input__slot {
@@ -495,9 +501,41 @@ select:-webkit-autofill:focus {
   background-color: rgb(255, 255, 255);
 }
 
+#order .theme--dark.v-btn {
+  color: antiquewhite;
+}
 #order .theme--light.v-text-field--filled > .v-input__control > .v-input__slot {
   background: rgba(0, 0, 0, 0.06);
+  /* cursor: pointer; */
+}
+
+/* userorder */
+#uOrder .theme--light.v-data-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: antiquewhite;
+  box-shadow: none !important;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 50px;
+}
+#uOrder .v-data-table__wrapper {
+  width: 100vw;
+  background-color: #ffffff3d;
+}
+#uOrder .theme--light.v-data-table .v-data-footer {
+  width: 100vw;
+}
+#uOrder .v-data-table > .v-data-table__wrapper > table > tbody > tr {
+  height: 90px;
+}
+#uOrder .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover {
+  background-color: rgba(103, 125, 53, 0.3);
   cursor: pointer;
+}
+#uOrder .v-text-field .v-input__control {
+  height: 45px;
 }
 
 /* 假字 */
@@ -546,7 +584,7 @@ select:-webkit-autofill:focus {
     right: 10px;
   }
   #login .container {
-    width: 40vw;
+    width: 500px;
   }
   #uData .v-card {
     display: flex;
@@ -567,5 +605,20 @@ select:-webkit-autofill:focus {
   #order form {
     width: 65%;
     height: 100%;
+  }
+  #uOrder .v-data-table__wrapper {
+    width: 100%;
+  }
+  #uOrder .theme--light.v-data-table .v-data-footer {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  #uOrder .v-data-table__wrapper {
+    width: 1000px;
+  }
+  #uOrder .theme--light.v-data-table .v-data-footer {
+    width: 1000px;
   }
 }
