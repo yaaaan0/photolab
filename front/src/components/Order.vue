@@ -41,8 +41,8 @@
                 br
                 | GP攝影師檔期只開放到2021年上半年, 如希望由她拍攝, 最快須排隊等候她2021年下半年的檔期（預計今年底才會開放）, 因排隊人數眾多, 檔期也限額少量, 如有婚期急迫性的新人, 請參考團隊其他攝影師們
             v-checkbox(v-model='agreeStatement' color="#677d35" label="詳細閱讀且同意")
-            v-btn(rounded color='#677d35' @click='e6 = 1') 上一步
-            v-btn(rounded color='#677d35' :disabled="invalid" @click='e6 = 2' href='#' ) 下一步
+            v-btn(rounded color='#677d35' @click='e6 = 1' dark) 上一步
+            v-btn(rounded color='#677d35' :disabled="invalid" @click='e6 = 2' href='#' dark) 下一步
           v-stepper-step(rounded :complete='e6 > 2' step='2' color="#677d35") 選擇方案
           v-stepper-content(step='2')
             v-card.step2.mb-12
@@ -83,11 +83,11 @@
                     color="#677d35"
                     :min="new Date().toISOString()")
                     v-spacer
-                    v-btn(text color='#677d35' rounded @click='modal = false') Cancel
-                    v-btn(text color='#677d35' rounded @click='$refs.dialog.save(date)') OK
-            v-btn(rounded color='#677d35'  @click='e6 = 1' href='#') 上一步
-            v-btn(v-if="(this.$data.agreeStatement === false || this.$data.date === null || this.$data.photographer === null)" rounded color='#677d35'  @click='check') 下一步
-            v-btn(v-else rounded color='#677d35'  @click='e6 = 3' href='#') 下一步
+                    v-btn(text color='#677d35' rounded @click='modal = false') 取消
+                    v-btn(text color='#677d35' rounded @click='$refs.dialog.save(date)') 確認
+            v-btn(rounded color='#677d35'  @click='e6 = 1' href='#' dark) 上一步
+            v-btn(v-if="(this.$data.agreeStatement === false || this.$data.date === null || this.$data.photographer === null)" rounded color='#677d35'  @click='check' dark) 下一步
+            v-btn(v-else rounded color='#677d35'  @click='e6 = 3' href='#' dark) 下一步
           v-stepper-step(:complete='e6 > 3' step='3' color="#677d35") 預約確認
           v-stepper-content(step='3')
             v-card.step3.mb-12
@@ -95,7 +95,6 @@
                 v-card-text
                   validation-provider(v-slot="{ errors }" rules="required")
                     v-text-field(
-                        @click='e6 = 2'
                         color="#000000"
                         v-model="project"
                         filled
@@ -104,7 +103,6 @@
                         prefix=' 拍攝項目｜')
                   validation-provider(v-slot="{ errors }" rules="required")
                     v-text-field(
-                      @click='e6 = 2'
                       color="#000000"
                       v-model="date"
                       filled
@@ -113,7 +111,6 @@
                       prefix=' 拍攝日期｜')
                   validation-provider(v-slot="{ errors }" rules="required")
                     v-text-field(
-                      @click='e6 = 2'
                       color="#000000"
                       v-model="photographer"
                       filled
@@ -121,8 +118,8 @@
                       readonly
                       prefix=' 攝影師｜')
 
-                  v-btn(rounded color='#677d35' @click='e6 = 2' href='#') 上一步
-                  v-btn(:disabled="invalid" rounded color='#677d35' type="submit") 送出
+                  v-btn(rounded color='#677d35' @click='e6 = 2' href='#' dark) 上一步
+                  v-btn(:disabled="invalid" rounded color='#677d35' type="submit" dark) 送出
 </template>
 
 <script>
@@ -174,15 +171,17 @@ export default {
           if (res.data.success) {
             this.$swal({
               icon: 'success',
-              title: '表單送出',
+              title: '表單成立',
               showConfirmButton: false,
               timer: 1000
             })
+            res.data.result.src = process.env.VUE_APP_API + '/albums/file/' + res.data.result.file
+
             this.$data.agreeStatement = null
             this.$data.project = ''
             this.$data.date = null
             this.$data.photographer = null
-            this.$router.push({ path: '/user', name: 'User' })
+            this.$router.push({ path: '/user/order', name: 'UserOrder' })
           } else {
             this.$swal({
               icon: 'error',
