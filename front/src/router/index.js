@@ -65,6 +65,15 @@ const routes = [
     }
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+    meta: {
+      title: 'GP photolab | 登入註冊',
+      login: false
+    }
+  },
+  {
     path: '/reserve',
     name: 'Reserve',
     component: () => import(/* webpackChunkName: "reserve" */ '../views/Reserve.vue'),
@@ -129,15 +138,6 @@ const routes = [
   //     login: true
   //   }
   // },
-  {
-    path: '/login',
-    name: 'Longin',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
-    meta: {
-      title: 'GP photolab | 登入註冊',
-      login: false
-    }
-  },
   {
     path: '/*',
     name: 'NotFound',
