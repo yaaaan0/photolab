@@ -42,7 +42,6 @@
                   :error-messages="errors"
                   filled
                   rounded
-                  :counter="10"
                   :readonly='readonly'
                   prefix=' 手機號碼｜')
             v-card-actions
@@ -170,6 +169,29 @@ export default {
           this.phoneNumber = this.$store.state.user.phoneNumber
         })
     }
+  },
+  mounted () {
+    this.axios.get(process.env.VUE_APP_API + '/users/' + this.user.id)
+      .then(res => {
+        if (res.data.success) {
+          this.name = res.data.result.name
+          this.email = res.data.result.email
+          this.phoneNumber = res.data.result.phoneNumber
+        } else {
+          this.$swal({
+            icon: 'error',
+            title: '錯誤',
+            text: res.data.message
+          })
+        }
+      })
+      .catch(err => {
+        this.$swal({
+          icon: 'error',
+          title: '錯誤',
+          text: err.response.data.message
+        })
+      })
   }
 }
 </script>
