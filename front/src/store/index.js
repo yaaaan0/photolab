@@ -11,7 +11,8 @@ export default new Vuex.Store({
       account: '',
       name: '',
       email: '',
-      phoneNumber: ''
+      phoneNumber: '',
+      orders: []
     }
 
   },
@@ -22,6 +23,7 @@ export default new Vuex.Store({
       state.user.name = data.name
       state.user.email = data.email
       state.user.phoneNumber = data.phoneNumber
+      state.user.orders = data.orders
     },
     logout (state) {
       state.user.id = ''
@@ -29,6 +31,7 @@ export default new Vuex.Store({
       state.user.name = ''
       state.user.email = ''
       state.user.phoneNumber = ''
+      state.user.orders = ''
     }
   },
   actions: {
