@@ -1,7 +1,8 @@
 <template lang="pug">
   #user
     UserMenu
-    router-view
+    vue-page-transition(name='fade-in-up')
+      router-view
 </template>
 
 <script>
