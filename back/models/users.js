@@ -38,13 +38,13 @@ const messages = new Schema(
 const orderSchema = new Schema(
   {
     orderDate: {
-      type: Date
+      type: String
     },
     agreeStatement: {
       type: Boolean
     },
     date: {
-      type: Date,
+      type: String,
       required: [true, '請輸入日期']
     },
     project: {
