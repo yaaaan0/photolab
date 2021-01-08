@@ -1,6 +1,8 @@
 // 加密
 import md5 from 'md5'
 
+import moment from 'moment'
+
 // 讓陣列顯示
 // import util from 'util'
 
@@ -156,12 +158,13 @@ export const addOrder = async (req, res) => {
         {
           $push: {
             orders: {
-              orderDate: new Date(),
+              orderDate: moment().format().substr(0, 10),
               agreeStatement: req.body.agreeStatement,
               date: req.body.date,
               project: req.body.project,
               photographer: req.body.photographer,
-              paid: false
+              paid: false,
+              state: false
             }
           }
         }, { new: true }).then(result => {
@@ -179,5 +182,40 @@ export const addOrder = async (req, res) => {
     } else {
       res.status(500).send({ success: false, message: error.message })
     }
+  }
+}
+
+// 用使用者ID 查詢訂單資料
+export const checkUser = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  if (req.session.user._id !== req.params.id) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+    return
+  }
+  try {
+    const result = await users.findById(req.params.id)
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+// 用使用者ID 查詢訂單資料
+export const checkOrder = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  if (req.session.user._id !== req.params.id) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+    return
+  }
+  try {
+    const result = await users.findById(req.params.id, 'orders')
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
   }
 }
