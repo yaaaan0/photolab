@@ -8,7 +8,7 @@ import moment from 'moment'
 
 import users from '../models/users.js'
 
-// req 代表進來的
+// req 代表進去的
 // res 代表出去的
 export const create = async (req, res) => {
   // 如果進來的資料格式不是 json
