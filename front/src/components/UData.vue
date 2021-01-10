@@ -186,6 +186,14 @@ export default {
         }
       })
       .catch(err => {
+        if (err.response.data.message === '未登入') {
+          // 登出
+          this.$store.commit('logout')
+          // 導回首頁
+          if (this.$route.path !== '/login') {
+            this.$router.push('/login')
+          }
+        }
         this.$swal({
           icon: 'error',
           title: '錯誤',
