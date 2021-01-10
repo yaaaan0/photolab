@@ -1,17 +1,19 @@
 <template lang="pug">
   #uOrder
     v-app
-      v-data-table.elevation-1(:headers='headers' :items='orders' calculate-widths sort-desc)
+      v-data-table.elevation-1(
+        :headers='headers'
+        :items='orders'
+        @click:row='handleRowClick')
         template(v-slot:item.state='{ item }')
-          //- v-dialog(v-model='dialog' max-width='500px')
           v-switch(:value="check(item.state)" disabled inset)
-
 </template>
-
 <script>
 export default {
   data () {
     return {
+      dialog: false,
+      dialogDelete: false,
       headers: [
         {
           text: '訂單編號',
@@ -25,7 +27,8 @@ export default {
         { text: '攝影師', value: 'photographer', sortable: false },
         { text: '訂單狀態', value: 'state', sortable: false }
       ],
-      orders: []
+      orders: [],
+      id: this.$route.params.id
     }
   },
   computed: {
@@ -37,6 +40,10 @@ export default {
     check (state) {
       if (state === false) return 'false'
       else return 'true'
+    },
+    handleRowClick (item) {
+      this.$router.push({ path: `/user/order/${item._id}`, name: 'OrderInfo' })
+      console.log(`/user/order/${item._id}`)
     }
   },
   mounted () {
@@ -54,6 +61,14 @@ export default {
         }
       })
       .catch(err => {
+        if (err.response.data.message === '未登入') {
+          // 登出
+          this.$store.commit('logout')
+          // 導回首頁
+          if (this.$route.path !== '/login') {
+            this.$router.push('/login')
+          }
+        }
         this.$swal({
           icon: 'error',
           title: '錯誤',
