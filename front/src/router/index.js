@@ -116,7 +116,36 @@ const routes = [
         meta: {
           title: 'GP photolab | 會員專區',
           login: true
-        }
+        },
+        children: [
+          {
+            path: '',
+            name: 'UserOrder',
+            component: () => import(/* webpackChunkName: "orderList" */ '../views/OrderList.vue'),
+            meta: {
+              title: 'GP photolab | 會員專區',
+              login: true
+            }
+          },
+          {
+            path: '',
+            name: 'OrderList',
+            component: () => import(/* webpackChunkName: "orderList" */ '../views/OrderList.vue'),
+            meta: {
+              title: 'GP photolab | 會員專區',
+              login: true
+            }
+          },
+          {
+            path: ':id',
+            name: 'OrderInfo',
+            component: () => import(/* webpackChunkName: "orderInfo" */ '../views/OrderInfo.vue'),
+            meta: {
+              title: 'GP photolab | 會員專區',
+              login: true
+            }
+          }
+        ]
       },
       {
         path: 'favorite',
@@ -156,8 +185,10 @@ router.beforeEach((to, from, next) => {
   // 若即將訪問的頁面需登入且 vuex 狀態並沒有登入
   if (to.meta.login && !store.state.user.id) {
     Swal.fire({
-      icon: 'error',
-      title: '未登入'
+      title: '未登入',
+      showConfirmButton: false,
+      timerProgressBar: true,
+      timer: 1000
     })
     next('/login')
   } else {
