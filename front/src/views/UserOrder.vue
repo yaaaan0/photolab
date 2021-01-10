@@ -1,14 +1,10 @@
 <template lang="pug">
   #userOrder
-    UOrder
+    router-view
 </template>
 
 <script>
-import UOrder from '../components/UOrder.vue'
 export default {
-  name: 'UserOrder',
-  components: {
-    UOrder
-  }
+  name: 'UserOrder'
 }
 </script>
