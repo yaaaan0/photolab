@@ -55,15 +55,16 @@ export default {
             // 但是後端沒登入
             if (!res.data) {
               this.$swal({
-                icon: 'error',
-                title: '錯誤',
-                text: '登入時效已過'
+                title: '登入時效已過',
+                showConfirmButton: false,
+                timerProgressBar: true,
+                timer: 1000
               })
               // 登出
               this.$store.commit('logout')
               // 導回首頁
-              if (this.$route.path !== '/') {
-                this.$router.push('/')
+              if (this.$route.path !== '/login') {
+                this.$router.push('/login')
               }
             }
           }
@@ -77,8 +78,8 @@ export default {
           // 登出
           this.$store.commit('logout')
           // 導回首頁
-          if (this.$route.path !== '/') {
-            this.$router.push('/')
+          if (this.$route.path !== '/login') {
+            this.$router.push('/login')
           }
         })
     }
