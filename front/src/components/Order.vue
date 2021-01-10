@@ -76,6 +76,7 @@
                       color="#677d35"
                       clearable
                       @click:clear="date = null"
+                      :allowed-dates="allowedDates"
                       )
                   v-date-picker(
                     v-model='date'
