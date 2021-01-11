@@ -7,6 +7,7 @@ import cors from 'cors'
 import session from 'express-session'
 
 import routerUser from './routes/users.js'
+import routerWebmaster from './routes/webmasters.js'
 // import routerAlbum from './routes/albums.js'
 
 dotenv.config()
@@ -72,6 +73,7 @@ app.use(session(sessionSettings))
 app.set('trust proxy', 1)
 
 app.use('/users', routerUser)
+app.use('/webmasters', routerWebmaster)
 // app.use('/albums', routerAlbum)
 
 // bodyparser cors 之類的套件發生錯誤時的處理
