@@ -1,6 +1,7 @@
 <template lang="pug">
   #userOrder
-    router-view
+    vue-page-transition(name='fade-in-up')
+      router-view
 </template>
 
 <script>
