@@ -1,5 +1,23 @@
 <template lang="pug">
-  #orderInfo {{ orders._id }}
+  #orderInfo
+    v-app
+      v-card
+        v-banner(single-line color='rgba(75, 69, 60,0.8)' dark)
+          caption 訂單編號 ｜ {{order._id}}
+        v-card-text.text-1.grey.lighten-4
+          v-sheet.mx-auto(max-width='800' height='250')
+            span 訂單日期 ｜ {{order.date}}
+            span 拍攝項目 ｜ {{order.project}}
+            span 預計拍攝日期 ｜ {{order.orderDate}}
+            span 攝影師 ｜ {{order.photographer}}
+            span(v-if='!paid')
+              P 付款狀態 ｜
+              v-switch(color="rgb(103, 125, 53)" disabled inset dense)
+            span(v-if='paid')
+              P 付款狀態 ｜
+              v-switch(color="rgb(103, 125, 53)" input-value="true" disabled inset dense)
+        v-card-text.text-2.grey.lighten-4
+          v-sheet.mx-auto(max-width='800' height='500')
 </template>
 
 <script>
@@ -7,38 +25,10 @@ export default {
   name: 'OrderInfo',
   data () {
     return {
-      order: {}
+      id: this.$route.params.id,
+      order: this.$route.query,
+      paid: this.$route.query.paid
     }
-  },
-  methods: {
-    orders: [
-      {
-        _id: '5ff87bb996a7d63a5777c946',
-        orderDate: '2021-01-08',
-        agreeStatement: true,
-        date: '2021-01-23',
-        project: '三套婚紗拍攝',
-        photographer: '榮格',
-        paid: false,
-        state: false,
-        messages: []
-      },
-      {
-        _id: '5ff87bdd96a7d63a5777c947',
-        orderDate: '2021-01-08',
-        agreeStatement: true,
-        date: '2021-05-05',
-        project: '親子寫真',
-        photographer: 'GP',
-        paid: false,
-        state: false,
-        messages: []
-      }
-    ]
-
-  },
-  mounted () {
-    this.order = this.orders(this.$route.params.id)
   }
 }
 </script>
