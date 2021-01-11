@@ -6,14 +6,13 @@
         :items='orders'
         @click:row='handleRowClick')
         template(v-slot:item.state='{ item }')
-          v-switch(:value="check(item.state)" disabled inset)
+          v-switch(v-if="!item.state" :value="check(item.state)" disabled inset)
+          v-switch(v-if="item.state" :value="check(item.state)" color="rgb(103, 125, 53)" input-value="true" disabled inset)
 </template>
 <script>
 export default {
   data () {
     return {
-      dialog: false,
-      dialogDelete: false,
       headers: [
         {
           text: '訂單編號',
@@ -27,8 +26,7 @@ export default {
         { text: '攝影師', value: 'photographer', sortable: false },
         { text: '訂單狀態', value: 'state', sortable: false }
       ],
-      orders: [],
-      id: this.$route.params.id
+      orders: []
     }
   },
   computed: {
@@ -42,8 +40,12 @@ export default {
       else return 'true'
     },
     handleRowClick (item) {
-      this.$router.push({ path: `/user/order/${item._id}`, name: 'OrderInfo' })
-      console.log(`/user/order/${item._id}`)
+      this.$router.push(
+        {
+          params: { id: item._id },
+          query: item,
+          name: 'OrderInfo'
+        })
     }
   },
   mounted () {
