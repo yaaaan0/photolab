@@ -12,6 +12,7 @@
       v-btn.white--text(x-large text fixed rounded @click='overlay = false' to="/about") ABOUT ｜ 品牌介紹
       v-btn.white--text(x-large text fixed rounded @click='overlay = false' to="/serive") SERIVE ｜ 服務內容
       v-btn.white--text(x-large text fixed rounded @click='overlay = false' to="/photolab") PHOTOLAB ｜ 照相館
+      v-btn.white--text(x-large text fixed rounded @click='overlay = false' to="/reserve") RESERVE ｜ 我要預約
       v-btn.white--text(x-large text fixed rounded @click='overlay = false' to="/q&a") Q&A ｜ 常見問題
 
 </template>
