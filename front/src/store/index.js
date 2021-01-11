@@ -13,8 +13,12 @@ export default new Vuex.Store({
       email: '',
       phoneNumber: '',
       orders: []
+    },
+    webmaster: {
+      id: '',
+      account: '',
+      name: ''
     }
-
   },
   mutations: {
     login (state, data) {

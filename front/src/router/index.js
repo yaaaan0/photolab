@@ -23,7 +23,7 @@ const routes = [
     name: 'Home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
     meta: {
-      title: 'GP photolab | GP首頁',
+      title: 'GP photolab ｜ GP首頁',
       login: false,
       transition: 'fade-in-down'
     }
@@ -33,7 +33,7 @@ const routes = [
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: {
-      title: 'GP photolab | 品牌介紹',
+      title: 'GP photolab ｜ 品牌介紹',
       login: false
     }
   },
@@ -42,7 +42,7 @@ const routes = [
     name: 'Serive',
     component: () => import(/* webpackChunkName: "serive" */ '../views/Serive.vue'),
     meta: {
-      title: 'GP photolab | 服務內容',
+      title: 'GP photolab ｜ 服務內容',
       login: false
     }
   },
@@ -51,7 +51,7 @@ const routes = [
     name: 'Photolab',
     component: () => import(/* webpackChunkName: "photolab" */ '../views/Photolab.vue'),
     meta: {
-      title: 'GP photolab | 照相館',
+      title: 'GP photolab ｜ 照相館',
       login: false
     }
   },
@@ -60,7 +60,7 @@ const routes = [
     name: 'Q&A',
     component: () => import(/* webpackChunkName: "q&a" */ '../views/Q&A.vue'),
     meta: {
-      title: 'GP photolab | 常見問題',
+      title: 'GP photolab ｜ 常見問題',
       login: false
     }
   },
@@ -69,7 +69,7 @@ const routes = [
     name: 'Login',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
     meta: {
-      title: 'GP photolab | 登入註冊',
+      title: 'GP photolab ｜ 登入註冊',
       login: false
     }
   },
@@ -78,7 +78,7 @@ const routes = [
     name: 'Reserve',
     component: () => import(/* webpackChunkName: "reserve" */ '../views/Reserve.vue'),
     meta: {
-      title: 'GP photolab | 預約表單',
+      title: 'GP photolab ｜ 預約表單',
       login: true
     }
   },
@@ -87,7 +87,7 @@ const routes = [
     name: 'User',
     component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
     meta: {
-      title: 'GP photolab | 會員專區',
+      title: 'GP photolab ｜ 會員專區',
       login: true
     },
     children: [
@@ -96,7 +96,7 @@ const routes = [
         name: 'User',
         component: () => import(/* webpackChunkName: "userData" */ '../views/UserData.vue'),
         meta: {
-          title: 'GP photolab | 會員專區',
+          title: 'GP photolab ｜ 會員專區',
           login: true
         }
       },
@@ -105,7 +105,7 @@ const routes = [
         name: 'UserData',
         component: () => import(/* webpackChunkName: "userData" */ '../views/UserData.vue'),
         meta: {
-          title: 'GP photolab | 會員專區',
+          title: 'GP photolab ｜ 基本資料',
           login: true
         }
       },
@@ -114,25 +114,16 @@ const routes = [
         name: 'UserOrder',
         component: () => import(/* webpackChunkName: "userOrder" */ '../views/UserOrder.vue'),
         meta: {
-          title: 'GP photolab | 會員專區',
+          title: 'GP photolab ｜ 我的訂單',
           login: true
         },
         children: [
           {
             path: '',
-            name: 'UserOrder',
-            component: () => import(/* webpackChunkName: "orderList" */ '../views/OrderList.vue'),
-            meta: {
-              title: 'GP photolab | 會員專區',
-              login: true
-            }
-          },
-          {
-            path: '',
             name: 'OrderList',
             component: () => import(/* webpackChunkName: "orderList" */ '../views/OrderList.vue'),
             meta: {
-              title: 'GP photolab | 會員專區',
+              title: 'GP photolab ｜ 我的訂單',
               login: true
             }
           },
@@ -141,8 +132,9 @@ const routes = [
             name: 'OrderInfo',
             component: () => import(/* webpackChunkName: "orderInfo" */ '../views/OrderInfo.vue'),
             meta: {
-              title: 'GP photolab | 會員專區',
-              login: true
+              title: 'GP photolab ｜ 我的訂單',
+              login: true,
+              props: true
             }
           }
         ]
@@ -152,9 +144,103 @@ const routes = [
         name: 'UserFavorite',
         component: () => import(/* webpackChunkName: "userfavorite" */ '../views/UserFavorite.vue'),
         meta: {
-          title: 'GP photolab | 會員專區',
+          title: 'GP photolab ｜ 收藏夾',
           login: true
         }
+      }
+    ]
+  },
+  {
+    path: '/webmaster',
+    name: 'WebMaster',
+    component: () => import(/* webpackChunkName: "webmaster" */ '../views/Webmaster.vue'),
+    meta: {
+      title: 'GP photolab ｜ 管理者',
+      login: true
+    },
+    children: [
+      {
+        path: '',
+        name: 'WebMaster',
+        component: () => import(/* webpackChunkName: "create" */ '../views/Create.vue'),
+        meta: {
+          title: 'GP photolab ｜ 管理者',
+          login: true
+        }
+      },
+      {
+        path: 'create',
+        name: 'Create',
+        component: () => import(/* webpackChunkName: "create" */ '../views/Create.vue'),
+        meta: {
+          title: 'GP photolab ｜ 管理者',
+          login: true
+        }
+      },
+      {
+        path: 'schedule',
+        name: 'Schedule',
+        component: () => import(/* webpackChunkName: "schedule" */ '../views/Schedule.vue'),
+        meta: {
+          title: 'GP photolab ｜ 攝影排程',
+          login: true
+        }
+      },
+      {
+        path: 'allOrders',
+        name: 'AllOrders',
+        component: () => import(/* webpackChunkName: "allOrders" */ '../views/AllOrders.vue'),
+        meta: {
+          title: 'GP photolab ｜ 訂單資訊',
+          login: true
+        }
+      },
+      {
+        path: 'editPages',
+        name: 'EditPages',
+        component: () => import(/* webpackChunkName: "editPages" */ '../views/EditPages.vue'),
+        meta: {
+          title: 'GP photolab ｜ 頁面管理',
+          login: true
+        },
+        children: [
+          {
+            path: '',
+            name: 'EditPages',
+            component: () => import(/* webpackChunkName: "editPages" */ '../views/EditPagesHome.vue'),
+            meta: {
+              title: 'GP photolab ｜ 頁面管理',
+              login: true
+            }
+          },
+          {
+            path: 'home',
+            name: 'Home',
+            component: () => import(/* webpackChunkName: "editPages" */ '../views/EditPagesHome.vue'),
+            meta: {
+              title: 'GP photolab ｜ 頁面管理',
+              login: true
+            }
+          },
+          {
+            path: 'new',
+            name: 'New',
+            component: () => import(/* webpackChunkName: "editPages" */ '../views/EditPagesNew.vue'),
+            meta: {
+              title: 'GP photolab ｜ 頁面管理',
+              login: true
+            }
+          },
+          {
+            path: 'photolab',
+            name: 'Photolab',
+            component: () => import(/* webpackChunkName: "editPages" */ '../views/EditPagesPhotolab.vue'),
+            meta: {
+              title: 'GP photolab ｜ 頁面管理',
+              login: true
+            }
+          }
+        ]
       }
     ]
   },
