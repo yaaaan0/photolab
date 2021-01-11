@@ -379,7 +379,12 @@ select:-webkit-autofill:focus {
 #userMenu .v-application p {
   margin-bottom: 0px;
 }
-
+#userMenu .theme--dark.v-list {
+  background: rgba(103, 125, 53, 0.9);
+}
+#userMenu .theme--dark.v-btn.v-btn--has-bg {
+  background-color: transparent;
+}
 /* userdata------------------------------------------------- */
 #uData {
   display: flex;

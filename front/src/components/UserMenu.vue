@@ -14,25 +14,27 @@
         v-btn(@click='logout')
           v-icon mdi-logout
           p 登出
-      v-btn-toggle(v-if="user.account.includes('##')" rounded mandatory)
+      v-btn-toggle(v-if="user.account.includes('##')" rounded)
         v-btn(to="/webmaster/create")
           v-icon mdi-account
           p 管理員
         v-btn(to="/webmaster/schedule")
-          v-icon mdi-format-list-bulleted
+          v-icon mdi-film
           P 攝影排程
         v-btn(to="/webmaster/allOrders")
           v-icon mdi-format-list-bulleted
           P 訂單資訊
-        .text-center
-          v-menu(offset-y)
-            template(v-slot:activator='{ on, attrs }')
-              v-btn(v-bind="attrs" v-on="on")
-                v-icon mdi-folder-image
-                p 頁面管理
-            v-list
-              v-list-item(v-for='(item, index) in items' :key='index')
-                v-list-item-title {{ item.title }}
+        v-expand-transition
+          .text-center
+            v-menu(offset-y nudge-width='100' close-on-click auto dark v-show="expand")
+              template(v-slot:activator='{ on, attrs }')
+                v-btn(v-bind="attrs" v-on="on" to="/webmaster/editPages" depressed outlined @click="expand = !expand" )
+                  v-icon mdi-book-open-page-variant-outline
+                  p 頁面管理
+              v-list
+                v-list-item(v-for='(item, index) in items' :key='index')
+                  v-list-item-title
+                    v-btn(block small rounded) {{ item.title }}
         v-btn(@click='logout')
           v-icon mdi-logout
           p 登出
@@ -42,11 +44,11 @@
 export default {
   data: () => ({
     items: [
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me 2' }
-    ]
+      { title: 'Home｜首頁' },
+      { title: 'New｜最新消息' },
+      { title: 'photolab｜照相館' }
+    ],
+    expand: false
   }),
   computed: {
     user () {
