@@ -224,6 +224,7 @@ select:-webkit-autofill:focus {
   border: none;
   margin: 5px;
   color: rgb(184, 55, 46);
+  right: 0px;
 }
 #resBtn .btn-1 {
   display: none;
@@ -357,6 +358,10 @@ select:-webkit-autofill:focus {
 /* #userMenu .v-icon {
   color: #677d35;
 } */
+
+#userMenu .v-application--wrap {
+  min-height: auto;
+}
 #userMenu .v-btn.v-btn:first-child {
   border-top-left-radius: inherit;
   border-bottom-left-radius: inherit;
@@ -370,6 +375,9 @@ select:-webkit-autofill:focus {
 }
 #userMenu .theme--light.v-btn.v-btn--has-bg {
   background-color: transparent;
+}
+#userMenu .v-application p {
+  margin-bottom: 0px;
 }
 
 /* userdata------------------------------------------------- */
@@ -405,8 +413,7 @@ select:-webkit-autofill:focus {
 #uData .v-sheet.v-card:not(.v-sheet--outlined) {
   box-shadow: none;
 }
-#uData .v-text-field fieldset,
-.v-text-field .v-input__control {
+#uData .v-text-field fieldset {
   height: 80px;
 }
 #uData .v-avatar {
@@ -509,7 +516,7 @@ select:-webkit-autofill:focus {
   /* cursor: pointer; */
 }
 
-/* userorder */
+/* userorder-------------------------------------------------  */
 #uOrder .theme--light.v-data-table {
   display: flex;
   justify-content: center;
@@ -518,11 +525,11 @@ select:-webkit-autofill:focus {
   background-color: antiquewhite;
   box-shadow: none !important;
   color: rgba(0, 0, 0, 0.87);
-  margin: 50px;
+  margin: 75px;
 }
 #uOrder .v-data-table__wrapper {
   width: 100vw;
-  background-color: #ffffff3d;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 #uOrder .theme--light.v-data-table .v-data-footer {
   width: 100vw;
@@ -536,6 +543,42 @@ select:-webkit-autofill:focus {
 }
 #uOrder .v-text-field .v-input__control {
   height: 45px;
+}
+/* orderInfo-------------------------------------------------  */
+#orderInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#orderInfo .v-card {
+  width: 100vw;
+  background-color: transparent !important;
+  box-shadow: none;
+}
+#orderInfo .v-application .grey.lighten-4 {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+#orderInfo .v-banner--single-line .v-banner__text {
+  font-size: 0.875rem;
+}
+#orderInfo .theme--light.v-sheet {
+  background-color: rgba(213, 202, 189, 0.5);
+  border-color: #d5cabd;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 30px;
+  padding: 30px;
+}
+#orderInfo .text-2 > .theme--light.v-sheet {
+  margin-top: 0px;
+}
+#orderInfo .theme--light.v-sheet span {
+  display: flex;
+  margin: 13px;
+}
+#orderInfo .v-input--selection-controls {
+  margin: 0px 10px;
+  padding: 0px;
 }
 
 /* 假字 */
@@ -558,10 +601,11 @@ select:-webkit-autofill:focus {
   #resBtn {
     display: flex;
     flex-direction: row;
-    width: 100px;
     position: absolute;
     right: 10px;
     top: 160px;
+    text-align: right;
+    width: auto;
   }
 
   #resBtn .v-btn {
@@ -611,6 +655,10 @@ select:-webkit-autofill:focus {
   }
   #uOrder .theme--light.v-data-table .v-data-footer {
     width: 100%;
+  }
+
+  #orderInfo .v-card {
+    width: 1000px;
   }
 }
 
