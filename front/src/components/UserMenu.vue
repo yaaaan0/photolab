@@ -26,7 +26,7 @@
           P 訂單資訊
         v-expand-transition
           .text-center
-            v-menu(offset-y nudge-width='100' close-on-click auto dark v-show="expand")
+            v-menu(offset-y close-on-click dark v-show="expand" min-width="120px" open-on-hover)
               template(v-slot:activator='{ on, attrs }')
                 v-btn(v-bind="attrs" v-on="on" to="/webmaster/editPages" depressed outlined @click="expand = !expand" )
                   v-icon mdi-book-open-page-variant-outline
@@ -34,7 +34,7 @@
               v-list
                 v-list-item(v-for='(item, index) in items' :key='index')
                   v-list-item-title
-                    v-btn(block small rounded) {{ item.title }}
+                    v-btn(block small :to='(item.to)') {{ item.title }}
         v-btn(@click='logout')
           v-icon mdi-logout
           p 登出
@@ -44,9 +44,9 @@
 export default {
   data: () => ({
     items: [
-      { title: 'Home｜首頁' },
-      { title: 'New｜最新消息' },
-      { title: 'photolab｜照相館' }
+      { title: '首頁', to: '/webmaster/editPages/home' },
+      { title: '最新消息', to: '/webmaster/editPages/new' },
+      { title: '照相館', to: '/webmaster/editPages/photolab' }
     ],
     expand: false
   }),
@@ -56,6 +56,12 @@ export default {
     }
   },
   methods: {
+    click (item) {
+      console.log(item)
+      if (item === 0) {
+        this.$router.push({ path: 'home', name: 'Home' })
+      }
+    },
     logout () {
       this.$swal({
         title: '是否要登出',
