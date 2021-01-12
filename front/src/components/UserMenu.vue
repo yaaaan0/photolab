@@ -15,9 +15,9 @@
           v-icon mdi-logout
           p 登出
       v-btn-toggle(v-if="user.account.includes('##')" rounded)
-        v-btn(to="/webmaster/create")
-          v-icon mdi-account
-          p 管理員
+        v-btn(to="/" target='_blank')
+          v-icon mdi-home
+          p 首頁
         v-btn(to="/webmaster/schedule")
           v-icon mdi-film
           P 攝影排程
@@ -35,6 +35,9 @@
                 v-list-item(v-for='(item, index) in items' :key='index')
                   v-list-item-title
                     v-btn(block small :to='(item.to)') {{ item.title }}
+        v-btn(to="/webmaster/create")
+          v-icon mdi-account
+          p 管理員
         v-btn(@click='logout')
           v-icon mdi-logout
           p 登出
