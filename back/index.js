@@ -7,8 +7,8 @@ import cors from 'cors'
 import session from 'express-session'
 
 import routerUser from './routes/users.js'
-import routerWebmaster from './routes/webmasters.js'
-// import routerAlbum from './routes/albums.js'
+// import routerWebmaster from './routes/webmasters.js'
+import routerPhoto from './routes/photos.js'
 
 dotenv.config()
 
@@ -50,7 +50,7 @@ app.use(cors({
 const MongoStore = connectMongo(session)
 
 const sessionSettings = {
-  secret: 'album',
+  secret: 'photo',
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
   cookie: {
     maxAge: 1000 * 60 * 30
@@ -73,8 +73,8 @@ app.use(session(sessionSettings))
 app.set('trust proxy', 1)
 
 app.use('/users', routerUser)
-app.use('/webmasters', routerWebmaster)
-// app.use('/albums', routerAlbum)
+// app.use('/webmasters', routerWebmaster)
+app.use('/photos', routerPhoto)
 
 // bodyparser cors 之類的套件發生錯誤時的處理
 // app.use((err, req, res, next) => {})
