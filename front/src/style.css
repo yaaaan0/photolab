@@ -590,6 +590,46 @@ select:-webkit-autofill:focus {
   background-color: snow !important;
 }
 
+#webmaster #userMenu {
+  margin-top: 30px;
+}
+
+#editPagesPhotolab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 89vh;
+  overflow: hidden;
+}
+
+#editPagesPhotolab #app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#editPagesPhotolab .v-application--wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+#editPagesPhotolab .v-btn {
+  position: absolute;
+  bottom: 15px;
+  background-color: #677d35 !important;
+  z-index: 2;
+}
+#editPagesPhotolab .v-sheet.v-sheet--shaped {
+  position: absolute;
+  border-radius: 24px;
+  width: 80vw;
+  height: 75vh !important;
+  margin: 40px;
+  background-color: antiquewhite;
+}
+
 /* 假字 */
 #word {
   height: 100%;
