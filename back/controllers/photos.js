@@ -77,6 +77,7 @@ export const create = async (req, res) => {
       res.status(400).send({ success: false, message })
     } else if (error) {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
+      console.log(error)
     } else {
       try {
         let file = ''
@@ -93,6 +94,7 @@ export const create = async (req, res) => {
           width: req.body.width,
           height: req.body.height
         })
+        console.log(req.file)
         res.status(200).send({ success: true, message: '', result })
       } catch (error) {
         if (error.name === 'ValidationError') {
@@ -101,6 +103,7 @@ export const create = async (req, res) => {
           res.status(400).send({ success: false, message })
         } else {
           res.status(500).send({ success: false, message: '伺服器錯誤' })
+          console.log(error)
         }
       }
     }
@@ -121,5 +124,6 @@ export const check = async (req, res) => {
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
   }
 }

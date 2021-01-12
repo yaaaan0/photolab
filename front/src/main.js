@@ -15,23 +15,19 @@ import VueSweetalert2 from 'vue-sweetalert2'
 // 認證
 import { ValidationProvider } from 'vee-validate'
 
-// const options = {
-//   confirmButtonColor: '#00000',
-//   cancelButtonColor: '#ff7674'
-// }
-
-Vue.use(VueSweetalert2)
+// 圖片上傳
+import ImgInputer from 'vue-img-inputer'
+import 'vue-img-inputer/dist/index.css'
 
 axios.defaults.withCredentials = true
 Vue.config.productionTip = false
 
-// 認證
 Vue.component('ValidationProvider', ValidationProvider)
-
+Vue.component('ImgInputer', ImgInputer)
 Vue.component('video-background', VideoBackground)
 Vue.use(VuePageTransition)
 Vue.use(VueAxios, axios)
-// Vue.use(VueSweetalert2)
+Vue.use(VueSweetalert2)
 
 new Vue({
   router,
