@@ -1,11 +1,24 @@
 <template lang="pug">
   #editPagesPhotolab
     v-app
-      v-btn(fab color='cyan accent-2' bottom left absolute @click='dialog = !dialog')
-        v-icon mdi-plus
+      v-sheet( elevation="2" outlined shaped)
+        waterfall(:line-gap='200' :watch='items')
+          waterfall-slot(v-for='(item, index) in items' :width='item.width' :height='item.height' :order='index' :key='item.id')
+        v-btn(fab color='cyan accent-2' bottom left absolute @click='dialog = !dialog')
+          v-icon mdi-plus
       v-dialog(v-model='dialog' max-width='500px' background-color='#ffffff')
+        v-form(@submit.prevent="onSubmit")
           v-card-text
-            v-file-input(label='圖片上傳' filled prepend-icon='mdi-camera' rounded color='#677d35')
+            img-inputer.mx-auto(
+              extra-data
+              v-model="file"
+              icon="img"
+              placeholder="請選擇圖片"
+              bottom-text="點擊或拖曳更換圖片"
+              :max-size="1024"
+              exceedSizeText="檔案大小不能超過"
+              accept="image/*"
+            )
             h5 攝影師
             v-chip-group(v-model='photographer' mandatory color="#677d35" )
               v-chip(value="GP") GP
@@ -13,7 +26,7 @@
               v-chip(value="壹壹") 壹壹
               v-chip(value="刷牙") 刷牙
             h5 項目
-            v-chip-group(v-model='photographer' mandatory color="#677d35")
+            v-chip-group(v-model='project' mandatory color="#677d35")
               v-chip(value="婚紗") 婚紗
               v-chip(value="姊妹婚紗") 姊妹婚紗
               v-chip(value="孕媽咪" ) 孕媽咪
@@ -22,8 +35,6 @@
           v-card-actions
             v-spacer
             v-btn(text @click='dialog = false' rounded) Submit
-      waterfall(:line-gap='200' :watch='items')
-        waterfall-slot(v-for='(item, index) in items' :width='item.width' :height='item.height' :order='index' :key='item.id')
 </template>
 
 <script>
@@ -36,7 +47,12 @@ export default {
   data () {
     return {
       dialog: false,
-      items: []
+      items: [],
+      width: null,
+      height: null,
+      project: '',
+      photographer: '',
+      file: ''
     }
   },
   components: {
