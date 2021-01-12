@@ -11,7 +11,8 @@ import VuePageTransition from 'vue-page-transition'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueSweetalert2 from 'vue-sweetalert2'
-// import 'sweetalert2/dist/sweetalert2.min.css'
+
+// 認證
 import { ValidationProvider } from 'vee-validate'
 
 // const options = {
