@@ -586,6 +586,10 @@ select:-webkit-autofill:focus {
   padding: 0px;
 }
 
+#userMenu .v-dialog {
+  background-color: snow !important;
+}
+
 /* 假字 */
 #word {
   height: 100%;
