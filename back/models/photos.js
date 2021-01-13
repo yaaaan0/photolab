@@ -9,10 +9,6 @@ const photoSchema = new Schema(
       type: String,
       required: [true, '缺少攝影師欄位']
     },
-    description: {
-      type: String,
-      maxlength: [200, '說明必須200字以下']
-    },
     project: {
       type: String,
       required: [true, '缺少項目欄位']
