@@ -2,23 +2,41 @@
   #editPagesPhotolab
     v-app
       v-sheet( elevation="2" outlined shaped)
-        waterfall(:line-gap='200' :watch='items')
-          waterfall-slot(v-for='(item, index) in items' :width='item.width' :height='item.height' :order='index' :key='item.id')
+        vueWaterfallEasy(:imgsArr="imgsArr" @scrollLoadImg="fetchImgsData")
+          div(v-for='(item, index) in imgsArr')
         v-btn(fab color='cyan accent-2' bottom left absolute @click='dialog = !dialog')
           v-icon mdi-plus
       v-dialog(v-model='dialog' max-width='500px' background-color='#ffffff')
         v-form(@submit.prevent="onSubmit")
           v-card-text
             img-inputer.mx-auto(
-              extra-data
-              v-model="file"
+              v-model="image"
               icon="img"
+              size="large"
               placeholder="請選擇圖片"
               bottom-text="點擊或拖曳更換圖片"
               :max-size="1024"
               exceedSizeText="檔案大小不能超過"
               accept="image/*"
             )
+            h5 尺寸
+            .upload
+              div
+                v-btn-toggle(v-model='photoSize' mandatory color="#677d35")
+                  v-btn(@input='sizeState' value="landscape")
+                    v-icon mdi-crop-landscape
+                  v-btn(@input='sizeState' value="portrait")
+                    v-icon mdi-crop-portrait
+                  v-btn(@input='sizeState' value="resizing")
+                    h4 自訂
+              div
+                validation-provider(v-slot="{ errors }" name="PhoneNumber" rules="required|numeric")
+                  v-text-field(v-if="photoSize === 'landscape' " label='width' suffix="px" color="#677d35" value=1875 readonly )
+                  v-text-field(v-if="photoSize === 'landscape' " label='height' suffix="px" color="#677d35" value=1250 readonly )
+                  v-text-field(v-if="photoSize === 'portrait' " label='width' suffix="px" color="#677d35" value=1250 readonly )
+                  v-text-field(v-if="photoSize === 'portrait' " label='height' suffix="px" color="#677d35" value=1875 readonly )
+                  v-text-field(v-if="photoSize === 'resizing' " v-model='width' label='width' suffix="px" value color="#677d35" )
+                  v-text-field(v-if="photoSize === 'resizing' " v-model='height' label='height' suffix="px" value color="#677d35" )
             h5 攝影師
             v-chip-group(v-model='photographer' mandatory color="#677d35" )
               v-chip(value="GP") GP
@@ -34,13 +52,27 @@
               v-chip(value="情侶寫真") 情侶寫真
           v-card-actions
             v-spacer
-            v-btn(text @click='dialog = false' rounded) Submit
+            v-btn(type="submit" text @click='dialog = false' rounded) 送出
 </template>
 
 <script>
 // 瀑布流
-import Waterfall from 'vue-waterfall/lib/waterfall'
-import WaterfallSlot from 'vue-waterfall/lib/waterfall-slot'
+import vueWaterfallEasy from 'vue-waterfall-easy'
+
+import { required, numeric } from 'vee-validate/dist/rules'
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+
+setInteractionMode('eager')
+
+extend('numeric', {
+  ...numeric,
+  message: '{_field_} needs to be {length} digits.'
+})
+
+extend('required', {
+  ...required,
+  message: '{_field_} can not be empty'
+})
 
 export default {
   name: 'EditPagesPhotolab',
@@ -48,50 +80,89 @@ export default {
     return {
       dialog: false,
       items: [],
-      width: null,
-      height: null,
+      width: 1875,
+      height: 1250,
       project: '',
       photographer: '',
-      file: ''
+      image: null,
+      photoSize: '',
+      imgsArr: [],
+      fetchImgsArr: []
+    }
+  },
+  computed: {
+    user () {
+      return this.$store.state.user
     }
   },
   components: {
-    Waterfall,
-    WaterfallSlot
+    ValidationProvider,
+    ValidationObserver,
+    vueWaterfallEasy
   },
-  methode: {
+  methods: {
+    sizeState () {
+      if (this.photoSize === 'landscape') {
+        this.width = 1875
+        this.height = 1250
+      } else if (this.photoSize === 'portrait') {
+        this.width = 1250
+        this.height = 1875
+      } else if (this.photoSize === 'resizing') {
+        this.width = null
+        this.height = null
+      }
+    },
     onSubmit () {
-      if (this.item.size > 1024 * 1024) {
+      if (this.image.size > 1024 * 1024) {
         this.$swal({
           icon: 'error',
           title: '錯誤',
           text: '圖片太大'
         })
-      } else if (!this.item.type.includes('image')) {
+
+        this.image = null
+        this.width = ''
+        this.height = ''
+        this.photographer = ''
+        this.project = ''
+      } else if (!this.image.type.includes('image')) {
         this.$swal({
           icon: 'error',
           title: '錯誤',
           text: '檔案格式錯誤'
         })
+        this.image = null
+        this.width = ''
+        this.height = ''
+        this.photographer = ''
+        this.project = ''
       } else {
         const fd = new FormData()
         fd.append('image', this.image)
-        fd.append('descrziption', this.description)
+        fd.append('width', this.width)
+        fd.append('height', this.height)
+        fd.append('photographer', this.photographer)
+        fd.append('project', this.project)
 
-        this.axios.post(process.env.VUE_APP_API + '/albums/', fd)
+        this.axios.post(process.env.VUE_APP_API + '/photos/', fd)
           .then(res => {
             if (res.data.success) {
-              // 將新增的圖片塞進相簿陣列
-              res.data.result.src = process.env.VUE_APP_API + '/albums/file/' + res.data.result.file
-              res.data.result.title = res.data.result.description
-              res.data.result.edit = false
-              res.data.result.model = res.data.result.description
-              delete res.data.result.file
-              delete res.data.result.description
-              this.images.push(res.data.result)
+              res.data.result.src = process.env.VUE_APP_API + '/photos/file/' + res.data.result.file
+              this.$swal({
+                title: '上傳成功',
+                showConfirmButton: false,
+                timerProgressBar: true,
+                timer: 1000
+              })
+              this.items.push(res.data.result)
+              console.log(res.data.result)
               // 送出後清空表單
               this.image = null
-              this.description = ''
+              this.width = ''
+              this.height = ''
+              this.photographer = ''
+              this.project = ''
             } else {
               this.$swal({
                 icon: 'error',
@@ -114,10 +185,11 @@ export default {
     this.axios.get(process.env.VUE_APP_API + '/photos/')
       .then(res => {
         if (res.data.success) {
-          const fd = new FormData()
-          fd.append('items', this.items)
-          this.items = res.data.result
-          console.log(this.items)
+          this.imgsArr = res.data.result.map(item => {
+            item.src = process.env.VUE_APP_API + '/photos/file/' + item.file
+            return item
+          })
+          console.log(this.imgsArr)
         } else {
           this.$swal({
             icon: 'error',
