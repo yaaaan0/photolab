@@ -258,6 +258,7 @@ select:-webkit-autofill:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
 }
 
 /* nevbtn------------------------------------------------- */
@@ -628,6 +629,32 @@ select:-webkit-autofill:focus {
   height: 75vh !important;
   margin: 40px;
   background-color: antiquewhite;
+}
+#editPagesPhotolab .v-card__subtitle,
+.v-card__text {
+  display: flex;
+  flex-direction: column;
+}
+#editPagesPhotolab .vue-waterfall {
+  margin: 20px;
+}
+#editPagesPhotolab .v-image {
+  margin: 5px;
+}
+#userMenu .img-inputer--large {
+  width: 90%;
+  margin: 20px 0;
+}
+#userMenu .upload {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#userMenu .v-text-field {
+  margin: 0 10px;
+}
+#userMenu .upload {
+  margin: 5px 0;
 }
 
 /* 假字 */
