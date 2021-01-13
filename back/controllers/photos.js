@@ -1,9 +1,9 @@
 import dotenv from 'dotenv'
 import multer from 'multer'
 import FTPStorage from 'multer-ftp'
-// import axios from 'axios'
+import axios from 'axios'
 import path from 'path'
-// import fs from 'fs'
+import fs from 'fs'
 import photos from '../models/photos.js'
 
 dotenv.config()
@@ -88,7 +88,6 @@ export const create = async (req, res) => {
         }
         const result = await photos.create({
           photographer: req.body.photographer,
-          description: req.body.description,
           project: req.body.project,
           file,
           width: req.body.width,
@@ -110,7 +109,7 @@ export const create = async (req, res) => {
   })
 }
 
-export const check = async (req, res) => {
+export const allFile = async (req, res) => {
   if (req.session.user === undefined) {
     res.status(401).send({ success: false, message: '未登入' })
     return
@@ -124,6 +123,38 @@ export const check = async (req, res) => {
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
-    console.log(error)
+  }
+}
+
+export const file = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  if (req.session.user._id.includes('##')) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+    return
+  }
+
+  // 開發環境回傳本機圖片
+  if (process.env.DEV === 'true') {
+    const path = process.cwd() + '/images/' + req.params.file
+    const exists = fs.existsSync(path)
+
+    if (exists) {
+      res.status(200).sendFile(path)
+    } else {
+      res.status(404).send({ success: false, message: '找不到圖片' })
+    }
+  } else {
+    axios({
+      method: 'GET',
+      url: 'http://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.file,
+      responseType: 'stream'
+    }).then(res => {
+      res.data.pipe(res)
+    }).catch(error => {
+      res.status(error.response.status).send({ success: false, message: '取得圖片失敗' })
+    })
   }
 }
