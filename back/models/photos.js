@@ -17,13 +17,9 @@ const photoSchema = new Schema(
       type: String,
       required: [true, '缺少檔案名稱']
     },
-    width: {
-      type: Number,
-      required: [true, '缺少檔案寬度']
-    },
-    height: {
-      type: Number,
-      required: [true, '缺少檔案高度']
+    description: {
+      type: String,
+      maxlength: [200, '說明必須 200 字以下']
     }
   },
   {
