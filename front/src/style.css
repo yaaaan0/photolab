@@ -84,6 +84,14 @@ select:-webkit-autofill:focus {
 .swal2-success-fix {
   background-color: rgba(0, 0, 0, 0) !important;
 }
+.swal2-styled.swal2-deny {
+  border: 0;
+  border-radius: 0.25em;
+  background: initial;
+  background-color: indianred !important;
+  color: antiquewhite !important;
+  font-size: 1.0625em;
+}
 
 /* 前導頁------------------------------------------------- */
 
@@ -564,6 +572,7 @@ select:-webkit-autofill:focus {
 #orderInfo .v-application .grey.lighten-4 {
   background-color: rgba(255, 255, 255, 0.3) !important;
   border-color: rgba(255, 255, 255, 0.4) !important;
+  display: block;
 }
 #orderInfo .v-banner--single-line .v-banner__text {
   font-size: 0.875rem;
@@ -616,11 +625,29 @@ select:-webkit-autofill:focus {
   position: relative;
 }
 
-#editPagesPhotolab .v-btn {
+#editPagesPhotolab .v-btn--fab.v-size--default.v-btn--absolute.v-btn--bottom {
   position: absolute;
   bottom: 15px;
   background-color: #677d35 !important;
   z-index: 2;
+}
+/* #editPagesPhotolab .img-info > .edit {
+  background-color: rgba(103, 125, 53, 0.9) !important;
+  color: rgba(255, 255, 255, 0.5);
+  bottom: 60px;
+  right: 18px;
+} */
+.edit.theme--light.v-btn.v-btn--has-bg {
+  background-color: rgba(103, 125, 53, 0.9);
+  color: rgba(255, 255, 255, 0.5);
+  bottom: 60px;
+  right: 18px;
+}
+#editPagesPhotolab .img-info > .del {
+  background-color: rgba(205, 92, 92, 0.9);
+  color: rgba(255, 255, 255, 0.5);
+  bottom: 18px;
+  right: 18px;
 }
 #editPagesPhotolab .v-sheet.v-sheet--shaped {
   position: absolute;
@@ -638,8 +665,11 @@ select:-webkit-autofill:focus {
 #editPagesPhotolab .vue-waterfall {
   margin: 20px;
 }
-#editPagesPhotolab .v-image {
-  margin: 5px;
+#editPagesPhotolab
+  .vue-waterfall-easy-container
+  > .loading.ball-beat
+  > .dot[data-v-ded6b974] {
+  background-color: #677d35;
 }
 #userMenu .img-inputer--large {
   width: 90%;
