@@ -2,9 +2,26 @@
   #editPagesPhotolab
     v-app
       v-sheet( elevation="2" outlined shaped)
-        vueWaterfallEasy(:imgsArr="imgsArr" @scrollLoadImg="fetchImgsData")
-          div(v-for='(item, index) in imgsArr')
-        v-btn(fab color='cyan accent-2' bottom left absolute @click='dialog = !dialog')
+        vueWaterfallEasy(ref="waterfall" :imgsArr="imgsArr")
+          v-img
+          .img-info(slot-scope="props")
+            div
+              v-dialog(v-model="imgdialog" open-delay="5" transition="dialog-bottom-transition" max-width="500px")
+                template(v-slot:activator="{ on, attrs }")
+                  v-btn.edit(fab text depressed absolute x-small v-bind="attrs" v-on="on" @click="edit(props)")
+                    v-icon mdi-pencil
+                v-card
+                  v-img(:src="props.value.src" width="300px" height="300px")
+                  h5 攝影師
+                  v-chip-group(v-model='photographer' mandatory color="#677d35" )
+                    v-chip(value="GP") GP
+                    v-chip(value="榮格") 榮格
+                    v-chip(value="壹壹") 壹壹
+                    v-chip(value="刷牙") 刷牙
+            v-btn.del(fab text depressed absolute x-small @click="del(props)")
+              v-icon mdi-delete-outline
+          div(slot='waterfall-over') end
+        v-btn(fab bottom left absolute @click='dialog = !dialog')
           v-icon mdi-plus
       v-dialog(v-model='dialog' max-width='500px' background-color='#ffffff')
         v-form(@submit.prevent="onSubmit")
@@ -19,24 +36,25 @@
               exceedSizeText="檔案大小不能超過"
               accept="image/*"
             )
-            h5 尺寸
-            .upload
-              div
-                v-btn-toggle(v-model='photoSize' mandatory color="#677d35")
-                  v-btn(@input='sizeState' value="landscape")
-                    v-icon mdi-crop-landscape
-                  v-btn(@input='sizeState' value="portrait")
-                    v-icon mdi-crop-portrait
-                  v-btn(@input='sizeState' value="resizing")
-                    h4 自訂
-              div
-                validation-provider(v-slot="{ errors }" name="PhoneNumber" rules="required|numeric")
-                  v-text-field(v-if="photoSize === 'landscape' " label='width' suffix="px" color="#677d35" value=1875 readonly )
-                  v-text-field(v-if="photoSize === 'landscape' " label='height' suffix="px" color="#677d35" value=1250 readonly )
-                  v-text-field(v-if="photoSize === 'portrait' " label='width' suffix="px" color="#677d35" value=1250 readonly )
-                  v-text-field(v-if="photoSize === 'portrait' " label='height' suffix="px" color="#677d35" value=1875 readonly )
-                  v-text-field(v-if="photoSize === 'resizing' " v-model='width' label='width' suffix="px" value color="#677d35" )
-                  v-text-field(v-if="photoSize === 'resizing' " v-model='height' label='height' suffix="px" value color="#677d35" )
+            //- h5 尺寸
+            //- .upload
+            //-   div
+            //-     v-btn-toggle(v-model='photoSize' mandatory color="#677d35")
+            //-       v-btn(@input='sizeState' value="landscape")
+            //-         v-icon mdi-crop-landscape
+            //-       v-btn(@input='sizeState' value="portrait")
+            //-         v-icon mdi-crop-portrait
+            //-       v-btn(@input='sizeState' value="resizing")
+            //-         h4 自訂
+            //-   div
+            //-     validation-provider(v-slot="{ errors }" name="PhoneNumber" rules="required|numeric")
+            //-       v-text-field(v-if="photoSize === 'landscape' " label='width' suffix="px" color="#677d35" value=1875 readonly )
+            //-       v-text-field(v-if="photoSize === 'landscape' " label='height' suffix="px" color="#677d35" value=1250 readonly )
+            //-       v-text-field(v-if="photoSize === 'portrait' " label='width' suffix="px" color="#677d35" value=1250 readonly )
+            //-       v-text-field(v-if="photoSize === 'portrait' " label='height' suffix="px" color="#677d35" value=1875 readonly )
+            //-       v-text-field(v-if="photoSize === 'resizing' " v-model='width' label='width' suffix="px" value color="#677d35" )
+            //-       v-text-field(v-if="photoSize === 'resizing' " v-model='height' label='height' suffix="px" value color="#677d35" )
+            v-textarea(outlined name='input-7-4' label='說明 (200字以內)' value='' color="#677d35" auto-grow counter="200" rows="1")
             h5 攝影師
             v-chip-group(v-model='photographer' mandatory color="#677d35" )
               v-chip(value="GP") GP
@@ -80,14 +98,15 @@ export default {
     return {
       dialog: false,
       items: [],
-      width: 1875,
-      height: 1250,
       project: '',
       photographer: '',
       image: null,
       photoSize: '',
       imgsArr: [],
-      fetchImgsArr: []
+      fetchImgsArr: [],
+      group: 0,
+      pullDownDistance: 0,
+      props: ''
     }
   },
   computed: {
@@ -101,18 +120,18 @@ export default {
     vueWaterfallEasy
   },
   methods: {
-    sizeState () {
-      if (this.photoSize === 'landscape') {
-        this.width = 1875
-        this.height = 1250
-      } else if (this.photoSize === 'portrait') {
-        this.width = 1250
-        this.height = 1875
-      } else if (this.photoSize === 'resizing') {
-        this.width = null
-        this.height = null
-      }
-    },
+    // sizeState () {
+    //   if (this.photoSize === 'landscape') {
+    //     this.width = 1875
+    //     this.height = 1250
+    //   } else if (this.photoSize === 'portrait') {
+    //     this.width = 1250
+    //     this.height = 1875
+    //   } else if (this.photoSize === 'resizing') {
+    //     this.width = null
+    //     this.height = null
+    //   }
+    // },
     onSubmit () {
       if (this.image.size > 1024 * 1024) {
         this.$swal({
@@ -120,47 +139,35 @@ export default {
           title: '錯誤',
           text: '圖片太大'
         })
-
-        this.image = null
-        this.width = ''
-        this.height = ''
-        this.photographer = ''
-        this.project = ''
       } else if (!this.image.type.includes('image')) {
         this.$swal({
           icon: 'error',
           title: '錯誤',
           text: '檔案格式錯誤'
         })
-        this.image = null
-        this.width = ''
-        this.height = ''
-        this.photographer = ''
-        this.project = ''
       } else {
         const fd = new FormData()
         fd.append('image', this.image)
-        fd.append('width', this.width)
-        fd.append('height', this.height)
         fd.append('photographer', this.photographer)
         fd.append('project', this.project)
+        fd.append('description', this.description)
 
         this.axios.post(process.env.VUE_APP_API + '/photos/', fd)
           .then(res => {
             if (res.data.success) {
               res.data.result.src = process.env.VUE_APP_API + '/photos/file/' + res.data.result.file
+              res.data.result.edit = false
+              res.data.result.imgdialog = false
               this.$swal({
                 title: '上傳成功',
                 showConfirmButton: false,
                 timerProgressBar: true,
                 timer: 1000
               })
-              this.items.push(res.data.result)
+              this.imgsArr.push(res.data.result)
               console.log(res.data.result)
               // 送出後清空表單
               this.image = null
-              this.width = ''
-              this.height = ''
               this.photographer = ''
               this.project = ''
             } else {
@@ -179,6 +186,44 @@ export default {
             })
           })
       }
+    },
+    edit (props) {
+      props.edit = true
+    },
+    del (props) {
+      this.$swal({
+        title: '是否要刪除',
+        showDenyButton: true,
+        confirmButtonText: 'Yes'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.axios.delete(process.env.VUE_APP_API + '/photos/' + props.value._id)
+            .then(res => {
+              if (res.data.success) {
+                this.imgsArr.splice(props.index, 1)
+                this.$swal({
+                  title: '刪除照片',
+                  showConfirmButton: false,
+                  timerProgressBar: true,
+                  timer: 1000
+                })
+              } else {
+                this.$swal({
+                  icon: 'error',
+                  title: '錯誤',
+                  text: res.data.message
+                })
+              }
+            })
+            .catch(err => {
+              this.$swal({
+                icon: 'error',
+                title: '錯誤',
+                text: err.response.data.message
+              })
+            })
+        }
+      })
     }
   },
   mounted () {
@@ -187,6 +232,7 @@ export default {
         if (res.data.success) {
           this.imgsArr = res.data.result.map(item => {
             item.src = process.env.VUE_APP_API + '/photos/file/' + item.file
+            item.edit = false
             return item
           })
           console.log(this.imgsArr)
