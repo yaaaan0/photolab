@@ -2,28 +2,40 @@
   #editPagesPhotolab
     v-app
       v-sheet( elevation="2" outlined shaped)
-        vueWaterfallEasy(ref="waterfall" :imgsArr="imgsArr")
+        vueWaterfallEasy(:imgsArr="imgsArr")
           v-img
           .img-info(slot-scope="props")
             div
-              v-dialog(v-model="imgdialog" open-delay="5" transition="dialog-bottom-transition" max-width="500px")
+              v-dialog(open-delay="5" transition="dialog-bottom-transition" max-width="430px" eager)
                 template(v-slot:activator="{ on, attrs }")
                   v-btn.edit(fab text depressed absolute x-small v-bind="attrs" v-on="on" @click="edit(props)")
                     v-icon mdi-pencil
-                v-card
-                  v-img(:src="props.value.src" width="300px" height="300px")
-                  h5 攝影師
-                  v-chip-group(v-model='photographer' mandatory color="#677d35" )
-                    v-chip(value="GP") GP
-                    v-chip(value="榮格") 榮格
-                    v-chip(value="壹壹") 壹壹
-                    v-chip(value="刷牙") 刷牙
+                template(v-slot:default="imgdialog")
+                  v-form
+                    v-card.editDialog
+                      v-img(:src="props.value.src" width="430px" height="250px")
+                      v-textarea.mt-5(v-model="description" outlined name='input-7-4' label='說明 (200字以內)' value='' color="#677d35" auto-grow counter="200" rows="1")
+                      h5 攝影師
+                      v-chip-group(v-model='photographer' mandatory)
+                        v-chip(value="GP") GP
+                        v-chip(value="榮格") 榮格
+                        v-chip(value="壹壹") 壹壹
+                        v-chip(value="刷牙") 刷牙
+                      h5.mt-5 項目
+                      v-chip-group(v-model='project' mandatory)
+                        v-chip(value="婚紗") 婚紗
+                        v-chip(value="姊妹婚紗") 姊妹婚紗
+                        v-chip(value="孕媽咪" ) 孕媽咪
+                        v-chip(value="親子寫真") 親子寫真
+                        v-chip(value="情侶寫真") 情侶寫真
+                      v-btn.mt-5(@click="imgdialog.value = false" rounded text fab) 取消
+                      v-btn.mt-5(@click="imgdialog.value = false" rounded text) 儲存
             v-btn.del(fab text depressed absolute x-small @click="del(props)")
               v-icon mdi-delete-outline
           div(slot='waterfall-over') end
         v-btn(fab bottom left absolute @click='dialog = !dialog')
           v-icon mdi-plus
-      v-dialog(v-model='dialog' max-width='500px' background-color='#ffffff')
+      v-dialog.create(v-model='dialog' max-width='500px' background-color='#ffffff')
         v-form(@submit.prevent="onSubmit")
           v-card-text
             img-inputer.mx-auto(
@@ -54,15 +66,15 @@
             //-       v-text-field(v-if="photoSize === 'portrait' " label='height' suffix="px" color="#677d35" value=1875 readonly )
             //-       v-text-field(v-if="photoSize === 'resizing' " v-model='width' label='width' suffix="px" value color="#677d35" )
             //-       v-text-field(v-if="photoSize === 'resizing' " v-model='height' label='height' suffix="px" value color="#677d35" )
-            v-textarea(outlined name='input-7-4' label='說明 (200字以內)' value='' color="#677d35" auto-grow counter="200" rows="1")
+            v-textarea(v-model="description" outlined name='input-7-4' label='說明 (200字以內)' value='' color="#677d35" auto-grow counter="200" rows="1")
             h5 攝影師
-            v-chip-group(v-model='photographer' mandatory color="#677d35" )
+            v-chip-group(v-model='photographer' mandatory)
               v-chip(value="GP") GP
               v-chip(value="榮格") 榮格
               v-chip(value="壹壹") 壹壹
               v-chip(value="刷牙") 刷牙
             h5 項目
-            v-chip-group(v-model='project' mandatory color="#677d35")
+            v-chip-group(v-model='project' mandatory)
               v-chip(value="婚紗") 婚紗
               v-chip(value="姊妹婚紗") 姊妹婚紗
               v-chip(value="孕媽咪" ) 孕媽咪
@@ -100,6 +112,7 @@ export default {
       items: [],
       project: '',
       photographer: '',
+      description: '',
       image: null,
       photoSize: '',
       imgsArr: [],
@@ -188,7 +201,16 @@ export default {
       }
     },
     edit (props) {
-      props.edit = true
+      props.value.edit = true
+      props.value.imgdialog = true
+      this.photographer = props.value.photographer
+      this.project = props.value.project
+
+      if (props.value.description === 'undefined') {
+        this.description = ''
+      } else {
+        this.description = props.value.description
+      }
     },
     del (props) {
       this.$swal({
@@ -233,6 +255,7 @@ export default {
           this.imgsArr = res.data.result.map(item => {
             item.src = process.env.VUE_APP_API + '/photos/file/' + item.file
             item.edit = false
+            item.imgdialog = false
             return item
           })
           console.log(this.imgsArr)
