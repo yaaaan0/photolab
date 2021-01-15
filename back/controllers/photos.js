@@ -57,6 +57,9 @@ export const create = async (req, res) => {
     res.status(401).send({ success: false, message: '未登入' })
     return
   }
+  if (req.session.user._id.includes('##')) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+  }
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('multipart/form-data')) {
     res.status(400).send({ success: false, message: '資料格式不符' })
     return
@@ -108,6 +111,38 @@ export const create = async (req, res) => {
   })
 }
 
+export const edit = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+  }
+  if (req.session.user._id.includes('##')) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+  }
+  if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
+    res.status(400).send({ success: false, message: '資料格式不符' })
+    return
+  }
+  try {
+    let result = await photos.findById(req.params.id)
+    if (req.params._id === null) {
+      res.status(404).send({ success: false, message: '找不到資料' })
+    } else {
+      result = await photos.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      res.status(200).send({ success: true, message: '', result })
+    }
+  } catch (error) {
+    if (error.name === 'ValidationError') {
+      const key = Object.keys(error.errors)[0]
+      const message = error.errors[key].message
+      res.status(400).send({ success: false, message })
+    } else if (error.name === 'CastError') {
+      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+    } else {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    }
+  }
+}
+
 export const del = async (req, res) => {
   if (req.session.user === undefined) {
     res.status(401).send({ success: false, message: '未登入' })
@@ -138,14 +173,14 @@ export const del = async (req, res) => {
 }
 
 export const allFile = async (req, res) => {
-  if (req.session.user === undefined) {
-    res.status(401).send({ success: false, message: '未登入' })
-    return
-  }
-  if (req.session.user._id.includes('##')) {
-    res.status(403).send({ success: false, message: '沒有權限' })
-    return
-  }
+  // if (req.session.user === undefined) {
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
+  // if (req.session.user._id.includes('##')) {
+  //   res.status(403).send({ success: false, message: '沒有權限' })
+  //   return
+  // }
   try {
     const result = await photos.find()
     res.status(200).send({ success: true, message: '', result })
@@ -155,14 +190,14 @@ export const allFile = async (req, res) => {
 }
 
 export const file = async (req, res) => {
-  if (req.session.user === undefined) {
-    res.status(401).send({ success: false, message: '未登入' })
-    return
-  }
-  if (req.session.user._id.includes('##')) {
-    res.status(403).send({ success: false, message: '沒有權限' })
-    return
-  }
+  // if (req.session.user === undefined) {
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
+  // if (req.session.user._id.includes('##')) {
+  //   res.status(403).send({ success: false, message: '沒有權限' })
+  //   return
+  // }
 
   // 開發環境回傳本機圖片
   if (process.env.DEV === 'true') {
