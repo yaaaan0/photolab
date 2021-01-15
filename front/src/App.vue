@@ -11,7 +11,7 @@
         router-view
     #botton
       Footer
-  #div(v-else)
+  #div(v-if="!isShow")
     vue-page-transition(name='fade-in-down')
       router-view
 </template>
@@ -42,6 +42,13 @@ export default {
         this.$route.path === '/webmaster/editPages/home' ||
         this.$route.path === '/webmaster/editPages/new' ||
         this.$route.path === '/webmaster/editPages/photolab') {
+        return false
+      } else {
+        return true
+      }
+    },
+    isShowFooter () {
+      if (this.$route.path === '/photolab') {
         return false
       } else {
         return true

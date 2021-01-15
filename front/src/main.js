@@ -19,6 +19,9 @@ import { ValidationProvider } from 'vee-validate'
 import ImgInputer from 'vue-img-inputer'
 import 'vue-img-inputer/dist/index.css'
 
+import VueSilentbox from 'vue-silentbox'
+import Photoswipe from 'vue-pswipe'
+
 axios.defaults.withCredentials = true
 Vue.config.productionTip = false
 
@@ -28,6 +31,8 @@ Vue.component('video-background', VideoBackground)
 Vue.use(VuePageTransition)
 Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2)
+Vue.use(VueSilentbox)
+Vue.use(Photoswipe)
 
 new Vue({
   router,
