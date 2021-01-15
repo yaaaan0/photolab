@@ -70,6 +70,7 @@ body::-webkit-scrollbar-thumb {
 
 #content {
   width: 100vw;
+  height: 100%;
 }
 
 #botton {
@@ -733,6 +734,14 @@ body::-webkit-scrollbar-thumb {
 }
 #userMenu .upload {
   margin: 5px 0;
+}
+
+#photolab {
+  width: 100%;
+  height: 100%;
+}
+#photolab .photo {
+  background-color: antiquewhite;
 }
 
 /* 假字 */
