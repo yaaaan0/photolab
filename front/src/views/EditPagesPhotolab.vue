@@ -49,6 +49,7 @@
               exceedSizeText="檔案大小不能超過"
               accept="image/*"
             )
+            v-textarea(v-model="description" outlined name='input-7-4' label='說明 (200字以內)' value='' color="#677d35" auto-grow counter="200" rows="1")
             //- h5 尺寸
             //- .upload
             //-   div
@@ -67,7 +68,6 @@
             //-       v-text-field(v-if="photoSize === 'portrait' " label='height' suffix="px" color="#677d35" value=1875 readonly )
             //-       v-text-field(v-if="photoSize === 'resizing' " v-model='width' label='width' suffix="px" value color="#677d35" )
             //-       v-text-field(v-if="photoSize === 'resizing' " v-model='height' label='height' suffix="px" value color="#677d35" )
-            v-textarea(v-model="description" outlined name='input-7-4' label='說明 (200字以內)' value='' color="#677d35" auto-grow counter="200" rows="1")
             h5 攝影師
             v-chip-group(v-model='photographer' mandatory)
               v-chip(value="GP") GP
@@ -120,7 +120,9 @@ export default {
       fetchImgsArr: [],
       group: 0,
       pullDownDistance: 0,
-      props: ''
+      props: '',
+      width: '',
+      height: ''
     }
   },
   computed: {
