@@ -743,6 +743,14 @@ body::-webkit-scrollbar-thumb {
 #photolab .photo {
   background-color: antiquewhite;
 }
+#photolab .item {
+  margin: 10px;
+}
+#photolab .layout {
+  justify-content: center;
+  padding: 0 50px;
+  height: 100%;
+}
 
 /* 假字 */
 #word {
