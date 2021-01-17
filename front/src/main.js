@@ -22,6 +22,8 @@ import 'vue-img-inputer/dist/index.css'
 import VueSilentbox from 'vue-silentbox'
 import Photoswipe from 'vue-pswipe'
 
+import { VueMasonryPlugin } from 'vue-masonry'
+
 axios.defaults.withCredentials = true
 Vue.config.productionTip = false
 
@@ -33,6 +35,7 @@ Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2)
 Vue.use(VueSilentbox)
 Vue.use(Photoswipe)
+Vue.use(VueMasonryPlugin)
 
 new Vue({
   router,
