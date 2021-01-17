@@ -94,6 +94,8 @@ export const create = async (req, res) => {
           project: req.body.project,
           file,
           description: req.body.description
+          // width: req.body.width,
+          // height: req.body.height
         })
         console.log(req.file)
         res.status(200).send({ success: true, message: '', result })

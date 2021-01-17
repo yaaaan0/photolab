@@ -21,6 +21,14 @@ const photoSchema = new Schema(
       type: String,
       maxlength: [200, '說明必須 200 字以下']
     }
+    // width: {
+    //   type: Number,
+    //   required: [true, '缺少寬高']
+    // },
+    // height: {
+    //   type: Number,
+    //   required: [true, '缺少寬高']
+    // }
   },
   {
     versionKey: false
