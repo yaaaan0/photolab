@@ -9,8 +9,9 @@
     #content
       vue-page-transition(name='fade-in-down')
         router-view
-    #botton
+    #botton(v-if="isShowFooter")
       Footer
+    #botton(v-if="!isShowFooter")
   #div(v-if="!isShow")
     vue-page-transition(name='fade-in-down')
       router-view
