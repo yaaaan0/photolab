@@ -751,6 +751,11 @@ body::-webkit-scrollbar-thumb {
   padding: 0 50px;
   height: 100%;
 }
+#photolab .item .v-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
 
 /* 假字 */
 #word {
