@@ -184,6 +184,48 @@ export const addOrder = async (req, res) => {
     }
   }
 }
+export const addImage = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
+    res.status(400).send({ success: false, message: '資料格式不符' })
+  }
+
+  try {
+    const result = await users.findById(req.params.id)
+    if (result.id !== req.session.user._id) {
+      res.status(403).send({ success: false, message: '沒有權限' })
+    } else {
+      users.findByIdAndUpdate(req.params.id,
+        {
+          $push: {
+            images: {
+              p_id: req.body.p_id,
+              photographer: req.body.photographer,
+              project: req.body.project,
+              file: req.body.file,
+              description: req.body.description
+            }
+          }
+        }, { new: true }).then(result => {
+        // console.log(util.inspect(result, { showHidden: true, depth: null }))
+        res.status(200).send({ success: true, message: '', result })
+      })
+    }
+  } catch (error) {
+    if (error.name === 'ValidationError') {
+      const key = Object.keys(error.errors)[0]
+      const message = error.errors[key].message
+      res.status(400).send({ success: false, message })
+    } else if (error.name === 'CastError') {
+      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+    } else {
+      res.status(500).send({ success: false, message: error.message })
+    }
+  }
+}
 
 // 用使用者ID 查詢訂單資料
 export const checkUser = async (req, res) => {

@@ -15,11 +15,26 @@ const Schema = mongoose.Schema
 
 const userImageSchema = new Schema(
   {
-    file: {
-      type: String
+    p_id: {
+      type: mongoose.ObjectId,
+      ref: 'photos',
+      required: [true, '缺少ID欄位']
     },
-    display: {
-      type: Boolean
+    photographer: {
+      type: String,
+      required: [true, '缺少攝影師欄位']
+    },
+    project: {
+      type: String,
+      required: [true, '缺少項目欄位']
+    },
+    file: {
+      type: String,
+      required: [true, '缺少檔案名稱']
+    },
+    description: {
+      type: String,
+      maxlength: [200, '說明必須 200 字以下']
     }
   }
 )

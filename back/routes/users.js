@@ -1,5 +1,5 @@
 import express from 'express'
-import { create, login, logout, heartbeat, edit, addOrder, checkUser, checkOrder } from '../controllers/users.js'
+import { create, login, logout, heartbeat, edit, addOrder, checkUser, checkOrder, addImage } from '../controllers/users.js'
 
 const router = express.Router()
 
@@ -13,4 +13,5 @@ router.get('/:id', checkUser)
 router.post('/order/:id', addOrder)
 router.get('/order/:id', checkOrder)
 
+router.post('/photos/:id', addImage)
 export default router
