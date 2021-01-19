@@ -6,31 +6,30 @@
           vueWaterfallEasy(:imgsArr="imgsArr")
             v-img(:src='props.src' v-pswp="props")
             .img-info(slot-scope="props")
-              div
-                v-dialog(open-delay="5" transition="dialog-bottom-transition" max-width="430px" eager)
-                  template(v-slot:activator="{ on, attrs }")
-                    v-btn.edit(fab text depressed absolute x-small v-bind="attrs" v-on="on" @click="edit(props)")
-                      v-icon mdi-pencil
-                  template(v-slot:default="imgdialog")
-                    v-form(@submit.prevent="onEditSubmit(props)")
-                      v-card.editDialog
-                        v-img(:src="props.value.src" width="430px" height="250px")
-                        v-textarea.mt-5(v-model="description" outlined name='input-7-4' label='說明 (200字以內)' value='' color="#677d35" auto-grow counter="200" rows="1")
-                        h5 攝影師
-                        v-chip-group(v-model='photographer' mandatory)
-                          v-chip(value="GP") GP
-                          v-chip(value="榮格") 榮格
-                          v-chip(value="壹壹") 壹壹
-                          v-chip(value="刷牙") 刷牙
-                        h5.mt-5 項目
-                        v-chip-group(v-model='project' mandatory)
-                          v-chip(value="婚紗") 婚紗
-                          v-chip(value="姊妹婚紗") 姊妹婚紗
-                          v-chip(value="孕媽咪" ) 孕媽咪
-                          v-chip(value="親子寫真") 親子寫真
-                          v-chip(value="情侶寫真") 情侶寫真
-                        v-btn.mt-5(@click="imgdialog.value = false" rounded text fab depressed left plain) 取消
-                        v-btn.mt-5(@click="imgdialog.value = false" rounded text fab depressed left plain type="submit" ) 儲存
+              v-dialog(open-delay="5" transition="dialog-bottom-transition" max-width="430px" eager)
+                template(v-slot:activator="{ on, attrs }")
+                  v-btn.edit(fab text depressed absolute x-small v-bind="attrs" v-on="on" @click="edit(props)")
+                    v-icon mdi-pencil
+                template(v-slot:default="imgdialog")
+                  v-form(@submit.prevent="onEditSubmit(props)")
+                    v-card.editDialog
+                      v-img(:src="props.value.src" width="430px" height="250px")
+                      v-textarea.mt-5(v-model="description" outlined name='input-7-4' label='說明 (200字以內)' value='' color="#677d35" auto-grow counter="200" rows="1")
+                      h5 攝影師
+                      v-chip-group(v-model='photographer' mandatory)
+                        v-chip(value="GP") GP
+                        v-chip(value="榮格") 榮格
+                        v-chip(value="壹壹") 壹壹
+                        v-chip(value="刷牙") 刷牙
+                      h5.mt-5 項目
+                      v-chip-group(v-model='project' mandatory)
+                        v-chip(value="婚紗") 婚紗
+                        v-chip(value="姊妹婚紗") 姊妹婚紗
+                        v-chip(value="孕媽咪" ) 孕媽咪
+                        v-chip(value="親子寫真") 親子寫真
+                        v-chip(value="情侶寫真") 情侶寫真
+                      v-btn.mt-5(@click="imgdialog.value = false" rounded text fab depressed left plain) 取消
+                      v-btn.mt-5(@click="imgdialog.value = false" rounded text fab depressed left plain type="submit" ) 儲存
               v-btn.del(fab text depressed absolute x-small @click="del(props)")
                 v-icon mdi-delete-outline
             div(slot='waterfall-over') end
