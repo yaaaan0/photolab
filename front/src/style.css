@@ -661,14 +661,8 @@ body::-webkit-scrollbar-thumb {
   background-color: #677d35 !important;
   z-index: 2;
 }
-/* #editPagesPhotolab .img-info > .edit {
+#editPagesPhotolab .img-info > .edit {
   background-color: rgba(103, 125, 53, 0.9) !important;
-  color: rgba(255, 255, 255, 0.5);
-  bottom: 60px;
-  right: 18px;
-} */
-.edit.theme--light.v-btn.v-btn--has-bg {
-  background-color: rgba(103, 125, 53, 0.9);
   color: rgba(255, 255, 255, 0.5);
   bottom: 60px;
   right: 18px;
@@ -688,7 +682,7 @@ body::-webkit-scrollbar-thumb {
   background-color: antiquewhite;
 }
 #editPagesPhotolab .v-card__subtitle,
-.v-card__text {
+#editPagesPhotolab .v-card__text {
   display: flex;
   flex-direction: column;
 }
@@ -752,6 +746,18 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
 }
 #photolab .item .v-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+#uFavorite .layout {
+  margin-top: 70px;
+}
+#uFavorite .item {
+  margin: 10px;
+}
+#uFavorite .item .v-btn {
   position: absolute;
   bottom: 5px;
   right: 5px;
