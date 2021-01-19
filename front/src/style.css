@@ -753,6 +753,9 @@ body::-webkit-scrollbar-thumb {
 
 #uFavorite .layout {
   margin-top: 70px;
+  justify-content: center;
+  padding: 0 50px;
+  height: 100%;
 }
 #uFavorite .item {
   margin: 10px;
