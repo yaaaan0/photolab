@@ -12,12 +12,8 @@ export default new Vuex.Store({
       name: '',
       email: '',
       phoneNumber: '',
-      orders: []
-    },
-    webmaster: {
-      id: '',
-      account: '',
-      name: ''
+      orders: [],
+      images: []
     }
   },
   mutations: {
@@ -28,6 +24,7 @@ export default new Vuex.Store({
       state.user.email = data.email
       state.user.phoneNumber = data.phoneNumber
       state.user.orders = data.orders
+      state.user.images = data.images
     },
     logout (state) {
       state.user.id = ''
@@ -36,6 +33,7 @@ export default new Vuex.Store({
       state.user.email = ''
       state.user.phoneNumber = ''
       state.user.orders = ''
+      state.user.images = ''
     }
   },
   actions: {
