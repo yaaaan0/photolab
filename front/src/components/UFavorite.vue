@@ -5,12 +5,13 @@
         v-layout(justify-center)
           div.grid
             Photoswipe(bubble)
-              .item(v-masonry-tile v-for='(props, index) in imgsArr' :key="index")
+              .item(v-masonry-tile v-for='(props, index) in imgsArr')
                   v-card(width='300')
-                        v-img(:src="props.src" v-pswp="props")
-                  v-item(v-slot="{ active, toggle }" :value="index")
-                    v-btn(v-if="user.account.length > 0" icon :value="props" @click="click(props)")
-                      v-icon(color='rgba(255, 255, 255, 0.7)') {{ active ? 'mdi-heart' : 'mdi-heart-outline' }} {{active}}
+                    v-img(:src="props.src" v-pswp="props")
+                  v-item(v-slot="{ active, toggle }" :value="props.p_id")
+                    v-form(@submit.prevent="onSubmit(props,active,index)")
+                      v-btn(v-if="user.account.length > 0 " icon @click="toggle" type="submit")
+                        v-icon(color='rgba(255, 255, 255, 0.7)') {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
 </template>
 
 <script>
@@ -31,15 +32,37 @@ export default {
     }
   },
   methods: {
-    click (props) {
-      this.$swal({
-        icon: 'success',
-        iconColor: '#00000',
-        title: '收藏',
-        showConfirmButton: false,
-        timer: 1000
-      })
-      console.log(props)
+    onSubmit (props, active, index) {
+      if (active === false) {
+        this.axios.delete(process.env.VUE_APP_API + '/users/image/' + this.$store.state.user.id + '/' + props.p_id)
+          .then(res => {
+            if (res.data.success) {
+              this.active = false
+              setTimeout(() => {
+                this.imgsArr.splice(index, 1)
+              }, 1000)
+              // this.$swal({
+              //   title: '取消收藏',
+              //   showConfirmButton: false,
+              //   timerProgressBar: true,
+              //   timer: 1000
+              // })
+            } else {
+              this.$swal({
+                icon: 'error',
+                title: '錯誤',
+                text: res.data.message
+              })
+            }
+          })
+          .catch(err => {
+            this.$swal({
+              icon: 'error',
+              title: '錯誤',
+              text: err.response.data.message
+            })
+          })
+      }
     }
   },
   updated () {
@@ -55,11 +78,9 @@ export default {
     })
   },
   mounted () {
-    console.log('mounted')
     this.axios.get(process.env.VUE_APP_API + '/users/image/' + this.user.id)
       .then(res => {
         if (res.data.success) {
-          console.log(res.data)
           this.imgsArr = res.data.result.images.map(item => {
             item.src = process.env.VUE_APP_API + '/photos/file/' + item.file
             item.title = item.description
@@ -67,6 +88,11 @@ export default {
             return item
           })
           this.imgsArr.reverse()
+
+          const arry = res.data.result.images
+          for (let i = 0; i < arry.length; i++) {
+            this.selected.push(arry[i].p_id)
+          }
           console.log(this.imgsArr)
         } else {
           this.$swal({

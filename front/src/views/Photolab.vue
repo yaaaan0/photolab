@@ -4,13 +4,13 @@
       v-layout(justify-center)
           div.grid
             Photoswipe(bubble)
-              .item(v-masonry-tile v-for='(props, index) in imgsArr' :key="index")
+              .item(v-masonry-tile v-for='(props, index) in imgsArr')
                   v-card(width='300')
                     v-img(:src="props.src" v-pswp="props")
-                  v-item(v-slot="{ active, toggle }")
+                  v-item(v-slot="{ active, toggle }" :value="props.p_id")
                     v-form(@submit.prevent="onSubmit(props,active)")
-                      v-btn(v-model="likeBtn" v-if="user.account.length > 0 " icon :value="{props, active}" @click="toggle" type="submit")
-                        v-icon(:value="props.p_id" color='rgba(255, 255, 255, 0.7)') {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
+                      v-btn(v-if="user.account.length > 0 " icon @click="toggle" type="submit")
+                        v-icon(color='rgba(255, 255, 255, 0.7)') {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
 
 </div>
 
@@ -27,34 +27,28 @@ export default {
       imgsArr: [],
       props: '',
       selected: [],
-      like: false,
-      active: false
+      like: []
     }
   },
   computed: {
     user () {
       return this.$store.state.user
     }
-    // likeBtn (props) {
-    //   if (props.like === true) {
-    //     return this.active
-    //   }
-    // }
   },
   methods: {
     onSubmit (props, active) {
       if (active === true) {
-        props.like = true
         console.log(props)
         this.axios.post(process.env.VUE_APP_API + '/users/image/' + this.$store.state.user.id, props)
           .then(res => {
             if (res.data.success) {
-              this.$swal({
-                icon: 'success',
-                title: '收藏',
-                showConfirmButton: false,
-                timer: 1000
-              })
+              this.active = true
+              // this.$swal({
+              //   icon: 'success',
+              //   title: '收藏',
+              //   showConfirmButton: false,
+              //   timer: 1000
+              // })
             } else {
               this.$swal({
                 icon: 'error',
@@ -71,16 +65,32 @@ export default {
             })
           })
       } else if (active === false) {
-
+        this.axios.delete(process.env.VUE_APP_API + '/users/image/' + this.$store.state.user.id + '/' + props.p_id)
+          .then(res => {
+            if (res.data.success) {
+              this.active = false
+              // this.$swal({
+              //   title: '取消收藏',
+              //   showConfirmButton: false,
+              //   timerProgressBar: true,
+              //   timer: 1000
+              // })
+            } else {
+              this.$swal({
+                icon: 'error',
+                title: '錯誤',
+                text: res.data.message
+              })
+            }
+          })
+          .catch(err => {
+            this.$swal({
+              icon: 'error',
+              title: '錯誤',
+              text: err.response.data.message
+            })
+          })
       }
-      this.$swal({
-        icon: 'success',
-        iconColor: '#00000',
-        title: '收藏',
-        showConfirmButton: false,
-        timer: 1000
-      })
-      console.log(props, active)
     }
   },
   updated () {
@@ -103,11 +113,10 @@ export default {
             item.src = process.env.VUE_APP_API + '/photos/file/' + item.file
             item.p_id = item._id
             item.title = item.description
-            item.like = ''
             return item
           })
           this.imgsArr.reverse()
-          console.log(this.imgsArr)
+          // console.log(this.imgsArr)
         } else {
           this.$swal({
             icon: 'error',
@@ -134,7 +143,10 @@ export default {
     this.axios.get(process.env.VUE_APP_API + '/users/image/' + this.user.id)
       .then(res => {
         if (res.data.success) {
-          console.log(res.data.result.images)
+          const arry = res.data.result.images
+          for (let i = 0; i < arry.length; i++) {
+            this.selected.push(arry[i].p_id)
+          }
         } else {
           this.$swal({
             icon: 'error',
