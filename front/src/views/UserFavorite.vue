@@ -1,10 +1,14 @@
 <template lang="pug">
   #userFavorite
-    v-app
+    UFavorite
 </template>
 
 <script>
+import UFavorite from '../components/UFavorite.vue'
 export default {
-  name: 'UserFavorite'
+  name: 'UserFavorite',
+  components: {
+    UFavorite
+  }
 }
 </script>
