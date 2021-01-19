@@ -206,7 +206,8 @@ export const addImage = async (req, res) => {
               photographer: req.body.photographer,
               project: req.body.project,
               file: req.body.file,
-              description: req.body.description
+              description: req.body.description,
+              like: req.body.like
             }
           }
         }, { new: true }).then(result => {
@@ -227,7 +228,7 @@ export const addImage = async (req, res) => {
   }
 }
 
-// 用使用者ID 查詢訂單資料
+// 用使用者ID 查詢使用者資料
 export const checkUser = async (req, res) => {
   if (req.session.user === undefined) {
     res.status(401).send({ success: false, message: '未登入' })
@@ -259,5 +260,91 @@ export const checkOrder = async (req, res) => {
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+export const checkImage = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  if (req.session.user._id !== req.params.id) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+    return
+  }
+  try {
+    const result = await users.findById(req.params.id, 'images')
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+export const editImage = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  if (req.session.user._id !== req.params.id) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+    return
+  }
+  if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
+    res.status(400).send({ success: false, message: '資料格式不符' })
+    return
+  }
+  try {
+    let result = await users.findById(req.params.id)
+    if (req.params._id === null) {
+      res.status(404).send({ success: false, message: '找不到資料' })
+    } else {
+      result = await users.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      res.status(200).send({ success: true, message: '', result })
+    }
+  } catch (error) {
+    if (error.name === 'ValidationError') {
+      const key = Object.keys(error.errors)[0]
+      const message = error.errors[key].message
+      res.status(400).send({ success: false, message })
+    } else if (error.name === 'CastError') {
+      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+    } else {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    }
+  }
+}
+
+export const delImage = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  if (req.session.user._id !== req.params.id) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+    return
+  }
+  try {
+    let result = await users.findById(req.params.id)
+    if (result === null) {
+      res.status(404).send({ success: false, message: '找不到資料' })
+    } else {
+      result = await users.findOneAndUpdate(
+        {
+          $pull: {
+            // 陣列欄位名稱
+            images: {
+              // 刪除條件
+              p_id: req.params.p_id
+            }
+          }
+        }
+      )
+      res.status(200).send({ success: true, message: '', result })
+    }
+  } catch (error) {
+    if (error.name === 'CastError') {
+      res.status(400).send({ success: false, message: 'ID 格式錯誤' })
+    } else {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    }
   }
 }

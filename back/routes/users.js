@@ -1,5 +1,5 @@
 import express from 'express'
-import { create, login, logout, heartbeat, edit, addOrder, checkUser, checkOrder, addImage } from '../controllers/users.js'
+import { create, login, logout, heartbeat, edit, addOrder, checkUser, checkOrder, addImage, checkImage, editImage, delImage } from '../controllers/users.js'
 
 const router = express.Router()
 
@@ -13,5 +13,8 @@ router.get('/:id', checkUser)
 router.post('/order/:id', addOrder)
 router.get('/order/:id', checkOrder)
 
-router.post('/photos/:id', addImage)
+router.post('/image/:id', addImage)
+router.get('/image/:id', checkImage)
+router.patch('/image/:id', editImage)
+router.delete('/image/:id/:p_id', delImage)
 export default router

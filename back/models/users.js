@@ -35,6 +35,10 @@ const userImageSchema = new Schema(
     description: {
       type: String,
       maxlength: [200, '說明必須 200 字以下']
+    },
+    like: {
+      type: Boolean,
+      required: [true, '缺少收藏欄位']
     }
   }
 )
