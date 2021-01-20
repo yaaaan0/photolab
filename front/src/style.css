@@ -47,6 +47,11 @@ body::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
+.h-100 {
+  height: 100vh;
+  background-color: antiquewhite;
+}
+
 #app {
   background-color: antiquewhite;
   height: 100%;
@@ -588,6 +593,20 @@ body::-webkit-scrollbar-thumb {
 #uOrder .v-text-field .v-input__control {
   height: 45px;
 }
+
+#allOrders .theme--light.v-data-table {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  background-color: antiquewhite;
+  box-shadow: none !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+#allOrders .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover {
+  background-color: rgba(103, 125, 53, 0.3);
+  cursor: pointer;
+}
 /* orderInfo-------------------------------------------------  */
 #orderInfo {
   display: flex;
@@ -773,6 +792,27 @@ body::-webkit-scrollbar-thumb {
   position: relative;
 }
 
+/* 視差套件 */
+.Masthead {
+  z-index: 1 !important;
+}
+.Masthead .v-responsive {
+  height: 100%;
+}
+.Masthead__image.is-fixed {
+  position: fixed;
+  will-change: transform;
+  top: 250px !important;
+}
+
+/* 輪播 */
+.vue-flux {
+  height: 500px !important;
+}
+.vue-flux .preloader {
+  display: none;
+}
+
 @media (min-width: 992px) {
   #menu .img-1 {
     width: 100px;
@@ -844,6 +884,11 @@ body::-webkit-scrollbar-thumb {
 
   #orderInfo .v-card {
     width: 1000px;
+  }
+
+  #allOrders .theme--light.v-data-table {
+    margin: 50px 0;
+    padding: 10px 150px;
   }
 }
 
