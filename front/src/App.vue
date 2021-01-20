@@ -35,14 +35,7 @@ export default {
       if (this.$route.path === '/') {
         return false
       } else if (
-        this.$route.path === '/webmaster' ||
-        this.$route.path === '/webmaster/create' ||
-        this.$route.path === '/webmaster/schedule' ||
-        this.$route.path === '/webmaster/allOrders' ||
-        this.$route.path === '/webmaster/editPages' ||
-        this.$route.path === '/webmaster/editPages/home' ||
-        this.$route.path === '/webmaster/editPages/new' ||
-        this.$route.path === '/webmaster/editPages/photolab') {
+        this.$route.path.includes('/webmaster')) {
         return false
       } else {
         return true
