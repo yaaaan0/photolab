@@ -183,7 +183,7 @@ export default {
             this.$data.date = null
             this.$data.photographer = null
             setTimeout(() => {
-              this.$router.push({ path: '/user/order', name: 'UserOrder' })
+              this.$router.push({ path: '/user/order', name: 'OrderList' })
             }, 1000)
           } else {
             this.$swal({

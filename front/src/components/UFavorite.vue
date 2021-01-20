@@ -41,12 +41,12 @@ export default {
               setTimeout(() => {
                 this.imgsArr.splice(index, 1)
               }, 1000)
-              // this.$swal({
-              //   title: '取消收藏',
-              //   showConfirmButton: false,
-              //   timerProgressBar: true,
-              //   timer: 1000
-              // })
+              this.$swal({
+                title: '取消收藏',
+                showConfirmButton: false,
+                timerProgressBar: true,
+                timer: 1000
+              })
             } else {
               this.$swal({
                 icon: 'error',
