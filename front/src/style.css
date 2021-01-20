@@ -594,7 +594,7 @@ body::-webkit-scrollbar-thumb {
   height: 45px;
 }
 
-#allOrders .theme--light.v-data-table {
+#allOrderList .theme--light.v-data-table {
   display: flex;
   justify-content: center;
   /* align-items: center; */
@@ -603,46 +603,70 @@ body::-webkit-scrollbar-thumb {
   box-shadow: none !important;
   color: rgba(0, 0, 0, 0.87);
 }
-#allOrders .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover {
+#allOrderList
+  .v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:hover {
   background-color: rgba(103, 125, 53, 0.3);
   cursor: pointer;
 }
-/* orderInfo-------------------------------------------------  */
-#orderInfo {
+/* orderInfo  allOrderInfo -------------------------------------------------  */
+#orderInfo,
+#allOrderInfo {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#orderInfo .v-card {
+#orderInfo .v-card,
+#allOrderInfo .v-card {
   width: 100vw;
   background-color: transparent !important;
   box-shadow: none;
 }
-#orderInfo .v-application .grey.lighten-4 {
+#orderInfo .v-application .grey.lighten-4,
+#allOrderInfo .v-application .grey.lighten-4 {
   background-color: rgba(255, 255, 255, 0.3) !important;
   border-color: rgba(255, 255, 255, 0.4) !important;
   display: block;
 }
-#orderInfo .v-banner--single-line .v-banner__text {
+#orderInfo .v-banner--single-line .v-banner__text,
+#allOrderInfo .v-banner--single-line .v-banner__text {
   font-size: 0.875rem;
 }
-#orderInfo .theme--light.v-sheet {
+#orderInfo .theme--light.v-sheet,
+#allOrderInfo .theme--light.v-sheet {
   background-color: rgba(213, 202, 189, 0.5);
   border-color: #d5cabd;
   color: rgba(0, 0, 0, 0.87);
   margin: 30px;
   padding: 30px;
 }
-#orderInfo .text-2 > .theme--light.v-sheet {
+#orderInfo .text-2 > .theme--light.v-sheet,
+#allOrderInfo .text-2 > .theme--light.v-sheet {
   margin-top: 0px;
 }
-#orderInfo .theme--light.v-sheet span {
+#orderInfo .theme--light.v-sheet span,
+#allOrderInfo .theme--light.v-sheet span {
   display: flex;
   margin: 13px;
 }
-#orderInfo .v-input--selection-controls {
+#orderInfo .v-input--selection-controls,
+#allOrderInfo .v-input--selection-controls {
   margin: 0px 10px;
   padding: 0px;
+}
+
+#allOrderInfo .v-application .fail {
+  color: indianred;
+  cursor: pointer;
+}
+#allOrderInfo .v-application .success {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: rgb(113, 179, 75);
+  cursor: pointer;
 }
 
 #userMenu .v-dialog {
@@ -882,11 +906,12 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
   }
 
-  #orderInfo .v-card {
+  #orderInfo .v-card,
+  #allOrderInfo .v-card {
     width: 1000px;
   }
 
-  #allOrders .theme--light.v-data-table {
+  #allOrderList .theme--light.v-data-table {
     margin: 50px 0;
     padding: 10px 150px;
   }
