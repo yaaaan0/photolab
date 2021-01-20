@@ -193,7 +193,39 @@ const routes = [
         meta: {
           title: 'GP photolab ｜ 訂單資訊',
           login: true
-        }
+        },
+        children: [
+          {
+            path: '',
+            name: 'AllOrders',
+            component: () => import(/* webpackChunkName: "allOrderList" */ '../views/AllOrderList.vue'),
+            meta: {
+              title: 'GP photolab ｜ 我的訂單',
+              login: true,
+              props: true
+            }
+          },
+          {
+            path: 'AllOrderList',
+            name: 'AllOrderList',
+            component: () => import(/* webpackChunkName: "allOrderList" */ '../views/AllOrderList.vue'),
+            meta: {
+              title: 'GP photolab ｜ 我的訂單',
+              login: true,
+              props: true
+            }
+          },
+          {
+            path: ':id',
+            name: 'AllOrderInfo',
+            component: () => import(/* webpackChunkName: "allOrderInfo" */ '../views/AllOrderInfo.vue'),
+            meta: {
+              title: 'GP photolab ｜ 我的訂單',
+              login: true,
+              props: true
+            }
+          }
+        ]
       },
       {
         path: 'editPages',
