@@ -140,36 +140,38 @@ export default {
           text: err.response.data.message
         })
       })
-    this.axios.get(process.env.VUE_APP_API + '/users/image/' + this.user.id)
-      .then(res => {
-        if (res.data.success) {
-          const arry = res.data.result.images
-          for (let i = 0; i < arry.length; i++) {
-            this.selected.push(arry[i].p_id)
+    if (this.user.account.length > 0) {
+      this.axios.get(process.env.VUE_APP_API + '/users/image/' + this.user.id)
+        .then(res => {
+          if (res.data.success) {
+            const arry = res.data.result.images
+            for (let i = 0; i < arry.length; i++) {
+              this.selected.push(arry[i].p_id)
+            }
+          } else {
+            this.$swal({
+              icon: 'error',
+              title: '錯誤',
+              text: res.data.message
+            })
           }
-        } else {
+        })
+        .catch(err => {
+          if (err.response.data.message === '未登入') {
+            // 登出
+            this.$store.commit('logout')
+            // 導回首頁
+            if (this.$route.path !== '/login') {
+              this.$router.push('/login')
+            }
+          }
           this.$swal({
             icon: 'error',
             title: '錯誤',
-            text: res.data.message
+            text: err.response.data.message
           })
-        }
-      })
-      .catch(err => {
-        if (err.response.data.message === '未登入') {
-          // 登出
-          this.$store.commit('logout')
-          // 導回首頁
-          if (this.$route.path !== '/login') {
-            this.$router.push('/login')
-          }
-        }
-        this.$swal({
-          icon: 'error',
-          title: '錯誤',
-          text: err.response.data.message
         })
-      })
+    }
   }
 }
 </script>
