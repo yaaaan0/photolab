@@ -135,6 +135,23 @@ export const edit = async (req, res) => {
   }
 }
 
+export const allUser = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  if (req.session.user._id.includes('##')) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+    return
+  }
+  try {
+    const result = await users.find()
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
 export const addOrder = async (req, res) => {
   if (req.session.user === undefined) {
     res.status(401).send({ success: false, message: '未登入' })
@@ -185,10 +202,10 @@ export const addOrder = async (req, res) => {
   }
 }
 export const addImage = async (req, res) => {
-  if (req.session.user === undefined) {
-    res.status(401).send({ success: false, message: '未登入' })
-    return
-  }
+  // if (req.session.user === undefined) {
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '資料格式不符' })
   }
@@ -206,8 +223,7 @@ export const addImage = async (req, res) => {
               photographer: req.body.photographer,
               project: req.body.project,
               file: req.body.file,
-              description: req.body.description,
-              like: req.body.like
+              description: req.body.description
             }
           }
         }, { new: true }).then(result => {
@@ -280,14 +296,14 @@ export const checkImage = async (req, res) => {
 }
 
 export const editImage = async (req, res) => {
-  if (req.session.user === undefined) {
-    res.status(401).send({ success: false, message: '未登入' })
-    return
-  }
-  if (req.session.user._id !== req.params.id) {
-    res.status(403).send({ success: false, message: '沒有權限' })
-    return
-  }
+  // if (req.session.user === undefined) {
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
+  // if (req.session.user._id !== req.params.id) {
+  //   res.status(403).send({ success: false, message: '沒有權限' })
+  //   return
+  // }
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '資料格式不符' })
     return
