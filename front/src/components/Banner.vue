@@ -1,14 +1,17 @@
 <template lang="pug">
-  #homeParallaxy
+  #banner
     v-app
       .carousel
         vue-flux(:options="options" :images="images" :transitions="transitions")
           //- template(v-slot:pagination)
           //-   flux-pagination
+      flux-parallax(src="https://picsum.photos/380" type="visible" offset="488%" style='height: 380px;')
 </template>
 
 <script>
 import Parallax from 'vue-parallaxy'
+import Word from '../components/Word.vue'
+
 import {
   VueFlux,
   FluxCaption,
@@ -22,7 +25,7 @@ export default {
   data () {
     return {
       options: {
-        allowFullscreen: false,
+        allowFullscreen: true,
         allowToSkipTransition: true,
         autohideTime: 2500,
         autoplay: true,
@@ -33,9 +36,7 @@ export default {
         lazyLoad: true,
         lazyLoadAfter: 3
       },
-      images: ['https://picsum.photos/2048/1365?random=3',
-        'https://picsum.photos/2048/1365?random=2',
-        'https://picsum.photos/2048/1365?random=1'],
+      images: [],
       transitions: ['slide']
     }
   },
@@ -46,7 +47,20 @@ export default {
     FluxControls,
     FluxIndex,
     FluxPagination,
-    FluxPreloader
+    FluxPreloader,
+    Word
+  },
+  mounted () {
+    this.axios.get(process.env.VUE_APP_API + '/banners/')
+      .then(res => {
+        const arry = res.data.result
+        if (res.data.success) {
+          for (let i = 0; i < arry.length; i++) {
+            this.images.push(process.env.VUE_APP_API + '/photos/file/' + arry[i].file)
+          }
+        }
+        console.log(this.images)
+      })
   }
 }
 </script>
