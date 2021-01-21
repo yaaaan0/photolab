@@ -576,6 +576,7 @@ body::-webkit-scrollbar-thumb {
   color: rgba(0, 0, 0, 0.87);
   margin: 75px;
 }
+
 #uOrder .v-data-table__wrapper {
   width: 100vw;
   background-color: rgba(255, 255, 255, 0.4);
@@ -612,9 +613,48 @@ body::-webkit-scrollbar-thumb {
   background-color: rgba(103, 125, 53, 0.3);
   cursor: pointer;
 }
+
+#editPagesHome .v-application--wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#editPagesHome .theme--light.v-data-table {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  background-color: antiquewhite;
+  box-shadow: none !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+#editPagesHome .v-data-table > .v-data-table__wrapper > table > tbody > tr {
+  height: 110px;
+}
+#editPagesHome
+  .v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:hover {
+  background-color: rgba(103, 125, 53, 0.3);
+  cursor: pointer;
+}
+#editPagesHome .v-data-table__wrapper {
+  width: 80vw;
+}
+#editPagesHome
+  .theme--light.v-text-field--filled
+  > .v-input__control
+  > .v-input__slot {
+  width: 300px;
+}
 /* orderInfo  allOrderInfo -------------------------------------------------  */
 #orderInfo,
-#allOrderInfo {
+#allOrderInfo,
+#editPagesHome {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -811,6 +851,11 @@ body::-webkit-scrollbar-thumb {
   right: 5px;
 }
 
+#banner .v-application--wrap {
+  align-items: center;
+  margin-top: 20px;
+}
+
 /* 假字 */
 #word {
   height: 100%;
@@ -834,6 +879,7 @@ body::-webkit-scrollbar-thumb {
 /* 輪播 */
 .vue-flux {
   height: 500px !important;
+  width: 95vw !important;
 }
 .vue-flux .preloader {
   display: none;
@@ -914,6 +960,10 @@ body::-webkit-scrollbar-thumb {
   }
 
   #allOrderList .theme--light.v-data-table {
+    margin: 50px 0;
+    padding: 10px 150px;
+  }
+  #editPagesHome .theme--light.v-data-table {
     margin: 50px 0;
     padding: 10px 150px;
   }
