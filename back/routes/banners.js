@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.post('/', create)
 router.get('/', allFile)
-router.get('/', file)
+router.get('/:file', file)
 router.delete('/:id', del)
 
 export default router
