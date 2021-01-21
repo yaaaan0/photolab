@@ -3,9 +3,9 @@
       v-footer(dark padless)
         v-card.indigo.lighten-1.white--text.text-center(flat tile)
           v-card-text
-            v-btn.mx-4.white--text(v-for='icon in icons' :key='icon' icon)
+            v-btn.mx-4.white--text(v-for='icon in icons' :key="icon" icon)
               v-icon(size='24px') {{ icon }}
-          v-card-text.white--text.pt-0(:key='icon' icon)
+          v-card-text.white--text.pt-0(icon)
             p
               | GP Photolab | Garland Pheasant
               br
