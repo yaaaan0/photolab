@@ -18,9 +18,9 @@
         v-btn(to="/" target='_blank')
           v-icon mdi-home
           p 首頁
-        v-btn(to="/webmaster/schedule")
-          v-icon mdi-film
-          P 攝影排程
+        //- v-btn(to="/webmaster/schedule")
+        //-   v-icon mdi-film
+        //-   P 攝影排程
         v-btn(to="/webmaster/allOrders")
           v-icon mdi-format-list-bulleted
           P 訂單資訊
