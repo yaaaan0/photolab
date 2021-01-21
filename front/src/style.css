@@ -658,14 +658,16 @@ body::-webkit-scrollbar-thumb {
   padding: 0px;
 }
 
+#orderInfo .v-application .fail,
 #allOrderInfo .v-application .fail {
   color: indianred;
   cursor: pointer;
 }
+#orderInfo .v-application .success,
 #allOrderInfo .v-application .success {
   background-color: transparent !important;
   border-color: transparent !important;
-  color: rgb(113, 179, 75);
+  color: rgb(97, 139, 72);
   cursor: pointer;
 }
 
