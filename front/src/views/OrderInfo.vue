@@ -10,12 +10,12 @@
             span 拍攝項目 ｜ {{order.project}}
             span 預計拍攝日期 ｜ {{order.orderDate}}
             span 攝影師 ｜ {{order.photographer}}
-            span(v-if='!paid')
+            span
               P 付款狀態 ｜
-              v-switch(color="rgb(103, 125, 53)" disabled inset dense)
-            span(v-if='paid')
-              P 付款狀態 ｜
-              v-switch(color="rgb(103, 125, 53)" input-value="true" disabled inset dense)
+              v-switch(v-if="order.paid === false" color="rgb(103, 125, 53)" disabled inset dense)
+              .caption.fail(v-if="order.paid === false" color="#F44336") *尚未付款
+              v-switch(v-if="order.paid === true" color="rgb(103, 125, 53)" input-value="true" disabled inset dense)
+              .caption.success(v-if="order.paid === true") *付款成功
         v-card-text.text-2.grey.lighten-4
           v-sheet.mx-auto(max-width='800' height='500')
 </template>
@@ -26,8 +26,7 @@ export default {
   data () {
     return {
       id: this.$route.params.id,
-      order: this.$route.query,
-      paid: this.$route.query.paid
+      order: this.$route.query
     }
   }
 }

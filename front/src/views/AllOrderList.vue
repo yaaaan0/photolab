@@ -5,9 +5,12 @@
         :headers='headers'
         :items='orders'
         @click:row='handleRowClick')
-        template(v-slot:item.state='{ item }')
-          v-switch(v-if="!item.state" :value="check(item.state)" disabled inset)
-          v-switch(v-if="item.state" :value="check(item.state)" color="rgb(103, 125, 53)" input-value="true" disabled inset)
+        template(v-slot:item.paid='{ item }')
+          v-switch(v-if="!item.paid" :value="check(item.paid)" color="rgb(103, 125, 53)" disabled inset)
+          v-switch(v-if="item.paid" :value="check(item.paid)" color="rgb(103, 125, 53)" disabled input-value="true" inset)
+        //- template(v-slot:item.state='{ item }')
+        //-   v-switch(v-if="!item.state" :value="check(item.state)" color="rgb(103, 125, 53)" inset)
+        //-   v-switch(v-if="item.state" :value="check(item.state)" color="rgb(103, 125, 53)" input-value="true" inset)
 </template>
 
 <script>
@@ -27,7 +30,8 @@ export default {
         { text: '預計拍攝日期', value: 'date', sortable: false },
         { text: '攝影師', value: 'photographer', sortable: false },
         { text: '使用者', value: 'name', sortable: false },
-        { text: '訂單狀態', value: 'state', sortable: false }
+        { text: '付款狀態', value: 'paid', sortable: false }
+        // { text: '訂單狀態', value: 'state', sortable: false }
       ],
       orders: []
     }
@@ -49,6 +53,7 @@ export default {
           query: item,
           name: 'AllOrderInfo'
         })
+      console.log(item)
     }
   },
   mounted () {
