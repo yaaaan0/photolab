@@ -175,6 +175,7 @@ export const file = async (req, res) => {
       res.status(200).sendFile(path)
     } else {
       res.status(404).send({ success: false, message: '找不到圖片' })
+      console.log(res)
     }
   } else {
     this.axios({
@@ -185,6 +186,7 @@ export const file = async (req, res) => {
       res.data.pipe(res)
     }).catch(error => {
       res.status(error.response.status).send({ success: false, message: '取得圖片失敗' })
+      console.log(error)
     })
   }
 }
