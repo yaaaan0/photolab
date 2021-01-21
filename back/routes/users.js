@@ -1,5 +1,5 @@
 import express from 'express'
-import { create, login, logout, heartbeat, edit, addOrder, checkUser, allUser, checkOrder, addImage, checkImage, editImage, delImage } from '../controllers/users.js'
+import { create, login, logout, heartbeat, edit, addOrder, checkUser, allUser, editUser, checkOrder, addImage, checkImage, editImage, delImage } from '../controllers/users.js'
 
 const router = express.Router()
 
@@ -10,6 +10,7 @@ router.get('/heartbeat', heartbeat)
 
 // 查詢所有使用者
 router.get('/', allUser)
+router.patch('/', editUser)
 
 router.patch('/:id', edit)
 router.get('/:id', checkUser)

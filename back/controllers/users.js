@@ -152,6 +152,24 @@ export const allUser = async (req, res) => {
   }
 }
 
+export const editUser = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  if (req.session.user._id.includes('##')) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+    return
+  }
+  try {
+    const result = await users.findAndUpdate()
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
+  }
+}
+
 export const addOrder = async (req, res) => {
   if (req.session.user === undefined) {
     res.status(401).send({ success: false, message: '未登入' })
