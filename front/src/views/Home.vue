@@ -1,8 +1,7 @@
 <template lang="pug">
 #home
   #content
-    v-app
-      Banner
+    Banner
 </template>
 
 <script>
