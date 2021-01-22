@@ -5,12 +5,21 @@
         vue-flux(:options="options" :images="images" :transitions="transitions")
           //- template(v-slot:pagination)
           //-   flux-pagination
-      flux-parallax(src="https://picsum.photos/380" type="visible" offset="488%" style='height: 380px;')
+      .container
+        kinesisdistance(:strength='50' :distance='100')
+        .new.container
+          kinesis-container
+            kinesis-element(:strength='10')
+              div.aa
+            kinesis-element(:strength='20')
+              p NEW
+
 </template>
 
 <script>
 import Parallax from 'vue-parallaxy'
 import Word from '../components/Word.vue'
+import { KinesisContainer, KinesisElement, kinesisdistance } from 'vue-kinesis'
 
 import {
   VueFlux,
@@ -37,7 +46,7 @@ export default {
         lazyLoadAfter: 3
       },
       images: [],
-      transitions: ['slide']
+      transitions: ['fade']
     }
   },
   components: {
@@ -48,6 +57,9 @@ export default {
     FluxIndex,
     FluxPagination,
     FluxPreloader,
+    KinesisContainer,
+    KinesisElement,
+    kinesisdistance,
     Word
   },
   mounted () {
