@@ -883,19 +883,74 @@ body::-webkit-scrollbar-thumb {
   right: 5px;
 }
 
-#banner .v-application--wrap {
+#banner {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  flex-direction: column;
 }
-.aa {
-  width: 200px;
-  height: 200px;
-  background-color: rgba(0, 0, 0, 0.8);
+#banner .v-card {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  background-color: transparent;
+  padding: 50px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  box-shadow: none;
+  border-radius: 0;
+  /* background-color: rgba(146, 139, 130, 0.5); */
+}
+#banner .theme--light.v-divider {
+  display: none;
+}
+#banner h1 {
+  display: flex;
+  font-weight: 500;
+  font-size: 3.5rem;
+}
+#banner kinesisdistance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+}
+.about {
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50%;
+}
+.ddd {
+  display: flex;
+  margin: 50px;
+}
+.a,
+.b,
+.o,
+.u,
+.t {
+  position: absolute;
+}
+.a {
+  top: 10px;
+  right: 100px;
+}
+.b {
+  top: 2px;
+  right: 50px;
+}
+/* .aa {
+  width: 1000px;
+  height: 1000px;
+  background-color: rgba(206, 194, 179, 0.5);
   border-radius: 50%;
   position: absolute;
-  left: -150px;
-  top: 10px;
-}
+} */
 
 /* 假字 */
 #word {
@@ -919,8 +974,9 @@ body::-webkit-scrollbar-thumb {
 
 /* 輪播 */
 .vue-flux {
-  height: 300px !important;
+  height: 50vh;
   width: 100vw !important;
+  margin-top: 25px;
 }
 .vue-flux .preloader {
   display: none;
@@ -1022,10 +1078,26 @@ body::-webkit-scrollbar-thumb {
     padding: 0 100px !important;
   }
 
+  #banner .v-card {
+    flex-direction: row;
+  }
+
+  #banner .v-btn:not(.v-btn--round).v-size--default {
+    margin: 0 100px;
+  }
+  #banner .v-card > *:last-child:not(.v-btn):not(.v-chip) {
+    margin: 0 50px;
+    padding: 0px !important;
+  }
+  #banner .theme--light.v-divider {
+    display: inline;
+    border-color: #000000;
+  }
+
   /* 輪播 */
   .vue-flux {
-    height: 500px !important;
-    width: 100vw !important;
+    height: 60vh !important;
+    width: 80vw !important;
   }
   .vue-flux .preloader {
     display: none;
