@@ -1,25 +1,34 @@
 <template lang="pug">
   #banner
-    v-app
-      .carousel
-        vue-flux(:options="options" :images="images" :transitions="transitions")
-          //- template(v-slot:pagination)
-          //-   flux-pagination
-      .container
-        kinesisdistance(:strength='50' :distance='100')
-        .new.container
-          kinesis-container
-            kinesis-element(:strength='10')
-              div.aa
-            kinesis-element(:strength='20')
-              p NEW
-
+    vue-flux(:options="options" :images="images" :transitions="transitions")
+    vue-aos(animation-class='fadeIn animated')
+      v-card
+        v-btn.about(text to='/about')
+          kinesisdistance(:strength='50' :distance='100')
+            kinesis-container.ddd
+              h1
+                kinesis-element(:strength='10')
+                  span N
+                kinesis-element(:strength='20')
+                  span E
+                kinesis-element(:strength='10')
+                  span W
+                kinesis-element(:strength='20')
+                  span S
+                //- kinesis-element(:strength='50')
+                //-   span T
+        v-divider(vertical)
+        p.pa-5
+          | GP Photolab | Garland Pheasant
+          br
+          | 準備好回娘家約會了嗎?
 </template>
 
 <script>
 import Parallax from 'vue-parallaxy'
 import Word from '../components/Word.vue'
 import { KinesisContainer, KinesisElement, kinesisdistance } from 'vue-kinesis'
+import VueAos from 'vue-aos'
 
 import {
   VueFlux,
@@ -60,6 +69,7 @@ export default {
     KinesisContainer,
     KinesisElement,
     kinesisdistance,
+    VueAos,
     Word
   },
   mounted () {
