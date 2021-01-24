@@ -24,6 +24,7 @@
     "v-show-slide": "^1.8.3",
     "vee-validate": "^3.4.5",
     "vue": "^2.6.11",
+    "vue-aos": "^1.1.0",
     "vue-axios": "^3.2.0",
     "vue-flux": "^6.3.1",
     "vue-gtag": "^1.10.0",
