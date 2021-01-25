@@ -10,7 +10,7 @@ router.get('/heartbeat', heartbeat)
 
 // 查詢所有使用者
 router.get('/', allUser)
-router.patch('/', editUser)
+router.patch('/:order_id', editUser)
 
 router.patch('/:id', edit)
 router.get('/:id', checkUser)
