@@ -974,12 +974,12 @@ body::-webkit-scrollbar-thumb {
   margin: 50px;
 }
 
-#news {
+#allNews {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#news .v-sheet.v-card:not(.v-sheet--outlined) {
+#allNews .v-sheet.v-card:not(.v-sheet--outlined) {
   box-shadow: none;
   display: flex;
   justify-content: center;
@@ -989,23 +989,23 @@ body::-webkit-scrollbar-thumb {
   background-color: rgba(213, 202, 189, 0.5);
   flex-direction: column;
 }
-#news .v-card > *:first-child:not(.v-btn):not(.v-chip),
+#allNews .v-card > *:first-child:not(.v-btn):not(.v-chip),
 .v-card > .v-card__progress + *:not(.v-btn):not(.v-chip) {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-#news .new {
+#allNews .new {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#news .article {
+#allNews .article {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-#news .v-image__image {
+#allNews .v-image__image {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1013,7 +1013,7 @@ body::-webkit-scrollbar-thumb {
   width: 600px;
   height: 400px;
 }
-#news span {
+#allNews span {
   margin: 40px 0;
   display: inline-block;
   /* text-overflow: ellipsis; */
@@ -1021,7 +1021,7 @@ body::-webkit-scrollbar-thumb {
   /* overflow: hidden; */
   width: 80vw;
 }
-#news .v-btn:not(.v-btn--round).v-size--default {
+#allNews .v-btn:not(.v-btn--round).v-size--default {
   height: 30px;
   width: 110px;
   padding: 0 16px;
@@ -1032,14 +1032,86 @@ body::-webkit-scrollbar-thumb {
   font-weight: 300;
   letter-spacing: 3px;
 }
-#news .card-right {
+#allNews .v-btn:not(.v-btn--round).v-size--default:hover {
+  background-color: #677d35;
+}
+#allNews .card-right {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-#news .v-ripple__container {
+#allNews .v-ripple__container {
   display: none;
+}
+
+#artical {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#artical .v-card.p1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  flex-direction: column;
+  box-shadow: none;
+  border-top: 15px solid rgba(0, 0, 0, 0.8);
+  border-right: 1px solid rgba(0, 0, 0, 0.8);
+  border-left: 1px solid rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 50px;
+  margin-top: 20px;
+  border-radius: 0;
+}
+#artical .v-card.p2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 250px;
+  height: 250px;
+  box-shadow: none;
+  padding: 50px;
+  margin-top: 20px;
+  border-radius: 0;
+  background-color: rgba(103, 125, 53, 0.95);
+  cursor: pointer;
+  transition: 1s;
+}
+#artical .v-card.p2:hover {
+  transition: 1s;
+}
+
+#artical .v-item-group {
+  width: 80vw;
+  flex: 0 1 auto;
+  position: relative;
+  max-width: 100%;
+  background-color: antiquewhite;
+  border-top: 15px solid rgba(0, 0, 0, 0.8);
+  border-right: 1px solid rgba(0, 0, 0, 0.8);
+  border-left: 1px solid rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+}
+#artical h1 {
+  font-size: 1rem;
+}
+#artical pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: justify;
+}
+#artical p {
+  margin: 50px 0;
+  line-height: 35px;
+}
+#artical .v-icon.v-icon {
+  color: #677d35 !important;
 }
 
 /* 假字 */
@@ -1183,7 +1255,7 @@ body::-webkit-scrollbar-thumb {
     display: inline;
     border-color: #000000;
   }
-  #news .v-sheet.v-card:not(.v-sheet--outlined) {
+  #allNews .v-sheet.v-card:not(.v-sheet--outlined) {
     box-shadow: none;
     display: flex;
     justify-content: center;
@@ -1193,17 +1265,30 @@ body::-webkit-scrollbar-thumb {
     background-color: rgba(213, 202, 189, 0.5);
     flex-direction: row;
   }
-  #news span {
+  #allNews span {
     width: 30vw;
   }
-  #news .article {
+  #allNews .article {
     align-items: flex-start;
   }
 
-  #news .v-btn:not(.v-btn--round).v-size--default {
+  #allNews .v-btn:not(.v-btn--round).v-size--default {
     position: absolute;
     right: 100px;
     bottom: 80px;
+  }
+
+  #artical h1 {
+    font-size: 2rem;
+  }
+  #artical pre {
+    /* margin: 50px 0;
+    letter-spacing: 2px;
+    line-height: 35px;
+    font-size: 15px; */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: justify;
   }
 
   /* 輪播 */
