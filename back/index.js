@@ -10,6 +10,7 @@ import routerUser from './routes/users.js'
 // import routerWebmaster from './routes/webmasters.js'
 import routerPhoto from './routes/photos.js'
 import routerBanner from './routes/banners.js'
+import routerNew from './routes/news.js'
 
 dotenv.config()
 
@@ -77,6 +78,7 @@ app.use('/users', routerUser)
 // app.use('/webmasters', routerWebmaster)
 app.use('/photos', routerPhoto)
 app.use('/banners', routerBanner)
+app.use('/news', routerNew)
 
 // bodyparser cors 之類的套件發生錯誤時的處理
 // app.use((err, req, res, next) => {})
