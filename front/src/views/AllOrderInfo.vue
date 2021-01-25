@@ -32,13 +32,62 @@ export default {
   },
   methods: {
     pay () {
-      console.log(this.paid)
       if (this.paid === false) {
         this.paid = true
       } else {
         this.paid = false
       }
+      this.axios.patch(process.env.VUE_APP_API + '/users/' + this.order._id, this.$data)
+        .then(res => {
+          if (res.data.success) {
+            console.log(this.$data)
+          } else {
+            this.$swal({
+              icon: 'error',
+              title: '發生錯誤',
+              text: res.data.message
+            })
+          }
+        })
+        .catch(err => {
+          this.$swal({
+            icon: 'error',
+            title: '發生錯誤',
+            text: err.response.data.message
+          })
+        })
     }
+  },
+  mounted () {
+    this.axios.get(process.env.VUE_APP_API + '/users/')
+      .then(res => {
+        if (res.data.success) {
+          // console.log(this.orders)
+          // console.log(userData)
+          // this.orders = res.data.result.orders.reverse()
+        } else {
+          this.$swal({
+            icon: 'error',
+            title: '錯誤',
+            text: res.data.message
+          })
+        }
+      })
+      .catch(err => {
+        if (err.response.data.message === '未登入') {
+          // 登出
+          this.$store.commit('logout')
+          // 導回首頁
+          if (this.$route.path !== '/login') {
+            this.$router.push('/login')
+          }
+        }
+        this.$swal({
+          icon: 'error',
+          title: '錯誤',
+          text: err.response.data.message
+        })
+      })
   }
 }
 </script>
