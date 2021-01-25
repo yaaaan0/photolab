@@ -20,7 +20,6 @@
             kinesisdistance(:strength='50' :distance='100')
               kinesis-container
                 kinesis-element(:strength='10')
-
                   pre.pa-5 {{news[0].title}}
 </template>
 
