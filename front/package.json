@@ -12,6 +12,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "@sweetalert2/themes": "^4.0.1",
+    "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "axios": "^0.21.1",
     "core-js": "^3.8.1",
     "imagesloaded": "^4.1.4",
