@@ -3,7 +3,7 @@
     vue-flux(:options="options" :images="images" :transitions="transitions")
     vue-aos(animation-class='fadeIn animated')
       v-card
-        v-btn.about(text to='/about')
+        v-btn.about(text to='/news')
           kinesisdistance(:strength='50' :distance='100')
             kinesis-container.ddd
               h1
@@ -15,19 +15,19 @@
                   span W
                 kinesis-element(:strength='20')
                   span S
-                //- kinesis-element(:strength='50')
-                //-   span T
-        v-divider(vertical)
-        p.pa-5
-          | GP Photolab | Garland Pheasant
-          br
-          | 準備好回娘家約會了嗎?
+          v-divider(vertical)
+          vue-aos(animation-class='fadeIn animated')
+            kinesisdistance(:strength='50' :distance='100')
+              kinesis-container
+                kinesis-element(:strength='10')
+
+                  pre.pa-5 {{news[0].title}}
 </template>
 
 <script>
 import Parallax from 'vue-parallaxy'
 import Word from '../components/Word.vue'
-import { KinesisContainer, KinesisElement, kinesisdistance } from 'vue-kinesis'
+import { KinesisContainer, KinesisElement } from 'vue-kinesis'
 import VueAos from 'vue-aos'
 
 import {
@@ -55,7 +55,8 @@ export default {
         lazyLoadAfter: 3
       },
       images: [],
-      transitions: ['fade']
+      transitions: ['fade'],
+      news: []
     }
   },
   components: {
@@ -68,7 +69,6 @@ export default {
     FluxPreloader,
     KinesisContainer,
     KinesisElement,
-    kinesisdistance,
     VueAos,
     Word
   },
@@ -82,6 +82,41 @@ export default {
           }
         }
         console.log(this.images)
+      })
+
+    this.axios.get(process.env.VUE_APP_API + '/news/')
+      .then(res => {
+        if (res.data.success) {
+          this.news = res.data.result.map(item => {
+            item.src = process.env.VUE_APP_API + '/photos/file/' + item.file
+            item.content = item.content.substr(0, 100)
+            return item
+          })
+          this.news.reverse()
+          console.log(this.news)
+        } else {
+          this.$swal({
+            icon: 'error',
+            title: '錯誤',
+            text: res.data.message
+          })
+          console.log(res.data)
+        }
+      })
+      .catch(err => {
+        if (err.response.data.message === '未登入') {
+          // 登出
+          this.$store.commit('logout')
+          // 導回首頁
+          if (this.$route.path !== '/login') {
+            this.$router.push('/login')
+          }
+        }
+        this.$swal({
+          icon: 'error',
+          title: '錯誤',
+          text: err.response.data.message
+        })
       })
   }
 }
