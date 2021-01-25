@@ -14,8 +14,7 @@ const routes = [
     component: LeadingPage,
     meta: {
       title: 'GP photolab',
-      login: false,
-      transition: 'fade-in-down'
+      login: false
     }
   },
   {
@@ -24,8 +23,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
     meta: {
       title: 'GP photolab ｜ GP首頁',
-      login: false,
-      transition: 'fade-in-down'
+      login: false
     }
   },
   {
@@ -44,7 +42,36 @@ const routes = [
     meta: {
       title: 'GP photolab ｜ 最新消息',
       login: false
-    }
+    },
+    children: [
+      {
+        path: '',
+        name: 'News',
+        component: () => import(/* webpackChunkName: "news" */ '../views/AllNews.vue'),
+        meta: {
+          title: 'GP photolab ｜ 最新消息',
+          login: false
+        }
+      },
+      {
+        path: '',
+        name: 'AllNews',
+        component: () => import(/* webpackChunkName: "allNews" */ '../views/AllNews.vue'),
+        meta: {
+          title: 'GP photolab ｜ 最新消息',
+          login: false
+        }
+      },
+      {
+        path: ':id',
+        name: 'Article',
+        component: () => import(/* webpackChunkName: "article" */ '../views/Article.vue'),
+        meta: {
+          title: 'GP photolab ｜ 最新消息',
+          login: false
+        }
+      }
+    ]
   },
   {
     path: '/serive',
