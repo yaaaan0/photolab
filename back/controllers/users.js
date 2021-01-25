@@ -140,7 +140,7 @@ export const allUser = async (req, res) => {
     res.status(401).send({ success: false, message: '未登入' })
     return
   }
-  if (req.session.user._id.includes('##')) {
+  if (!req.session.user.account.includes('##')) {
     res.status(403).send({ success: false, message: '沒有權限' })
     return
   }
@@ -157,12 +157,22 @@ export const editUser = async (req, res) => {
     res.status(401).send({ success: false, message: '未登入' })
     return
   }
-  if (req.session.user._id.includes('##')) {
+  if (!req.session.user.account.includes('##')) {
     res.status(403).send({ success: false, message: '沒有權限' })
     return
   }
   try {
-    const result = await users.findAndUpdate()
+    const result = await users.findOneAndUpdate(
+      {
+        'orders._id': req.params.order_id
+      }, {
+        $set: {
+          'orders.$.paid': req.body.paid,
+          'orders.$.state': req.body.paid
+        }
+      },
+      { new: true }
+    )
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
