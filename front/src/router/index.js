@@ -38,6 +38,15 @@ const routes = [
     }
   },
   {
+    path: '/news',
+    name: 'News',
+    component: () => import(/* webpackChunkName: "news" */ '../views/News.vue'),
+    meta: {
+      title: 'GP photolab ｜ 最新消息',
+      login: false
+    }
+  },
+  {
     path: '/serive',
     name: 'Serive',
     component: () => import(/* webpackChunkName: "serive" */ '../views/Serive.vue'),
