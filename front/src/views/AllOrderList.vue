@@ -53,7 +53,7 @@ export default {
           query: item,
           name: 'AllOrderInfo'
         })
-      console.log(item)
+      // console.log(item)
     }
   },
   mounted () {
@@ -61,7 +61,6 @@ export default {
       .then(res => {
         if (res.data.success) {
           const arry = res.data.result
-          const userData = []
           for (let i = 0; i < arry.length; i++) {
             for (let j = 0; j < arry[i].orders.length; j++) {
               this.orders.push(arry[i].orders[j])
@@ -73,7 +72,6 @@ export default {
             }
           }
           console.log(this.orders)
-          console.log(userData)
           // this.orders = res.data.result.orders.reverse()
         } else {
           this.$swal({
