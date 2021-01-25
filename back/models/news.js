@@ -19,6 +19,9 @@ const newsSchema = new Schema(
     file: {
       type: String
     }
+  },
+  {
+    versionKey: false
   }
 )
 
