@@ -17,7 +17,10 @@
               v-switch(v-if="order.paid === true" color="rgb(103, 125, 53)" input-value="true" disabled inset dense)
               .caption.success(v-if="order.paid === true") *付款成功
         v-card-text.text-2.grey.lighten-4
-          v-sheet.mx-auto(max-width='800' height='500')
+          v-sheet.mx-auto(max-width='800' height='100%')
+            v-card.msg(v-for='(item, index) in messages')
+              h2 {{item.message}}
+              pre {{item.date}}
 </template>
 
 <script>
@@ -26,8 +29,17 @@ export default {
   data () {
     return {
       id: this.$route.params.id,
-      order: this.$route.query
+      order: this.$route.query,
+      messages: []
     }
+  },
+  mounted () {
+    this.axios.get(process.env.VUE_APP_API + '/messages/' + this.id)
+      .then(res => {
+        if (res.data.success) {
+          this.messages = res.data.result
+        }
+      })
   }
 }
 </script>
