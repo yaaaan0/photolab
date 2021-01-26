@@ -97,7 +97,6 @@ export const create = async (req, res) => {
           // width: req.body.width,
           // height: req.body.height
         })
-        console.log(req.file)
         res.status(200).send({ success: true, message: '', result })
       } catch (error) {
         if (error.name === 'ValidationError') {
