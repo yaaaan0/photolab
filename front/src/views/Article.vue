@@ -12,11 +12,11 @@
           p {{artical.content}}
       vue-aos(animation-class='fadeIn animated')
         v-sheet.mt-10.mb-10
-          v-slide-group.pa-4(prev-icon="mdi-minus" next-icon="mdi-plus" show-arrows)
+          v-slide-group.pa-4(prev-icon="mdi-minus" next-icon="mdi-plus" show-arrows='always' )
             v-slide-item(v-for='(item, index) in news')
               v-card.p2.ma-4( @click='click(item)')
                 v-row.fill-height(align='center' justify='center')
-                  v-img.mb-2(:src='item.src' width='20px')
+                  v-img.mb-2(:src='item.src' width='180px')
                   br
                   h6 {{item.title}}
 
