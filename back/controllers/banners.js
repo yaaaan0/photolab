@@ -82,6 +82,7 @@ export const create = async (req, res) => {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
       console.log(error)
     } else {
+      console.log(req.file)
       try {
         let file = ''
         if (process.env.DEV === 'true') {
