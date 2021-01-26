@@ -57,7 +57,7 @@ export const create = async (req, res) => {
     res.status(401).send({ success: false, message: '未登入' })
     return
   }
-  if (req.session.user._id.includes('##')) {
+  if (!req.session.user.account.includes('##')) {
     res.status(403).send({ success: false, message: '沒有權限' })
   }
   if (!req.headers['content-type'] || !req.headers['content-type'].includes('multipart/form-data')) {
@@ -115,7 +115,7 @@ export const del = async (req, res) => {
   if (req.session.user === undefined) {
     res.status(401).send({ success: false, message: '未登入' })
   }
-  if (req.session.user._id.includes('##')) {
+  if (!req.session.user.account.includes('##')) {
     res.status(403).send({ success: false, message: '沒有權限' })
   }
   try {
