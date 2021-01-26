@@ -67,7 +67,6 @@ export const create = async (req, res) => {
 
   upload.single('image')(req, res, async error => {
     if (error instanceof multer.MulterError) {
-      console.log(error)
       let message = ''
       if (error.code === 'LIMIT_FILE_SIZE') {
         message = '檔案太大'
@@ -80,8 +79,8 @@ export const create = async (req, res) => {
       res.status(400).send({ success: false, message })
     } else if (error) {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
-      console.log(error)
     } else {
+      console.log(req.file)
       try {
         let file = ''
         if (process.env.DEV === 'true') {
@@ -103,7 +102,6 @@ export const create = async (req, res) => {
           res.status(400).send({ success: false, message })
         } else {
           res.status(500).send({ success: false, message: '伺服器錯誤' })
-          console.log(error)
         }
       }
     }
@@ -111,14 +109,6 @@ export const create = async (req, res) => {
 }
 
 export const New = async (req, res) => {
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // }
-  // if (req.session.user._id.includes('##')) {
-  //   res.status(403).send({ success: false, message: '沒有權限' })
-  //   return
-  // }
   try {
     const result = await news.findById(req.params.id)
     res.status(200).send({ success: true, message: '', result })
@@ -127,14 +117,6 @@ export const New = async (req, res) => {
   }
 }
 export const allNews = async (req, res) => {
-  // if (req.session.user === undefined) {
-  //   res.status(401).send({ success: false, message: '未登入' })
-  //   return
-  // }
-  // if (req.session.user._id.includes('##')) {
-  //   res.status(403).send({ success: false, message: '沒有權限' })
-  //   return
-  // }
   try {
     const result = await news.find()
     res.status(200).send({ success: true, message: '', result })
@@ -170,4 +152,61 @@ export const del = async (req, res) => {
       res.status(500).send({ success: false, message: '伺服器錯誤' })
     }
   }
+}
+export const edit = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+  }
+  if (!req.session.user.account.includes('##')) {
+    res.status(403).send({ success: false, message: '沒有權限' })
+  }
+  console.log(req.body.change)
+  upload.single('image')(req, res, async error => {
+    if (error instanceof multer.MulterError) {
+      let message = ''
+      if (error.code === 'LIMIT_FILE_SIZE') {
+        message = '檔案太大'
+      } else if (error.code === 'LIMIT_FORMAT') {
+        message = '格式不符'
+      } else {
+        message = '上傳錯誤'
+      }
+
+      res.status(400).send({ success: false, message })
+    } else if (error) {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    } else {
+      try {
+        let file = ''
+        if (process.env.DEV === 'true') {
+          // console.log(req.file)
+          file = req.file.filename
+        } else {
+          file = path.basename(req.file.path)
+        }
+
+        let result = await news.findById(req.params.id)
+        if (result === null) {
+          res.status(400).send({ success: false, message: '找不到資料' })
+        } else {
+          result = await news.findByIdAndUpdate(req.params.id,
+            {
+              title: req.body.title,
+              content: req.body.content,
+              file
+            }, { new: true })
+          res.status(200).send({ success: true, message: '', result })
+        }
+      } catch (error) {
+        if (error.name === 'ValidationError') {
+          const key = Object.keys(error.errors)[0]
+          const message = error.errors[key].message
+          res.status(400).send({ success: false, message })
+        } else {
+          res.status(500).send({ success: false, message: '伺服器錯誤' })
+          console.log(error)
+        }
+      }
+    }
+  })
 }
