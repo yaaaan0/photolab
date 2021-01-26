@@ -198,7 +198,7 @@ export default {
           fd.append('image', this.image)
           fd.append('title', this.title)
           fd.append('content', this.content)
-          this.axios.patch(process.env.VUE_APP_API + '/news/' + this.item._id, fd)
+          this.axios.patch(process.env.VUE_APP_API + '/news/' + this.item._id + '/imgEdit', fd)
             .then(res => {
               console.log(res.data)
               if (res.data.success) {
@@ -231,7 +231,7 @@ export default {
             })
         }
       } else {
-        this.axios.patch(process.env.VUE_APP_API + '/news/' + this.item._id, this.$data)
+        this.axios.patch(process.env.VUE_APP_API + '/news/' + this.item._id + '/textEdit', this.$data)
           .then(res => {
             if (res.data.success) {
               this.item.title = res.data.result.title
