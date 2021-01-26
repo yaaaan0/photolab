@@ -423,14 +423,14 @@ body::-webkit-scrollbar-thumb {
 #userMenu .v-application--wrap {
   min-height: auto;
 }
-#userMenu .v-btn.v-btn:first-child {
+/* #userMenu .v-btn.v-btn:first-child {
   border-top-left-radius: inherit;
   border-bottom-left-radius: inherit;
-}
-#userMenu .v-btn.v-btn:last-child {
+} */
+/* #userMenu .v-btn.v-btn:last-child {
   border-top-right-radius: inherit;
   border-bottom-right-radius: inherit;
-}
+} */
 #userMenu .theme--light.v-btn-toggle:not(.v-btn-toggle--group) {
   background: rgba(255, 255, 255, 0.2);
 }
@@ -726,6 +726,29 @@ body::-webkit-scrollbar-thumb {
   overflow: hidden;
   width: 200px;
 }
+#editPagesNew .create {
+  width: 200px;
+}
+
+#userMenu .editPagesNew.v-card__text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#userMenu .editPagesNew.v-card__text > .v-text-field {
+  width: 80vw;
+}
+#userMenu .addimg.img-inputer--large {
+  margin: 50px 0;
+  width: 80vw;
+}
+.btn {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+}
 /* orderInfo  allOrderInfo -------------------------------------------------  */
 #orderInfo,
 #allOrderInfo {
@@ -874,7 +897,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 #userMenu .img-inputer--large {
-  width: 90%;
+  width: 100%;
   margin: 20px 0;
 }
 #userMenu .upload {
@@ -1062,7 +1085,7 @@ body::-webkit-scrollbar-thumb {
   border-right: 1px solid rgba(0, 0, 0, 0.8);
   border-left: 1px solid rgba(0, 0, 0, 0.8);
   border-bottom: 1px solid rgba(0, 0, 0, 0.8);
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 50px;
   margin-top: 20px;
   border-radius: 0;
@@ -1078,20 +1101,25 @@ body::-webkit-scrollbar-thumb {
   padding: 50px;
   margin-top: 20px;
   border-radius: 0;
-  background-color: rgba(103, 125, 53, 0.95);
+  background-color: #c9beb3;
   cursor: pointer;
   transition: 1s;
 }
 #artical .v-card.p2:hover {
+  background-color: rgba(103, 125, 53, 0.8);
   transition: 1s;
 }
 
+#artical .v-sheet {
+  background-color: antiquewhite;
+}
 #artical .v-item-group {
   width: 80vw;
   flex: 0 1 auto;
   position: relative;
   max-width: 100%;
-  background-color: antiquewhite;
+  /* background-color: rgba(255, 255, 255, 0.35); */
+  /* background-color: antiquewhite; */
   border-top: 15px solid rgba(0, 0, 0, 0.8);
   border-right: 1px solid rgba(0, 0, 0, 0.8);
   border-left: 1px solid rgba(0, 0, 0, 0.8);
@@ -1099,7 +1127,7 @@ body::-webkit-scrollbar-thumb {
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
 }
 #artical h1 {
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 #artical pre {
   white-space: pre-wrap;
@@ -1109,6 +1137,10 @@ body::-webkit-scrollbar-thumb {
 #artical p {
   margin: 50px 0;
   line-height: 35px;
+}
+#artical h6 {
+  /* color: antiquewhite; */
+  font-weight: 700;
 }
 #artical .v-icon.v-icon {
   color: #677d35 !important;
@@ -1289,6 +1321,15 @@ body::-webkit-scrollbar-thumb {
     white-space: pre-wrap;
     word-wrap: break-word;
     text-align: justify;
+  }
+
+  #userMenu .addimg.img-inputer--large {
+    width: 500px;
+  }
+  .btn {
+    position: absolute;
+    bottom: 10px;
+    right: 180px;
   }
 
   /* 輪播 */
