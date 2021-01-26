@@ -49,24 +49,6 @@
               accept="image/*"
             )
             v-textarea(v-model="description" outlined name='input-7-4' label='說明 (200字以內)' value='' color="#677d35" auto-grow counter="200" rows="1")
-            //- h5 尺寸
-            //- .upload
-            //-   div
-            //-     v-btn-toggle(v-model='photoSize' mandatory color="#677d35")
-            //-       v-btn(@input='sizeState' value="landscape")
-            //-         v-icon mdi-crop-landscape
-            //-       v-btn(@input='sizeState' value="portrait")
-            //-         v-icon mdi-crop-portrait
-            //-       v-btn(@input='sizeState' value="resizing")
-            //-         h4 自訂
-            //-   div
-            //-     validation-provider(v-slot="{ errors }" name="PhoneNumber" rules="required|numeric")
-            //-       v-text-field(v-if="photoSize === 'landscape' " label='width' suffix="px" color="#677d35" value=1875 readonly )
-            //-       v-text-field(v-if="photoSize === 'landscape' " label='height' suffix="px" color="#677d35" value=1250 readonly )
-            //-       v-text-field(v-if="photoSize === 'portrait' " label='width' suffix="px" color="#677d35" value=1250 readonly )
-            //-       v-text-field(v-if="photoSize === 'portrait' " label='height' suffix="px" color="#677d35" value=1875 readonly )
-            //-       v-text-field(v-if="photoSize === 'resizing' " v-model='width' label='width' suffix="px" value color="#677d35" )
-            //-       v-text-field(v-if="photoSize === 'resizing' " v-model='height' label='height' suffix="px" value color="#677d35" )
             h5 攝影師
             v-chip-group(v-model='photographer' mandatory)
               v-chip(value="GP") GP
