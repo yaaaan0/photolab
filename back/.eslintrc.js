@@ -11,5 +11,11 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
+    'prettier/prettier': 'off',
+    'generator-star-spacing': 'off',
+    'arrow-parens': 'off',
+    'one-var': 'off',
+    'space-before-function-paren': 'off',
+    'comma-dangle': 'off'
   }
 }
