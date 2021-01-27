@@ -8,6 +8,9 @@
         template(v-slot:item.state='{ item }')
           v-switch(v-if="!item.state" :value="check(item.state)" disabled inset)
           v-switch(v-if="item.state" :value="check(item.state)" color="rgb(103, 125, 53)" input-value="true" disabled inset)
+        template(v-slot:item.message='{ item }')
+          v-badge(content='1' color="#cd5c5c" overlap)
+            v-icon mdi-message-processing-outline
 </template>
 <script>
 export default {
@@ -24,7 +27,8 @@ export default {
         { text: '拍攝項目', value: 'project', sortable: false },
         { text: '預計拍攝日期', value: 'date', sortable: false },
         { text: '攝影師', value: 'photographer', sortable: false },
-        { text: '訂單狀態', value: 'state', sortable: false }
+        { text: '訂單狀態', value: 'state', sortable: false },
+        { text: '', value: 'message', sortable: false }
       ],
       orders: []
     }
