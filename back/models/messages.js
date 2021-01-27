@@ -23,7 +23,7 @@ const messagesSchema = new Schema(
     },
     message: {
       type: String,
-      required: true
+      required: [true, '請輸入訊息']
     },
     read: {
       type: Boolean,
