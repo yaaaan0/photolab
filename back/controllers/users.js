@@ -371,7 +371,10 @@ export const delImage = async (req, res) => {
     if (result === null) {
       res.status(404).send({ success: false, message: '找不到資料' })
     } else {
-      result = await users.findOneAndUpdate(
+      result = await users.findByIdAndUpdate(
+        {
+          _id: req.params.id
+        },
         {
           $pull: {
             // 陣列欄位名稱
