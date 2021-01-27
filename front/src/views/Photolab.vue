@@ -11,9 +11,6 @@
                     v-form(@submit.prevent="onSubmit(props,active)")
                       v-btn(v-if="user.account.length > 0 " icon @click="toggle" type="submit")
                         v-icon(color='rgba(255, 255, 255, 0.7)') {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
-
-</div>
-
 </template>
 
 <script>
@@ -39,7 +36,8 @@ export default {
     onSubmit (props, active) {
       if (active === true) {
         console.log(props)
-        this.axios.post(process.env.VUE_APP_API + '/users/image/' + this.$store.state.user.id, props)
+        this.axios
+          .post(process.env.VUE_APP_API + '/users/image/' + this.$store.state.user.id, props)
           .then(res => {
             if (res.data.success) {
               this.active = true
@@ -65,7 +63,8 @@ export default {
             })
           })
       } else if (active === false) {
-        this.axios.delete(process.env.VUE_APP_API + '/users/image/' + this.$store.state.user.id + '/' + props.p_id)
+        this.axios
+          .delete(process.env.VUE_APP_API + '/users/image/' + this.$store.state.user.id + '/' + props.p_id)
           .then(res => {
             if (res.data.success) {
               this.active = false
@@ -106,7 +105,8 @@ export default {
     })
   },
   mounted () {
-    this.axios.get(process.env.VUE_APP_API + '/photos/')
+    this.axios
+      .get(process.env.VUE_APP_API + '/photos/')
       .then(res => {
         if (res.data.success) {
           this.imgsArr = res.data.result.map(item => {
@@ -141,7 +141,8 @@ export default {
         })
       })
     if (this.user.account.length > 0) {
-      this.axios.get(process.env.VUE_APP_API + '/users/image/' + this.user.id)
+      this.axios
+        .get(process.env.VUE_APP_API + '/users/image/' + this.user.id)
         .then(res => {
           if (res.data.success) {
             const arry = res.data.result.images
