@@ -37,16 +37,19 @@ export default {
         this.axios.delete(process.env.VUE_APP_API + '/users/image/' + this.$store.state.user.id + '/' + props.p_id)
           .then(res => {
             if (res.data.success) {
-              this.active = false
-              setTimeout(() => {
-                this.imgsArr.splice(index, 1)
-              }, 1000)
               this.$swal({
                 title: '取消收藏',
                 showConfirmButton: false,
                 timerProgressBar: true,
                 timer: 1000
               })
+              setTimeout(() => {
+                this.imgsArr.splice(index, 1)
+                const arry = res.data.result.images
+                for (let i = 0; i < arry.length; i++) {
+                  this.selected.push(arry[i].p_id)
+                }
+              }, 1000)
             } else {
               this.$swal({
                 icon: 'error',
