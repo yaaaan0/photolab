@@ -1019,7 +1019,7 @@ body::-webkit-scrollbar-thumb {
   font-weight: 500;
   font-size: 3.5rem;
 }
-#banner kinesisdistance {
+#banner .aaa {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1093,6 +1093,20 @@ body::-webkit-scrollbar-thumb {
 #about .photography_img {
   height: 100px !important;
   width: 100px !important;
+}
+#about .v-application .info {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+#about .theme--light.v-sheet.photography {
+  background-color: rgba(103, 125, 53, 0.9);
+  border-color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
+  transition: 0.5s;
+}
+#about .theme--light.v-sheet.photography:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: 0.5s;
 }
 /* allNews-------------------------------------------------  */
 #allNews {
@@ -1410,6 +1424,9 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  #about .v-application .info > pre {
+    padding-top: 0 !important;
   }
   #allNews .v-sheet.v-card:not(.v-sheet--outlined) {
     box-shadow: none;
