@@ -11,6 +11,8 @@ import VuePageTransition from 'vue-page-transition'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueSweetalert2 from 'vue-sweetalert2'
+import VueKinesis from 'vue-kinesis'
+import VueMarquee from 'vue-marquee-component'
 
 // 認證
 import { ValidationProvider } from 'vee-validate'
@@ -36,6 +38,8 @@ Vue.use(VueSweetalert2)
 Vue.use(VueSilentbox)
 Vue.use(Photoswipe)
 Vue.use(VueMasonryPlugin)
+Vue.use(VueKinesis)
+Vue.use(VueMarquee)
 
 new Vue({
   router,
