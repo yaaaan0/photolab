@@ -3,7 +3,7 @@
     vue-flux(:options="options" :images="images" :transitions="transitions")
     vue-aos(animation-class='fadeIn animated')
       v-card
-        kinesisdistance(:strength='50' :distance='100')
+        div.aaa
           kinesis-container.ddd
             v-btn.banner_new(fab to="/news")
               h1
@@ -17,14 +17,14 @@
                   span S
         v-divider(vertical)
         vue-aos(animation-class='fadeIn animated')
-          kinesisdistance(:strength='50' :distance='100')
+          div.aaa
             kinesis-container
               kinesis-element(:strength='10')
                 v-btn.banner_new(fab :to= "'/news/' + news[0]._id")
                   pre.pa-5 {{news[0].title}}
         v-divider(vertical)
         vue-aos(animation-class='fadeIn animated')
-          kinesisdistance(:strength='50' :distance='100')
+          div.aaa
             kinesis-container
               kinesis-element(:strength='10')
                 v-btn.banner_new(fab :to= "'/news/' + news[1]._id")
