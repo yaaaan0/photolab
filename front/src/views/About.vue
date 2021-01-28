@@ -4,10 +4,9 @@
     v-app
       vue-aos(animation-class='fadeIn animated')
         v-card.about
-          kinesisdistance(:strength='50' :distance='100')
-            kinesis-container
-              kinesis-element(:strength='10')
-                v-img(src='../assets/126326514_3530834480343077_5722785913041014548_o.jpg' width="500")
+          kinesis-container
+            kinesis-element(:strength='10')
+              v-img(src='../assets/126326514_3530834480343077_5722785913041014548_o.jpg' width="500")
           pre
             h1 品 牌 故 事
             span story
@@ -30,7 +29,7 @@
               | 8年的旅程繞了一圈回到家鄉，收藏的信物也繞成了一個圓滿的花環，掛在牆上滿載著情感.....
       v-divider
       vue-aos(animation-class='fadeIn animated')
-        v-card.about.concept
+        v-card.about.concept.mb-10
           pre
             h1.concept 品 牌 理 念
             span.concept_span concept
@@ -39,16 +38,16 @@
             | GP Photolab | Garland Pheasant
             | 鏡頭就像是信物花環，透過它看到的世界，充滿歡笑淚水幸福的色彩，任何的美好畫面都將被這以『愛』為基礎的圓所裱框。
             |
-            | ﹝Garland﹞
+            | 【Garland】
             | 花環在GP Photolab 的設定中，是情感的最高象徵。由各種素材環繞一圈都可稱之，因此它也是熱鬧、豐富、溫馨的象徵。
             | 花環，總是掛在每個家中的牆上，代表團圓、圓滿，我們服務無數家庭，在我心中卻都團聚成一個大家庭。
             |
-            |﹝Pheasant﹞
+            |【Pheasant】
             | 野雞，又稱雉雞，羽毛色澤極為漂亮，是鳳凰的原型。野雞是野生禽鳥，生命力及適應力強，對環境的要求不高，就像是我的心路歷程。
             | 對於攝影，一直都是用一股生命力與熱情去執行，並不愛專研器材跟動腦筋，無論怎樣的環境我都能繼續開心地投入拍照。
             | 雖然我很愛身著亮色感染周遭，那就像是野雞身上的羽毛，亮麗並不代表高貴，她依然嚮往最自然野生的生活，樸實的人們，南國的家。
             |
-            | ﹝Photolab﹞
+            | 【Photolab】
             | 是底片時代具有沖洗技術的照相館，在數位的現在也許是個很復古的說法，但我們是一群熱愛最原始的底片膠卷的人，
             | 工作室每個攝影師都會延續這樣的膠卷精神。
             |
@@ -62,14 +61,19 @@
       //-           v-avatar(size="10")
       //-             v-img(src='../assets/GPlogo.jpg')
       vue-aos(animation-class='fadeIn animated')
-        v-sheet.mt-10.mb-10
+        v-sheet.mt-15.mb-15(color="#e4d1b8")
           v-slide-group.pa-4(prev-icon="mdi-minus" next-icon="mdi-plus" show-arrows='always' )
-            v-slide-item(v-for='(item, index) in photography')
-              v-card.p2.ma-4( @click='click(item)')
+            v-slide-item.photography(v-for='(item, index) in photography')
+              v-card.p2.ma-4(width="400px" :href='item.fb' target="_bank")
                 v-row.fill-height(align='center' justify='center')
-                  v-avatar(size="200")
-                    v-img.photography_img(:src='item.image')
-                  h6 {{item.name}}
+                  v-avatar(size="180")
+                    v-img.photography_img(:src="item.image")
+                  .info
+                    pre
+                      | {{item.name}}
+                      | {{item.title}}
+                    v-icon mdi-camera
+                    v-icon mdi-facebook
 
 </template>
 
@@ -81,20 +85,28 @@ export default {
     return {
       photography: [
         {
-          name: '雞皮 GP Photography',
-          image: '../assets/photography_GP.jpg'
+          name: '雞皮 GP',
+          title: 'Photography',
+          image: 'http://localhost:8080/img/photography_GP.8799c2bb.jpg',
+          fb: 'https://www.facebook.com/GP.foto'
         },
         {
-          name: '榮格Jung Photography',
-          image: '../assets/photography_GP.jpg'
+          name: '榮格Jung',
+          title: 'Photography',
+          image: 'http://localhost:8080/img/photography_jung.e7f68c2a.jpg',
+          fb: 'https://www.facebook.com/Jung.photolab/'
         },
         {
-          name: '刷牙 Photography',
-          image: '../assets/photography_GP.jpg'
+          name: '壹壹where11',
+          title: 'Photography',
+          image: 'http://localhost:8080/img/photography_11.644781e4.jpg',
+          fb: 'https://www.facebook.com/Where11.foto'
         },
         {
-          name: '壹壹where11 Photography',
-          image: '../assets/photography_GP.jpg'
+          name: '刷牙',
+          title: 'Photography',
+          image: 'http://localhost:8080/img/photography_bush.9f07f80d.jpg',
+          fb: 'https://www.facebook.com/dnypfrstyle/'
         }
       ]
     }
