@@ -3,9 +3,9 @@
     vue-flux(:options="options" :images="images" :transitions="transitions")
     vue-aos(animation-class='fadeIn animated')
       v-card
-        v-btn.about(text to='/news')
-          kinesisdistance(:strength='50' :distance='100')
-            kinesis-container.ddd
+        kinesisdistance(:strength='50' :distance='100')
+          kinesis-container.ddd
+            v-btn.banner_new(fab to="/news")
               h1
                 kinesis-element(:strength='10')
                   span N
@@ -15,18 +15,25 @@
                   span W
                 kinesis-element(:strength='20')
                   span S
-          v-divider(vertical)
-          vue-aos(animation-class='fadeIn animated')
-            kinesisdistance(:strength='50' :distance='100')
-              kinesis-container
-                kinesis-element(:strength='10')
+        v-divider(vertical)
+        vue-aos(animation-class='fadeIn animated')
+          kinesisdistance(:strength='50' :distance='100')
+            kinesis-container
+              kinesis-element(:strength='10')
+                v-btn.banner_new(fab :to= "'/news/' + news[0]._id")
                   pre.pa-5 {{news[0].title}}
+        v-divider(vertical)
+        vue-aos(animation-class='fadeIn animated')
+          kinesisdistance(:strength='50' :distance='100')
+            kinesis-container
+              kinesis-element(:strength='10')
+                v-btn.banner_new(fab :to= "'/news/' + news[1]._id")
+                  pre.pa-5 {{news[1].title}}
 </template>
 
 <script>
 import Parallax from 'vue-parallaxy'
 import Word from '../components/Word.vue'
-import { KinesisContainer, KinesisElement } from 'vue-kinesis'
 import VueAos from 'vue-aos'
 
 import {
@@ -66,8 +73,6 @@ export default {
     FluxIndex,
     FluxPagination,
     FluxPreloader,
-    KinesisContainer,
-    KinesisElement,
     VueAos,
     Word
   },
