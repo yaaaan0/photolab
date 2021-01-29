@@ -61,17 +61,50 @@
       //-           v-avatar(size="10")
       //-             v-img(src='../assets/GPlogo.jpg')
       vue-aos(animation-class='fadeIn animated')
-        v-sheet.mt-15.mb-15(color="#e4d1b8")
-          v-slide-group.pa-4(prev-icon="mdi-minus" next-icon="mdi-plus" show-arrows='always' )
-            v-slide-item.photography(v-for='(item, index) in photography')
-              v-card.p2.ma-4(width="400px" :href='item.fb' target="_bank")
+        v-sheet.mt-15.mb-15(color="rgb(231 219 202)")
+          v-slide-group.pa-4(prev-icon="mdi-minus" next-icon="mdi-plus" show-arrows='always')
+            v-slide-item.photography
+              v-card.p2.ma-4(width="400px" href='https://www.facebook.com/GP.foto' target="_bank")
                 v-row.fill-height(align='center' justify='center')
                   v-avatar(size="180")
-                    v-img.photography_img(:src="item.image")
+                    v-img.photography_img(src='../assets/photography_GP.jpg')
                   .info
                     pre
-                      | {{item.name}}
-                      | {{item.title}}
+                      | 雞皮 GP
+                      | Photography
+                    v-icon mdi-camera
+                    v-icon mdi-facebook
+            v-slide-item.photography
+              v-card.p2.ma-4(width="400px" href='https://www.facebook.com/Jung.photolab/' target="_bank")
+                v-row.fill-height(align='center' justify='center')
+                  v-avatar(size="180")
+                    v-img.photography_img(src='../assets/photography_jung.jpg')
+                  .info
+                    pre
+                      | 榮格Jung
+                      | Photography
+                    v-icon mdi-camera
+                    v-icon mdi-facebook
+            v-slide-item.photography
+              v-card.p2.ma-4(width="400px" href='https://www.facebook.com/Where11.foto' target="_bank")
+                v-row.fill-height(align='center' justify='center')
+                  v-avatar(size="180")
+                    v-img.photography_img(src='../assets/photography_11.jpg')
+                  .info
+                    pre
+                      | 壹壹where11
+                      | Photography
+                    v-icon mdi-camera
+                    v-icon mdi-facebook
+            v-slide-item.photography
+              v-card.p2.ma-4(width="400px" href='https://www.facebook.com/dnypfrstyle/' target="_bank")
+                v-row.fill-height(align='center' justify='center')
+                  v-avatar(size="180")
+                    v-img.photography_img(src='../assets/photography_bush.jpg')
+                  .info
+                    pre
+                      | 刷牙
+                      | Photography
                     v-icon mdi-camera
                     v-icon mdi-facebook
 
@@ -81,36 +114,36 @@
 import VueAos from 'vue-aos'
 export default {
   name: 'About',
-  data () {
-    return {
-      photography: [
-        {
-          name: '雞皮 GP',
-          title: 'Photography',
-          image: 'http://localhost:8080/img/photography_GP.8799c2bb.jpg',
-          fb: 'https://www.facebook.com/GP.foto'
-        },
-        {
-          name: '榮格Jung',
-          title: 'Photography',
-          image: 'http://localhost:8080/img/photography_jung.e7f68c2a.jpg',
-          fb: 'https://www.facebook.com/Jung.photolab/'
-        },
-        {
-          name: '壹壹where11',
-          title: 'Photography',
-          image: 'http://localhost:8080/img/photography_11.644781e4.jpg',
-          fb: 'https://www.facebook.com/Where11.foto'
-        },
-        {
-          name: '刷牙',
-          title: 'Photography',
-          image: 'http://localhost:8080/img/photography_bush.9f07f80d.jpg',
-          fb: 'https://www.facebook.com/dnypfrstyle/'
-        }
-      ]
-    }
-  },
+  // data () {
+  //   return {
+  //     photography: [
+  //       {
+  //         name: '雞皮 GP',
+  //         title: 'Photography',
+  //         image: 'http://localhost:8080/img/photography_GP.8799c2bb.jpg',
+  //         fb: 'https://www.facebook.com/GP.foto'
+  //       },
+  //       {
+  //         name: '榮格Jung',
+  //         title: 'Photography',
+  //         image: 'http://localhost:8080/img/photography_jung.e7f68c2a.jpg',
+  //         fb: 'https://www.facebook.com/Jung.photolab/'
+  //       },
+  //       {
+  //         name: '壹壹where11',
+  //         title: 'Photography',
+  //         image: 'http://localhost:8080/img/photography_11.644781e4.jpg',
+  //         fb: 'https://www.facebook.com/Where11.foto'
+  //       },
+  //       {
+  //         name: '刷牙',
+  //         title: 'Photography',
+  //         image: 'http://localhost:8080/img/photography_bush.9f07f80d.jpg',
+  //         fb: 'https://www.facebook.com/dnypfrstyle/'
+  //       }
+  //     ]
+  //   }
+  // },
   components: {
     VueAos
   }
