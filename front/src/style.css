@@ -710,6 +710,9 @@ body::-webkit-scrollbar-thumb {
 #userMenu .editPagesNew.v-card__text > .v-text-field {
   width: 80vw;
 }
+#userMenu .editPagesNew.v-card__text > .v-input {
+  flex: 0;
+}
 #userMenu .addimg.img-inputer--large {
   margin: 50px 0;
   width: 80vw;
@@ -1000,7 +1003,7 @@ body::-webkit-scrollbar-thumb {
   border-top: 1px solid #000000;
   border-bottom: 1px solid #000000;
   background-color: transparent;
-  padding: 50px 0;
+  padding: 30px 0;
   margin-top: 50px;
   margin-bottom: 30px;
   box-shadow: none;
@@ -1099,14 +1102,14 @@ body::-webkit-scrollbar-thumb {
   border-color: transparent !important;
 }
 #about .theme--light.v-sheet.photography {
-  background-color: rgba(103, 125, 53, 0.9);
+  background-color: rgba(255, 255, 255, 0.5);
   border-color: #ffffff;
   color: rgba(0, 0, 0, 0.87);
-  transition: 0.5s;
+  transition: 1s;
 }
 #about .theme--light.v-sheet.photography:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transition: 0.5s;
+  background-color: rgba(103, 125, 53, 0.8);
+  transition: 1s;
 }
 /* allNews-------------------------------------------------  */
 #allNews {
@@ -1213,7 +1216,7 @@ body::-webkit-scrollbar-thumb {
   padding: 50px;
   margin-top: 20px;
   border-radius: 0;
-  background-color: #c9beb3;
+  background-color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   transition: 1s;
 }
