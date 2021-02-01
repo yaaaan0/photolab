@@ -65,7 +65,7 @@
                 v-chip(value="刷牙" filter outlined) 刷牙
               h3 選擇您的拍攝日期
               v-col(cols='12' sm='6' md='4')
-                v-dialog(ref='dialog' v-model='modal' :return-value.sync='date' persistent width='290px')
+                v-dialog(ref='dialog' v-model='modal' :return-value.sync='date' persistent width='350px')
                   template(v-slot:activator='{ on, attrs }')
                     v-text-field(
                       v-model='date'
@@ -177,11 +177,6 @@ export default {
               timer: 1000
             })
             res.data.result.src = process.env.VUE_APP_API + '/albums/file/' + res.data.result.file
-
-            this.$data.agreeStatement = null
-            this.$data.project = ''
-            this.$data.date = null
-            this.$data.photographer = null
             setTimeout(() => {
               this.$router.push({ path: '/user/order', name: 'OrderList' })
             }, 1000)
