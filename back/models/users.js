@@ -39,16 +39,16 @@ const userImageSchema = new Schema(
   }
 )
 
-const messages = new Schema(
-  {
-    date: {
-      type: Date
-    },
-    content: {
-      type: String
-    }
-  }
-)
+// const messages = new Schema(
+//   {
+//     date: {
+//       type: Date
+//     },
+//     content: {
+//       type: String
+//     }
+//   }
+// )
 
 const orderSchema = new Schema(
   {
@@ -75,10 +75,16 @@ const orderSchema = new Schema(
     },
     state: {
       type: Boolean
-    },
-    messages: {
-      type: [messages]
     }
+    // messages_sum: {
+    //   type: Number
+    // },
+    // messages_userSum: {
+    //   type: Number
+    // },
+    // messages_webmasterSum: {
+    //   type: Number
+    // }
   }
 )
 

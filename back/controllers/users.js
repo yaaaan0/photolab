@@ -29,7 +29,7 @@ export const create = async (req, res) => {
         password: md5(req.body.password),
         name: req.body.name,
         email: req.body.email,
-        phoneNumber: req.body.phoneNumber
+        phoneNumber: req.body.phoneNumber,
       })
       res.status(200).send({ success: true, message: '', result })
     }
@@ -210,6 +210,9 @@ export const addOrder = async (req, res) => {
               photographer: req.body.photographer,
               paid: false,
               state: false
+              // messages_sum: 0,
+              // messages_userSum: 0,
+              // messages_otherSum: 0
             }
           }
         }, { new: true }).then(result => {
