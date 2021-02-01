@@ -1,11 +1,11 @@
 <template lang="pug">
   #login
     v-app
-      v-expansion-panels(mandatory tile)
+      v-expansion-panels(v-model="model" mandatory tile)
         v-container
           validation-observer(ref="observer" v-slot="{ invalid }")
               v-col(cols='12')
-                v-expansion-panel
+                v-expansion-panel(value="login")
                     v-expansion-panel-header LOG IN ｜ 登入
                     v-expansion-panel-content
                       validation-observer
@@ -39,7 +39,7 @@
                                     v-checkbox( color="#000000" :label='`Remember me`')
                                     v-btn(type="submit" rounded dark ) 登入
               v-col(cols='12')
-                v-expansion-panel
+                v-expansion-panel(value="signup")
                     v-expansion-panel-header SIGN UP ｜ 註冊
                     v-expansion-panel-content
                       validation-observer
@@ -160,7 +160,8 @@ export default {
       email: '',
       phoneNumber: '',
       show1: false,
-      featuresOpen: true
+      featuresOpen: true,
+      model: ''
     }
   },
   components: {
@@ -201,6 +202,9 @@ export default {
                 title: '註冊成功',
                 showConfirmButton: false,
                 timer: 1000
+              }).then(() => {
+                this.$router.push('/login')
+                this.model = 'login'
               })
             } else {
               this.$swal({
