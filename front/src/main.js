@@ -26,12 +26,16 @@ import Photoswipe from 'vue-pswipe'
 
 import { VueMasonryPlugin } from 'vue-masonry'
 
+import 'vue-video-section/dist/vue-video-section.css'
+import VueVideoSection from 'vue-video-section'
+
 axios.defaults.withCredentials = true
 Vue.config.productionTip = false
 
 Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('ImgInputer', ImgInputer)
 Vue.component('video-background', VideoBackground)
+Vue.component('vue-video-section', VueVideoSection)
 Vue.use(VuePageTransition)
 Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2)
