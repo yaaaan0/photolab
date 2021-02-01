@@ -65,16 +65,18 @@ export default {
                 timer: 1500
               })
 
-              this.axios.get(process.env.VUE_APP_API + '/banners/')
-                .then(res => {
-                  if (res.data.success) {
-                    this.banners = res.data.result.map(item => {
-                      item.src = process.env.VUE_APP_API + '/photos/file/' + item.file
-                      return item
-                    })
-                    this.banners.reverse()
-                  }
-                })
+              this.banners.splice(0, 0, res.data.result)
+
+              // this.axios.get(process.env.VUE_APP_API + '/banners/')
+              //   .then(res => {
+              //     if (res.data.success) {
+              //       this.banners = res.data.result.map(item => {
+              //         item.src = process.env.VUE_APP_API + '/photos/file/' + item.file
+              //         return item
+              //       })
+              //       this.banners.reverse()
+              //     }
+              //   })
 
               // 送出後清空表單
               this.image = null

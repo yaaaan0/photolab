@@ -124,18 +124,6 @@ export default {
     ValidationObserver
   },
   methods: {
-    // sizeState () {
-    //   if (this.photoSize === 'landscape') {
-    //     this.width = 1875
-    //     this.height = 1250
-    //   } else if (this.photoSize === 'portrait') {
-    //     this.width = 1250
-    //     this.height = 1875
-    //   } else if (this.photoSize === 'resizing') {
-    //     this.width = null
-    //     this.height = null
-    //   }
-    // },
     create () {
       this.dialog = true
 

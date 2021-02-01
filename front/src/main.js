@@ -13,6 +13,7 @@ import VueAxios from 'vue-axios'
 import VueSweetalert2 from 'vue-sweetalert2'
 import VueKinesis from 'vue-kinesis'
 import VueMarquee from 'vue-marquee-component'
+import VueGtag from 'vue-gtag'
 
 // 認證
 import { ValidationProvider } from 'vee-validate'
@@ -44,6 +45,11 @@ Vue.use(Photoswipe)
 Vue.use(VueMasonryPlugin)
 Vue.use(VueKinesis)
 Vue.use(VueMarquee)
+Vue.use(VueGtag, {
+  config: {
+    id: process.env.VUE_APP_GA
+  }
+})
 
 new Vue({
   router,

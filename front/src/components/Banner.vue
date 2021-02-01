@@ -1,5 +1,6 @@
 <template lang="pug">
   #banner
+    video-background(:src='require(`@/assets/video/1.mp4`)' style='height: 100%;' overlay="linear-gradient(45deg,#2a4ae430,#faebd74d)")
     vue-flux(:options="options" :images="images" :transitions="transitions")
     vue-aos(animation-class='fadeIn animated')
       v-card

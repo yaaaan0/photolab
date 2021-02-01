@@ -117,18 +117,7 @@ export default {
                 timerProgressBar: true,
                 timer: 1500
               })
-
-              this.axios.get(process.env.VUE_APP_API + '/news/')
-                .then(res => {
-                  if (res.data.success) {
-                    this.news = res.data.result.map(item => {
-                      item.src = process.env.VUE_APP_API + '/photos/file/' + item.file
-                      return item
-                    })
-                    this.news.reverse()
-                  }
-                })
-
+              this.news.splice(0, 0, res.data.result)
               // 送出後清空表單
               this.image = null
             } else {
