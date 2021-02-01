@@ -157,7 +157,7 @@ body::-webkit-scrollbar-thumb {
   overflow: hidden;
 
   position: relative;
-  z-index: 999;
+  /* z-index: 999; */
 }
 
 #leading .logo {
@@ -174,7 +174,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
 }
 
-#leading .btn {
+#leading .btn_leading {
   height: 100vh;
   width: 100vw;
 
@@ -185,23 +185,16 @@ body::-webkit-scrollbar-thumb {
 
 #leading .v-btn {
   position: absolute;
-  bottom: 20%;
+  top: 80%;
   z-index: 2;
 }
-#leading .video {
-  height: 100vh;
-  width: 100vw;
-  background-color: aqua;
-  z-index: 1;
-
+.bg {
   position: absolute;
-  padding: 0 !important;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(250, 235, 215, 0.3);
 }
-#leading .v-parallax {
-  width: 100vw !important;
-  height: 50% !important;
-}
-
 /* Menu------------------------------------------------- */
 #menu {
   /* position: fixed; */
@@ -583,6 +576,11 @@ body::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.06);
   /* cursor: pointer; */
 }
+#order .v-date-picker-table {
+  position: relative;
+  padding: 0 12px;
+  height: 350px;
+}
 
 /* userorder-------------------------------------------------  */
 #uOrder .theme--light.v-data-table {
@@ -636,7 +634,8 @@ body::-webkit-scrollbar-thumb {
   overflow: hidden;
 }
 #editPagesHome .theme--light.v-data-table,
-#editPagesNew .theme--light.v-data-table {
+#editPagesNew .theme--light.v-data-table,
+#editPagesPhotolab .theme--light.v-data-table {
   display: flex;
   justify-content: center;
   /* align-items: center; */
@@ -644,7 +643,6 @@ body::-webkit-scrollbar-thumb {
   background-color: antiquewhite;
   box-shadow: none !important;
   color: rgba(0, 0, 0, 0.87);
-  overflow: hidden;
 }
 #editPagesHome .v-data-table > .v-data-table__wrapper > table > tbody > tr {
   height: 110px;
@@ -660,7 +658,8 @@ body::-webkit-scrollbar-thumb {
   padding: 0 100px !important;
 } */
 #editPagesHome .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover,
-#editPagesNew .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover {
+#editPagesNew .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover,
+#editPagesPhotolab .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover {
   background-color: transparent;
 }
 #editPagesHome .v-data-table__wrapper {
@@ -674,7 +673,8 @@ body::-webkit-scrollbar-thumb {
   width: 300px;
 }
 #editPagesHome .v-application--is-ltr .v-data-table > .v-data-table__wrapper > table > thead > tr > th,
-#editPagesNew .v-application--is-ltr .v-data-table > .v-data-table__wrapper > table > thead > tr > th {
+#editPagesNew .v-application--is-ltr .v-data-table > .v-data-table__wrapper > table > thead > tr > th,
+#editPagesPhotolab .v-application--is-ltr .v-data-table > .v-data-table__wrapper > table > thead > tr > th {
   text-align: center !important;
 }
 #editPagesHome .v-form {
@@ -860,19 +860,44 @@ body::-webkit-scrollbar-thumb {
   margin-top: 30px;
 }
 /* editPagesPhotolab-------------------------------------------------  */
+#show_tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#show_img {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 80vh;
+  overflow: hidden !important;
+}
+
 #editPagesPhotolab {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 100vw;
-  height: 89vh;
+  height: 100%;
+}
+/* .show_tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+.show_img {
   overflow: hidden;
 }
 
 #editPagesPhotolab #app {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  height: 100px;
+}
+#show_tab #app {
+  height: 100% !important;
+}
+#show_img #app {
+  height: 100% !important;
 }
 #editPagesPhotolab .v-application--wrap {
   display: flex;
@@ -904,7 +929,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 24px;
   width: 80vw;
   height: 75vh !important;
-  margin: 40px;
+  margin-top: 50px;
   background-color: antiquewhite;
 }
 #editPagesPhotolab .v-card__subtitle,
@@ -935,6 +960,14 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
   position: relative;
   padding: 10px;
+}
+#editPagesPhotolab .show {
+  display: flex;
+  margin-top: 50px;
+}
+#editPagesPhotolab .show > .theme--light.v-btn-toggle:not(.v-btn-toggle--group) {
+  background: antiquewhite;
+  margin-left: 10px;
 }
 #userMenu .img-inputer--large {
   width: 100%;
