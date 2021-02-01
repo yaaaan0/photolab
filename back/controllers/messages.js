@@ -82,3 +82,80 @@ export const checkOrder = async (req, res) => {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
   }
 }
+export const orderUserSum = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  // if (!req.session.user.account.includes('##')) {
+  //   res.status(403).send({ success: false, message: '沒有權限' })
+  // }
+  try {
+    let result = await messages.find({ order_id: req.params.order_id })
+    let userSum = 0
+    for (let i = 0; i < result.length; i++) {
+      if (result[i].user_account === req.session.user.account) {
+        userSum++
+      }
+    }
+    result = userSum
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+export const orderWebmasterSum = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  // if (!req.session.user.account.includes('##')) {
+  //   res.status(403).send({ success: false, message: '沒有權限' })
+  // }
+  try {
+    let result = await messages.find({ order_id: req.params.order_id })
+    let userSum = 0
+    for (let i = 0; i < result.length; i++) {
+      if (result[i].user_account === req.session.user.account) {
+        userSum++
+      }
+    }
+    result = result.length - userSum
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+export const orderSum = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  // if (!req.session.user.account.includes('##')) {
+  //   res.status(403).send({ success: false, message: '沒有權限' })
+  // }
+  try {
+    let result = await messages.find({ order_id: req.params.order_id })
+    result = result.length
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+export const sum = async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401).send({ success: false, message: '未登入' })
+    return
+  }
+  // if (!req.session.user.account.includes('##')) {
+  //   res.status(403).send({ success: false, message: '沒有權限' })
+  // }
+  try {
+    let result = await messages.find({ user_account: req.params.user_account })
+    result = result.length
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
+  }
+}
