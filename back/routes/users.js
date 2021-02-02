@@ -29,7 +29,7 @@ router.get('/heartbeat', heartbeat)
 // 查詢所有使用者
 router.get('/', allUser)
 // 修改訂單資訊
-router.patch('/:order_id', editUser)
+router.patch('/allorder/:order_id', editUser)
 
 // 訂單
 router.patch('/:id', edit)
