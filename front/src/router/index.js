@@ -198,30 +198,30 @@ const routes = [
       {
         path: '',
         name: 'WebMaster',
-        component: () => import(/* webpackChunkName: "create" */ '../views/Create.vue'),
+        component: () => import(/* webpackChunkName: "allOrders" */ '../views/AllOrders.vue'),
         meta: {
           title: 'GP photolab ｜ 管理者',
           login: true
         }
       },
-      {
-        path: 'create',
-        name: 'Create',
-        component: () => import(/* webpackChunkName: "create" */ '../views/Create.vue'),
-        meta: {
-          title: 'GP photolab ｜ 管理者',
-          login: true
-        }
-      },
-      {
-        path: 'schedule',
-        name: 'Schedule',
-        component: () => import(/* webpackChunkName: "schedule" */ '../views/Schedule.vue'),
-        meta: {
-          title: 'GP photolab ｜ 攝影排程',
-          login: true
-        }
-      },
+      // {
+      //   path: 'create',
+      //   name: 'Create',
+      //   component: () => import(/* webpackChunkName: "create" */ '../views/Create.vue'),
+      //   meta: {
+      //     title: 'GP photolab ｜ 管理者',
+      //     login: true
+      //   }
+      // },
+      // {
+      //   path: 'schedule',
+      //   name: 'Schedule',
+      //   component: () => import(/* webpackChunkName: "schedule" */ '../views/Schedule.vue'),
+      //   meta: {
+      //     title: 'GP photolab ｜ 攝影排程',
+      //     login: true
+      //   }
+      // },
       {
         path: 'allOrders',
         name: 'AllOrders',

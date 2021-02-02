@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: antiquewhite;
-  font-family: 'Source Serif Pro', serif !important;
+  font-family: "Source Serif Pro", serif !important;
 }
 
 input:-webkit-autofill,
@@ -76,6 +76,7 @@ body::-webkit-scrollbar-thumb {
 #app {
   background-color: antiquewhite;
   height: 100%;
+  font-family: "Source Serif Pro", serif !important;
 }
 
 #home,
@@ -233,14 +234,14 @@ body::-webkit-scrollbar-thumb {
   position: relative;
 }
 #menu .menu-btn::before {
-  content: '';
+  content: "";
   width: 100%;
   height: 1px;
   border-top: 1px solid #000000;
   position: absolute;
 }
 #menu .menu-btn::after {
-  content: '';
+  content: "";
   width: 100%;
   height: 1px;
   border-top: 1px solid #000000;
@@ -515,7 +516,9 @@ body::-webkit-scrollbar-thumb {
 .theme--light.v-text-field--filled > .v-input__control > .v-input__slot {
   background: indianred;
 }
-.editColor.theme--light.v-text-field--filled > .v-input__control > .v-input__slot {
+.editColor.theme--light.v-text-field--filled
+  > .v-input__control
+  > .v-input__slot {
   background: rgba(177, 192, 141, 0.7) !important;
   transition: 1s;
 }
@@ -621,7 +624,12 @@ body::-webkit-scrollbar-thumb {
   box-shadow: none !important;
   color: rgba(0, 0, 0, 0.87);
 }
-#allOrderList .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover {
+#allOrderList
+  .v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:hover {
   background-color: rgba(103, 125, 53, 0.3);
   cursor: pointer;
 }
@@ -657,9 +665,19 @@ body::-webkit-scrollbar-thumb {
   margin: 100px !important;
   padding: 0 100px !important;
 } */
-#editPagesHome .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover,
+#editPagesHome
+  .v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:hover,
 #editPagesNew .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover,
-#editPagesPhotolab .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover {
+#editPagesPhotolab
+  .v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:hover {
   background-color: transparent;
 }
 #editPagesHome .v-data-table__wrapper {
@@ -669,12 +687,36 @@ body::-webkit-scrollbar-thumb {
   justify-content: space-around;
   align-items: center;
 }
-#editPagesHome .theme--light.v-text-field--filled > .v-input__control > .v-input__slot {
+#editPagesHome
+  .theme--light.v-text-field--filled
+  > .v-input__control
+  > .v-input__slot {
   width: 300px;
 }
-#editPagesHome .v-application--is-ltr .v-data-table > .v-data-table__wrapper > table > thead > tr > th,
-#editPagesNew .v-application--is-ltr .v-data-table > .v-data-table__wrapper > table > thead > tr > th,
-#editPagesPhotolab .v-application--is-ltr .v-data-table > .v-data-table__wrapper > table > thead > tr > th {
+#editPagesHome
+  .v-application--is-ltr
+  .v-data-table
+  > .v-data-table__wrapper
+  > table
+  > thead
+  > tr
+  > th,
+#editPagesNew
+  .v-application--is-ltr
+  .v-data-table
+  > .v-data-table__wrapper
+  > table
+  > thead
+  > tr
+  > th,
+#editPagesPhotolab
+  .v-application--is-ltr
+  .v-data-table
+  > .v-data-table__wrapper
+  > table
+  > thead
+  > tr
+  > th {
   text-align: center !important;
 }
 #editPagesHome .v-form {
@@ -838,7 +880,8 @@ body::-webkit-scrollbar-thumb {
   width: 350px;
   margin-right: 30px;
 }
-.v-text-field.v-input--dense:not(.v-text-field--outlined) .v-text-field__prefix {
+.v-text-field.v-input--dense:not(.v-text-field--outlined)
+  .v-text-field__prefix {
   padding-right: 10px !important;
   color: #b3a89e;
 }
@@ -940,7 +983,10 @@ body::-webkit-scrollbar-thumb {
 #editPagesPhotolab .vue-waterfall {
   margin: 20px;
 }
-#editPagesPhotolab .vue-waterfall-easy-container > .loading.ball-beat > .dot[data-v-ded6b974] {
+#editPagesPhotolab
+  .vue-waterfall-easy-container
+  > .loading.ball-beat
+  > .dot[data-v-ded6b974] {
   background-color: #677d35;
 }
 .editDialog.v-sheet.v-card {
@@ -965,7 +1011,9 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   margin-top: 50px;
 }
-#editPagesPhotolab .show > .theme--light.v-btn-toggle:not(.v-btn-toggle--group) {
+#editPagesPhotolab
+  .show
+  > .theme--light.v-btn-toggle:not(.v-btn-toggle--group) {
   background: antiquewhite;
   margin-left: 10px;
 }
@@ -1065,7 +1113,7 @@ body::-webkit-scrollbar-thumb {
 #banner .banner_new {
   /* width: 50px !important;
   height: 100px !important; */
-  background-color: antiquewhite !important;
+  background-color: #faebd7 !important;
   box-shadow: none;
   margin: 10px;
   padding: 10px;
@@ -1073,6 +1121,14 @@ body::-webkit-scrollbar-thumb {
 .ddd {
   display: flex;
   margin: 50px;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 /* about-------------------------------------------------  */
 #about .about {
@@ -1118,7 +1174,7 @@ body::-webkit-scrollbar-thumb {
 #about span {
   letter-spacing: 2px;
   line-height: 35px;
-  font-family: 'Cedarville Cursive', cursive;
+  font-family: "Cedarville Cursive", cursive;
   font-size: 30px;
 }
 #about p {
@@ -1409,7 +1465,13 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     overflow: hidden;
   }
-  #editPagesHome .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
+  #editPagesHome
+    .v-data-table
+    > .v-data-table__wrapper
+    > table
+    > tbody
+    > tr
+    > td {
     margin: 100px !important;
     padding: 0 100px !important;
   }
