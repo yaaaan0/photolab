@@ -1,7 +1,9 @@
 <template lang="pug">
   #banner
-    video-background(:src='require(`@/assets/video/1.mp4`)' style='height: 100%;' overlay="linear-gradient(45deg,#2a4ae430,#faebd74d)")
+    loading(v-if='first' loader='dots' :active.sync='isLoading' blur="100px" lock-scroll="true" opacity="1" background-color="#faebd7" color="#677d35" transition="fade")
+      v-img(src="../assets/logo_animated_animated.svg")
     vue-flux(:options="options" :images="images" :transitions="transitions")
+      v-skeleton-loader( class="mx-auto" width="100%" height="100%" type="image")
     vue-aos(animation-class='fadeIn animated')
       v-card
         div.aaa
@@ -34,8 +36,10 @@
 
 <script>
 import Parallax from 'vue-parallaxy'
-import Word from '../components/Word.vue'
 import VueAos from 'vue-aos'
+
+import VueLoading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 
 import {
   VueFlux,
@@ -63,7 +67,9 @@ export default {
       },
       images: [],
       transitions: ['fade'],
-      news: []
+      news: [],
+      isLoading: true,
+      first: true
     }
   },
   components: {
@@ -75,7 +81,7 @@ export default {
     FluxPagination,
     FluxPreloader,
     VueAos,
-    Word
+    loading: VueLoading
   },
   mounted () {
     this.axios.get(process.env.VUE_APP_API + '/banners/')
@@ -123,6 +129,18 @@ export default {
           text: err.response.data.message
         })
       })
+    setTimeout(() => {
+      this.isLoading = false
+    }, 3000)
+
+    if (window.name === '') {
+      console.log('首次被加载')
+      this.first = true
+      window.name = 'isReload'
+    } else if (window.name === 'isReload') {
+      console.log('页面被刷新')
+      this.first = false
+    }
   }
 }
 </script>
