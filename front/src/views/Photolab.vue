@@ -98,11 +98,23 @@ export default {
       itemSelector: '.item',
       fitWidth: 'true'
     })
-    imagesloaded('.item', () => {
-      setTimeout(() => {
-        msnry.layout()
-      }, 100)
-    })
+
+    if (window.name === '') {
+      console.log('首次被加载')
+      window.name = 'isReload'
+      imagesloaded('.item', () => {
+        setTimeout(() => {
+          msnry.layout()
+        }, 10000)
+      })
+    } else if (window.name === 'isReload') {
+      console.log('页面被刷新')
+      imagesloaded('.item', () => {
+        setTimeout(() => {
+          msnry.layout()
+        }, 500)
+      })
+    }
   },
   mounted () {
     this.axios
