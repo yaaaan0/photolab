@@ -5,12 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "electron:build": "vue-cli-service electron:build",
-    "electron:generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten",
-    "electron:serve": "vue-cli-service electron:serve",
-    "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps"
+    "lint": "vue-cli-service lint"
   },
   "main": "background.js",
   "dependencies": {
@@ -80,7 +75,6 @@
     "sass-loader": "^8.0.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "vue-cli-plugin-electron-builder": "~2.0.0-rc.6",
     "vue-cli-plugin-vuetify": "~2.0.8",
     "vue-template-compiler": "^2.6.11",
     "vue-waterfall-easy": "^2.4.4",
