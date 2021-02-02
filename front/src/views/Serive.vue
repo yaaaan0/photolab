@@ -1,25 +1,21 @@
 <template lang="pug">
 #serive
   #content
-    Word
+    v-app
+      vue-aos(animation-class='fadeIn animated')
+        v-card.mb-10.mt-8(width="80vw" height="500px")
+      vue-aos(animation-class='fadeIn animated')
+        v-card.mb-10(width="80vw" height="500px")
+      vue-aos(animation-class='fadeIn animated')
+        v-card.mb-10(width="80vw" height="500px")
+      vue-aos(animation-class='fadeIn animated')
+        v-card.mb-10(width="80vw" height="500px")
+      vue-aos(animation-class='fadeIn animated')
+        v-card.mb-10(width="80vw" height="500px")
 </template>
 
 <script>
-import Menu from '../components/Menu.vue'
-import ResBtn from '../components/ResBtn.vue'
-import Word from '../components/Word.vue'
-import Footer from '../components/Footer.vue'
-import NevBtn from '../components/NevBtn.vue'
-import TopBtn from '../components/TopBtn.vue'
 export default {
-  name: 'Serive',
-  components: {
-    Menu,
-    ResBtn,
-    Word,
-    Footer,
-    NevBtn,
-    TopBtn
-  }
+  name: 'Serive'
 }
 </script>

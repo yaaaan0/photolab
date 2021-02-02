@@ -1350,6 +1350,15 @@ body::-webkit-scrollbar-thumb {
   color: #677d35 !important;
 }
 
+#serive #content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#serive #app {
+  display: flex;
+}
+
 /* 假字 */
 #word {
   height: 100%;
