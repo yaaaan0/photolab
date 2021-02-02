@@ -1,7 +1,7 @@
 <template lang="pug">
   #banner
-    loading(v-if='first' loader='dots' :active.sync='isLoading' blur="100px" lock-scroll="true" opacity="1" background-color="#faebd7" color="#677d35" transition="fade")
-      v-img(src="../assets/logo_animated_animated.svg")
+    //- loading(v-if='first' loader='dots' :active.sync='isLoading' blur="100px" lock-scroll="true" opacity="1" background-color="#faebd7" color="#677d35" transition="fade")
+    //-   v-img(src="../assets/logo_animated_animated.svg")
     vue-flux(:options="options" :images="images" :transitions="transitions")
       v-skeleton-loader( class="mx-auto" width="100%" height="100%" type="image")
     vue-aos(animation-class='fadeIn animated')
@@ -38,8 +38,8 @@
 import Parallax from 'vue-parallaxy'
 import VueAos from 'vue-aos'
 
-import VueLoading from 'vue-loading-overlay'
-import 'vue-loading-overlay/dist/vue-loading.css'
+// import VueLoading from 'vue-loading-overlay'
+// import 'vue-loading-overlay/dist/vue-loading.css'
 
 import {
   VueFlux,
@@ -80,8 +80,8 @@ export default {
     FluxIndex,
     FluxPagination,
     FluxPreloader,
-    VueAos,
-    loading: VueLoading
+    VueAos
+    // loading: VueLoading
   },
   mounted () {
     this.axios.get(process.env.VUE_APP_API + '/banners/')
@@ -129,18 +129,18 @@ export default {
           text: err.response.data.message
         })
       })
-    setTimeout(() => {
-      this.isLoading = false
-    }, 3000)
+    // setTimeout(() => {
+    //   this.isLoading = false
+    // }, 3000)
 
-    if (window.name === '') {
-      console.log('首次被加载')
-      this.first = true
-      window.name = 'isReload'
-    } else if (window.name === 'isReload') {
-      console.log('页面被刷新')
-      this.first = false
-    }
+    // if (window.name === '') {
+    //   console.log('首次被加载')
+    //   this.first = true
+    //   window.name = 'isReload'
+    // } else if (window.name === 'isReload') {
+    //   console.log('页面被刷新')
+    //   this.first = false
+    // }
   }
 }
 </script>

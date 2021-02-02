@@ -1,6 +1,8 @@
 <template lang="pug">
 #app
   #div(v-if="isShow")
+    loading(v-if='first' loader='dots' :active.sync='isLoading' blur="100px" lock-scroll="true" opacity="1" background-color="#faebd7" color="#677d35" transition="fade")
+        v-img(src="./assets/logo_animated_animated.svg")
     #top
       Menu
       ResBtn
@@ -25,8 +27,17 @@ import Footer from './components/Footer.vue'
 import NevBtn from './components/NevBtn.vue'
 import TopBtn from './components/TopBtn.vue'
 
+import VueLoading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+
 export default {
   name: 'App',
+  data () {
+    return {
+      isLoading: true,
+      first: true
+    }
+  },
   computed: {
     user () {
       return this.$store.state.user
@@ -55,7 +66,8 @@ export default {
     Word,
     Footer,
     NevBtn,
-    TopBtn
+    TopBtn,
+    loading: VueLoading
   },
   methods: {
     heartbeat () {
@@ -101,6 +113,19 @@ export default {
     setInterval(() => {
       this.heartbeat()
     }, 5000)
+
+    setTimeout(() => {
+      this.isLoading = false
+    }, 5000)
+
+    if (window.name === '') {
+      console.log('首次被加载')
+      this.first = true
+      window.name = 'isReload'
+    } else if (window.name === 'isReload') {
+      console.log('页面被刷新')
+      this.first = false
+    }
   }
 }
 </script>
