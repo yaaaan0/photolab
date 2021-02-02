@@ -92,7 +92,7 @@ export default {
       } else {
         this.paid = false
       }
-      this.axios.patch(process.env.VUE_APP_API + '/users/' + this.order._id, this.$data)
+      this.axios.patch(process.env.VUE_APP_API + '/users/allorder/' + this.order._id, this.$data)
         .then(res => {
           if (res.data.success) {
             console.log(this.$data)
